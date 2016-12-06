@@ -28,7 +28,7 @@ class UsersTable extends React.PureComponent { // eslint-disable-line react/pref
     );
     return (
       <Table bordered fixedHeader={false}>
-        <TableHeader tooltip="Users" style={{textAlign: 'center'}}>
+        <TableHeader tooltip="Users" style={{ textAlign: 'center' }}>
           <TableRow>
             <TableHeaderColumn>Username</TableHeaderColumn>
             <TableHeaderColumn>Name</TableHeaderColumn>
