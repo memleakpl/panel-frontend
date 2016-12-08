@@ -4,13 +4,14 @@
  * This is the entry file for the application, only setup and boilerplate
  * code.
  */
+/* eslint-disable import/first */
 import 'babel-polyfill';
 
-/* eslint-disable import/no-unresolved, import/extensions */
+/* eslint-disable import/no-unresolved, import/extensions, import/no-webpack-loader-syntax */
 // Load the manifest.json file and the .htaccess file
 import '!file?name=[name].[ext]!./manifest.json';
 import 'file?name=[name].[ext]!./.htaccess';
-/* eslint-enable import/no-unresolved, import/extensions */
+/* eslint-enable import/no-unresolved, import/extensions, import/no-webpack-loader-syntax */
 
 // Import all the third party stuff
 import React from 'react';
@@ -110,3 +111,4 @@ if (!window.Intl) {
 if (process.env.NODE_ENV === 'production') {
   require('offline-plugin/runtime').install(); // eslint-disable-line global-require
 }
+/* eslint-enable import/first */
