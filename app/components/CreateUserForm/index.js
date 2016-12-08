@@ -25,6 +25,7 @@ class CreateUserForm extends React.PureComponent { // eslint-disable-line react/
     onLastNameChange: React.PropTypes.func.isRequired,
     email: React.PropTypes.string.isRequired,
     onEmailChange: React.PropTypes.func.isRequired,
+    onSubmit: React.PropTypes.func,
   }
 
   validateForm() {
@@ -83,7 +84,7 @@ class CreateUserForm extends React.PureComponent { // eslint-disable-line react/
             fullWidth
           />
           <RaisedButton
-            onClick={this.onSubmit}
+            onClick={this.props.onSubmit}
             disabled={!allValid}
             primary
             fullWidth

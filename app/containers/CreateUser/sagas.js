@@ -1,8 +1,34 @@
-// import { take, call, put, select } from 'redux-saga/effects';
+import { call, put, select } from 'redux-saga/effects';
+import { takeLatest } from 'redux-saga';
 
-// Individual exports for testing
-export function* defaultSaga() {
-  return; // eslint-disable-line no-useless-return
+import selectCreateUser from './selectors';
+import { CREATE_USER_API_URL, REQUEST_CREATE_USER } from './constants';
+import { requestCreateUserSuccess, requestCreateUserError } from './actions';
+
+
+function callCreate(user) {
+  return fetch(CREATE_USER_API_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8',
+    },
+    credentials: 'include',
+    body: JSON.stringify(user),
+  });
+}
+
+function* createUser() {
+  try {
+    const user = yield select(selectCreateUser());
+    yield call(callCreate, user);
+    yield put(requestCreateUserSuccess());
+  } catch (e) {
+    yield put(requestCreateUserError());
+  }
+}
+
+function* defaultSaga() {
+  yield* takeLatest(REQUEST_CREATE_USER, createUser);
 }
 
 // All sagas to be loaded

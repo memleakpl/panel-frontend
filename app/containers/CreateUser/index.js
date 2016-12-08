@@ -7,7 +7,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import selectCreateUser from './selectors';
-import { setUsername, setFirstName, setLastName, setEmail } from './actions';
+import { setUsername, setFirstName, setLastName, setEmail, requestCreateUser } from './actions';
 import CreateUserForm from '../../components/CreateUserForm';
 
 export class CreateUser extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
@@ -20,6 +20,7 @@ export class CreateUser extends React.PureComponent { // eslint-disable-line rea
     this.onFirstNameChange = this.onFirstNameChange.bind(this);
     this.onLastNameChange = this.onLastNameChange.bind(this);
     this.onEmailChange = this.onEmailChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
   onUsernameChange(_e, username) {
     this.props.dispatch(setUsername(username));
@@ -33,6 +34,9 @@ export class CreateUser extends React.PureComponent { // eslint-disable-line rea
   onEmailChange(_e, email) {
     this.props.dispatch(setEmail(email));
   }
+  onSubmit() {
+    this.props.dispatch(requestCreateUser());
+  }
   render() {
     return (
       <CreateUserForm
@@ -41,6 +45,7 @@ export class CreateUser extends React.PureComponent { // eslint-disable-line rea
         onFirstNameChange={this.onFirstNameChange}
         onLastNameChange={this.onLastNameChange}
         onEmailChange={this.onEmailChange}
+        onSubmit={this.onSubmit}
       />
     );
   }
