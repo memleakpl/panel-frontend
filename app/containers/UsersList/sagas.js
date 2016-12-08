@@ -2,10 +2,12 @@
 
 // Individual exports for testing
 
-import { GET_USERS_URL, GET_USERS } from './constants';
 import { put, call } from 'redux-saga/effects';
-import { getUsersSuccess, getUsersError } from './actions';
 import { takeLatest } from 'redux-saga';
+
+import { GET_USERS_URL, GET_USERS } from './constants';
+import { getUsersSuccess, getUsersError } from './actions';
+
 
 export function callGetUsers() {
   return fetch(GET_USERS_URL, {

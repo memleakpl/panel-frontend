@@ -1,4 +1,4 @@
-import { take, call, put, select } from 'redux-saga/effects';
+import { call, put, select } from 'redux-saga/effects';
 import { takeLatest } from 'redux-saga';
 import { REQUEST_LOGIN, LOGIN_API_URL } from './constants';
 import selectLoginForm from './selectors';

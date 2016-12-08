@@ -5,9 +5,9 @@
 */
 
 import React from 'react';
+import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
 import { USER_TYPE } from './constants';
 
-import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
 
 class UsersTable extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
@@ -28,7 +28,7 @@ class UsersTable extends React.PureComponent { // eslint-disable-line react/pref
     );
     return (
       <Table bordered fixedHeader={false}>
-        <TableHeader tooltip="Users" style={{textAlign: 'center'}}>
+        <TableHeader tooltip="Users" style={{ textAlign: 'center' }}>
           <TableRow>
             <TableHeaderColumn>Username</TableHeaderColumn>
             <TableHeaderColumn>Name</TableHeaderColumn>

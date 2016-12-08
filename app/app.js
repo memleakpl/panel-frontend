@@ -4,13 +4,14 @@
  * This is the entry file for the application, only setup and boilerplate
  * code.
  */
+/* eslint-disable import/first */
 import 'babel-polyfill';
 
-/* eslint-disable import/no-unresolved, import/extensions */
+/* eslint-disable import/no-unresolved, import/extensions, import/no-webpack-loader-syntax */
 // Load the manifest.json file and the .htaccess file
 import '!file?name=[name].[ext]!./manifest.json';
 import 'file?name=[name].[ext]!./.htaccess';
-/* eslint-enable import/no-unresolved, import/extensions */
+/* eslint-enable import/no-unresolved, import/extensions, import/no-webpack-loader-syntax */
 
 // Import all the third party stuff
 import React from 'react';
@@ -22,7 +23,8 @@ import { useScroll } from 'react-router-scroll';
 import LanguageProvider from 'containers/LanguageProvider';
 import configureStore from './store';
 
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 
 // Import i18n messages
 import { translationMessages } from './i18n';
@@ -53,6 +55,7 @@ const rootRoute = {
   childRoutes: createRoutes(store),
 };
 
+injectTapEventPlugin();
 
 const render = (translatedMessages) => {
   ReactDOM.render(
@@ -91,6 +94,7 @@ if (!window.Intl) {
     resolve(System.import('intl'));
   }))
     .then(() => Promise.all([
+      System.import('intl/locale-data/jsonp/en.js'),
       System.import('intl/locale-data/jsonp/de.js'),
     ]))
     .then(() => render(translationMessages))
@@ -104,5 +108,7 @@ if (!window.Intl) {
 // Install ServiceWorker and AppCache in the end since
 // it's not most important operation and if main code fails,
 // we do not want it installed
-import { install } from 'offline-plugin/runtime';
-install();
+if (process.env.NODE_ENV === 'production') {
+  require('offline-plugin/runtime').install(); // eslint-disable-line global-require
+}
+/* eslint-enable import/first */
