@@ -2,7 +2,7 @@
 
 // Individual exports for testing
 export function* defaultSaga() {
-  return;
+  return; // eslint-disable-line no-useless-return
 }
 
 // All sagas to be loaded

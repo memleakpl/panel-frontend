@@ -6,15 +6,15 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import selectLoginForm from './selectors';
-import { setUsername, setPassword, requestLogin } from './actions';
+import { FormattedMessage } from 'react-intl';
 
 import { Card, CardTitle } from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
-import { FormattedMessage } from 'react-intl';
 import messages from './messages';
+import selectLoginForm from './selectors';
+import { setUsername, setPassword, requestLogin } from './actions';
 
 export class LoginForm extends React.PureComponent {
   static propTypes = {
