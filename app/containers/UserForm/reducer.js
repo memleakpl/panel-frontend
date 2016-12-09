@@ -6,6 +6,7 @@
 
 import { fromJS } from 'immutable';
 import {
+  SET_USER,
   SET_USERNAME,
   SET_FIRST_NAME,
   SET_LAST_NAME,
@@ -21,6 +22,8 @@ const initialState = fromJS({
 
 function userFormReducer(state = initialState, action) {
   switch (action.type) {
+    case SET_USER:
+      return fromJS(action.value);
     case SET_USERNAME:
       return state.set('username', action.value);
     case SET_FIRST_NAME:

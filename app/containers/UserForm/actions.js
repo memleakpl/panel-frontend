@@ -5,11 +5,19 @@
  */
 
 import {
+  SET_USER,
   SET_USERNAME,
   SET_FIRST_NAME,
   SET_LAST_NAME,
   SET_EMAIL,
 } from './constants';
+
+export function setUser(user) {
+  return {
+    type: SET_USER,
+    value: user,
+  };
+}
 
 export function setUsername(username) {
   return {
