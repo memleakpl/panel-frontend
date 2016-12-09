@@ -10,6 +10,7 @@ import {
   SET_FIRST_NAME,
   SET_LAST_NAME,
   SET_EMAIL,
+  CREATE_USER_SUCCESS,
 } from './constants';
 
 const initialState = fromJS({
@@ -29,6 +30,8 @@ function createUserReducer(state = initialState, action) {
       return state.set('lastName', action.value);
     case SET_EMAIL:
       return state.set('email', action.value);
+    case CREATE_USER_SUCCESS:
+      return initialState;
     default:
       return state;
   }
