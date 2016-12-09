@@ -1,16 +1,17 @@
 /*
  *
- * CreateUser
+ * EditUser
  *
  */
 
 import React from 'react';
 import { connect } from 'react-redux';
-import selectCreateUser from './selectors';
-import { requestCreateUser } from './actions';
+import selectEditUser from './selectors';
 import UserForm from '../UserForm';
+// import { requestUserFetch } from './actions';
 
-export class CreateUser extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+
+export class EditUser extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
     dispatch: React.PropTypes.func.isRequired,
   }
@@ -18,8 +19,11 @@ export class CreateUser extends React.PureComponent { // eslint-disable-line rea
     super();
     this.onSubmit = this.onSubmit.bind(this);
   }
+  componentDidMount() {
+    // this.props.dispatch(requestUserFetch());
+  }
   onSubmit() {
-    this.props.dispatch(requestCreateUser());
+    // this.props.dispatch(requestEditUser());
   }
   render() {
     return (
@@ -28,7 +32,7 @@ export class CreateUser extends React.PureComponent { // eslint-disable-line rea
   }
 }
 
-const mapStateToProps = selectCreateUser();
+const mapStateToProps = selectEditUser();
 
 function mapDispatchToProps(dispatch) {
   return {
@@ -36,4 +40,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateUser);
+export default connect(mapStateToProps, mapDispatchToProps)(EditUser);

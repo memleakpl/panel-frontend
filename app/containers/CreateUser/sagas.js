@@ -1,7 +1,7 @@
 import { call, put, select } from 'redux-saga/effects';
 import { takeLatest } from 'redux-saga';
 
-import selectCreateUser from './selectors';
+import selectUserForm from '../UserForm/selectors';
 import { CREATE_USER_API_URL, REQUEST_CREATE_USER } from './constants';
 import { requestCreateUserSuccess, requestCreateUserError } from './actions';
 
@@ -19,7 +19,7 @@ function callCreate(user) {
 
 function* createUser() {
   try {
-    const user = yield select(selectCreateUser());
+    const user = yield select(selectUserForm());
     yield call(callCreate, user);
     yield put(requestCreateUserSuccess());
   } catch (e) {
