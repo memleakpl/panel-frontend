@@ -6,9 +6,11 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
+import { FormattedMessage } from 'react-intl';
 import selectCreateUser from './selectors';
 import { requestCreateUser } from './actions';
 import UserForm from '../UserForm';
+import messages from './messages';
 
 export class CreateUser extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
@@ -23,7 +25,11 @@ export class CreateUser extends React.PureComponent { // eslint-disable-line rea
   }
   render() {
     return (
-      <UserForm onSubmit={this.onSubmit} />
+      <UserForm
+        header={<FormattedMessage {...messages.header} />}
+        button={<FormattedMessage {...messages.create} />}
+        onSubmit={this.onSubmit}
+      />
     );
   }
 }

@@ -6,9 +6,11 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
+import { FormattedMessage } from 'react-intl';
 import selectEditUser from './selectors';
 import UserForm from '../UserForm';
 import { requestUserFetch } from './actions';
+import messages from './messages';
 
 
 export class EditUser extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
@@ -30,7 +32,11 @@ export class EditUser extends React.PureComponent { // eslint-disable-line react
   }
   render() {
     return (
-      <UserForm onSubmit={this.onSubmit} />
+      <UserForm
+        header={<FormattedMessage {...messages.header} />}
+        button={<FormattedMessage {...messages.save} />}
+        onSubmit={this.onSubmit}
+      />
     );
   }
 }
