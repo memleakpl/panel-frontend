@@ -1,7 +1,7 @@
 import { call, put, select } from 'redux-saga/effects';
 import { takeLatest, takeEvery } from 'redux-saga';
 import { push } from 'react-router-redux';
-import { REQUEST_USER_FETCH, EDIT_USER_REQUEST, API_GET_USER, API_EDIT_USER, LIST_USERS_URL } from './constants';
+import { FETCH_USER_REQUEST, EDIT_USER_REQUEST, API_GET_USER, API_EDIT_USER, LIST_USERS_URL } from './constants';
 import selectUserForm from '../UserForm/selectors';
 import { setUser } from '../UserForm/actions';
 import { fetchUserSuccess, fetchUserError, editUserSuccess, editUserError } from './actions';
@@ -49,7 +49,7 @@ function* editUserSage() {
 }
 
 function* defaultSaga() {
-  yield takeLatest(REQUEST_USER_FETCH, fetchUserSaga);
+  yield takeLatest(FETCH_USER_REQUEST, fetchUserSaga);
   yield takeEvery(EDIT_USER_REQUEST, editUserSage);
 }
 

@@ -5,7 +5,7 @@
  */
 
 import {
-  REQUEST_USER_FETCH,
+  FETCH_USER_REQUEST,
   FETCH_USER_SUCCESS,
   FETCH_USER_ERROR,
   EDIT_USER_REQUEST,
@@ -15,7 +15,7 @@ import {
 
 export function requestUserFetch(username) {
   return {
-    type: REQUEST_USER_FETCH,
+    type: FETCH_USER_REQUEST,
     value: username,
   };
 }
