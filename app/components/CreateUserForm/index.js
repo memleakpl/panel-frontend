@@ -26,6 +26,8 @@ class CreateUserForm extends React.PureComponent { // eslint-disable-line react/
     email: React.PropTypes.string.isRequired,
     onEmailChange: React.PropTypes.func.isRequired,
     onSubmit: React.PropTypes.func,
+    header: React.PropTypes.element,
+    button: React.PropTypes.element,
   }
 
   validateForm() {
@@ -42,7 +44,7 @@ class CreateUserForm extends React.PureComponent { // eslint-disable-line react/
     const allValid = valid.username && valid.firstName && valid.lastName && valid.email;
     return (
       <Card style={{ margin: '100px auto', padding: 50, width: 800 }} >
-        <CardTitle title={<FormattedMessage {...messages.header} />} />
+        <CardTitle title={this.props.header} />
         <div>
           <TextField
             hintText={<FormattedMessage {...messages.usernameHint} />}
@@ -88,7 +90,7 @@ class CreateUserForm extends React.PureComponent { // eslint-disable-line react/
             disabled={!allValid}
             primary
             fullWidth
-            label={<FormattedMessage {...messages.create} />}
+            label={this.props.button}
           />
         </div>
       </Card>

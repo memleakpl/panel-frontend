@@ -6,9 +6,11 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
+import { FormattedMessage } from 'react-intl';
 import selectCreateUser from './selectors';
-import { setUsername, setFirstName, setLastName, setEmail, requestCreateUser } from './actions';
-import CreateUserForm from '../../components/CreateUserForm';
+import { requestCreateUser } from './actions';
+import UserForm from '../UserForm';
+import messages from './messages';
 
 export class CreateUser extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
@@ -16,35 +18,16 @@ export class CreateUser extends React.PureComponent { // eslint-disable-line rea
   }
   constructor() {
     super();
-    this.onUsernameChange = this.onUsernameChange.bind(this);
-    this.onFirstNameChange = this.onFirstNameChange.bind(this);
-    this.onLastNameChange = this.onLastNameChange.bind(this);
-    this.onEmailChange = this.onEmailChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-  }
-  onUsernameChange(_e, username) {
-    this.props.dispatch(setUsername(username));
-  }
-  onFirstNameChange(_e, firstName) {
-    this.props.dispatch(setFirstName(firstName));
-  }
-  onLastNameChange(_e, lastName) {
-    this.props.dispatch(setLastName(lastName));
-  }
-  onEmailChange(_e, email) {
-    this.props.dispatch(setEmail(email));
   }
   onSubmit() {
     this.props.dispatch(requestCreateUser());
   }
   render() {
     return (
-      <CreateUserForm
-        {...this.props}
-        onUsernameChange={this.onUsernameChange}
-        onFirstNameChange={this.onFirstNameChange}
-        onLastNameChange={this.onLastNameChange}
-        onEmailChange={this.onEmailChange}
+      <UserForm
+        header={<FormattedMessage {...messages.header} />}
+        button={<FormattedMessage {...messages.create} />}
         onSubmit={this.onSubmit}
       />
     );

@@ -7,11 +7,11 @@ import { defineMessages } from 'react-intl';
 
 export default defineMessages({
   header: {
-    id: 'app.components.CreateUser.header',
-    defaultMessage: 'Create new user',
+    id: 'app.components.EditUser.header',
+    defaultMessage: 'Edit user',
   },
-  create: {
-    id: 'app.components.CreateUser.create',
-    defaultMessage: 'Create',
+  save: {
+    id: 'app.components.EditUser.save',
+    defaultMessage: 'Save',
   },
 });
