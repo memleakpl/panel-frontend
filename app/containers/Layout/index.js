@@ -15,6 +15,7 @@ import { Link } from 'react-router';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import { USERS_LIST_URL } from '../UsersList/constants';
+import { activeLinkStyle, mainDivStyle, listItemStyle, linkStyle, listStyle, childrenDivStyle } from './styles';
 
 
 export class Layout extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
@@ -22,42 +23,40 @@ export class Layout extends React.PureComponent { // eslint-disable-line react/p
     children: React.PropTypes.node,
   };
   render() {
-    const listStyle = {
-      WebkitAppearance: 'none', // workaround of bug: https://github.com/callemall/material-ui/issues/4008
-      margin: '0px',
-    };
     return (
-      <div style={{ display: 'flex', justifyContent: 'space-between', flexDirection: 'row', padding: '20px auto', height: '100vh', backgroundColor: '#ECEFF1' }}>
-        <List style={{ flex: 0.13, position: 'sticky', boxShadow: '5px 5px 8px #D7CCC8', backgroundColor: '#FFFFFF' }}>
-          <Link to={USERS_LIST_URL} style={{ textDecoration: 'none' }} activeStyle={{ display: 'block', backgroundColor: '#BBDEFB' }}>
+      <div style={mainDivStyle}>
+        <List style={listStyle}>
+          <Link to={USERS_LIST_URL} style={linkStyle} activeStyle={activeLinkStyle}>
             <ListItem
-              style={listStyle}
+              style={listItemStyle}
               primaryText={<FormattedMessage {...messages.users} />}
               rightIcon={<ActionList />}
             />
           </Link>
+          <Link to="/user/create" style={linkStyle} activeStyle={activeLinkStyle}>
+            <ListItem
+              style={listItemStyle}
+              primaryText={<FormattedMessage {...messages.addUser} />}
+              rightIcon={<ContentAddCircleOutline />}
+            />
+          </Link>
           <ListItem
-            style={listStyle}
-            primaryText={<FormattedMessage {...messages.addUser} />}
-            rightIcon={<ContentAddCircleOutline />}
-          />
-          <ListItem
-            style={listStyle}
+            style={listItemStyle}
             primaryText={<FormattedMessage {...messages.groups} />}
             rightIcon={<ActionList />}
           />
           <ListItem
-            style={listStyle}
+            style={listItemStyle}
             primaryText={<FormattedMessage {...messages.addGroup} />}
             rightIcon={<ContentAddCircleOutline />}
           />
           <ListItem
-            style={listStyle}
+            style={listItemStyle}
             primaryText={<FormattedMessage {...messages.logout} />}
             rightIcon={<ActionExitToApp />}
           />
         </List>
-        <div style={{ flex: 0.8 }}>
+        <div style={childrenDivStyle}>
           {this.props.children}
         </div>
       </div>
