@@ -15,6 +15,7 @@ import { Link } from 'react-router';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import { USERS_LIST_URL } from '../UsersList/constants';
+import { CREATE_USER_URL } from '../CreateUser/constants';
 import { activeLinkStyle, mainDivStyle, listItemStyle, linkStyle, listStyle, childrenDivStyle } from './styles';
 
 
@@ -33,7 +34,7 @@ export class Layout extends React.PureComponent { // eslint-disable-line react/p
               rightIcon={<ActionList />}
             />
           </Link>
-          <Link to="/user/create" style={linkStyle} activeStyle={activeLinkStyle}>
+          <Link to={CREATE_USER_URL} style={linkStyle} activeStyle={activeLinkStyle}>
             <ListItem
               style={listItemStyle}
               primaryText={<FormattedMessage {...messages.addUser} />}
