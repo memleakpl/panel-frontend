@@ -11,6 +11,7 @@ import { getUsersSuccess, getUsersError } from './actions';
 
 export function callGetUsers() {
   return fetch(GET_USERS_URL, {
+    credentials: 'include',
     method: 'GET',
   }).then((response) => response.json());
 }
