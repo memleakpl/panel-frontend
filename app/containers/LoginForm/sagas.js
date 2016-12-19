@@ -1,14 +1,21 @@
 import { call, put, select } from 'redux-saga/effects';
 import { takeLatest } from 'redux-saga';
-import { REQUEST_LOGIN, LOGIN_API_URL } from './constants';
+import { push } from 'react-router-redux';
+import { REQUEST_LOGIN, LOGIN_API_URL, AFTER_LOGIN_URL } from './constants';
 import selectLoginForm from './selectors';
 import { requestLoginSuccess, requestLoginError } from './actions';
 
 function callLogin(username, password) {
   return fetch(LOGIN_API_URL, {
     method: 'POST',
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8',
+    },
+    credentials: 'include',
     body: JSON.stringify({ username, password }),
-  }).then((response) => response.json());
+  }).then((response) => {
+    if (response.status !== 204) throw new Error('Login failed');
+  });
 }
 
 function* login() {
@@ -16,6 +23,7 @@ function* login() {
     const { username, password } = yield select(selectLoginForm());
     yield call(callLogin, username, password);
     yield put(requestLoginSuccess());
+    yield put(push(AFTER_LOGIN_URL));
   } catch (e) {
     yield put(requestLoginError());
   }
