@@ -51,7 +51,9 @@ const history = syncHistoryWithStore(browserHistory, store, {
 import App from 'containers/App';
 import createRoutes from './routes';
 const rootRoute = {
+  path: '/',
   component: App,
+  indexRoute: { onEnter: (nextState, replace) => replace('/users') },
   childRoutes: createRoutes(store),
 };
 
