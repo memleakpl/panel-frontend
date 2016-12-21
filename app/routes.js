@@ -114,31 +114,32 @@ export default function createRoutes(store) {
             importModules.catch(errorLoading);
           },
         },
+        {
+          path: '/user/:username',
+          name: 'editUser',
+          getComponent(nextState, cb) {
+            const importModules = Promise.all([
+              System.import('containers/UserForm/reducer'),
+              System.import('containers/EditUser/reducer'),
+              System.import('containers/EditUser/sagas'),
+              System.import('containers/EditUser'),
+            ]);
+
+            const renderRoute = loadModule(cb);
+
+            importModules.then(([userFormReducer, reducer, sagas, component]) => {
+              injectReducer('editUser', reducer.default);
+              injectReducer('userForm', userFormReducer.default);
+              injectSagas(sagas.default);
+              renderRoute(component);
+            });
+
+            importModules.catch(errorLoading);
+          },
+        },
       ],
     },
     {
-      path: '/user/:username',
-      name: 'editUser',
-      getComponent(nextState, cb) {
-        const importModules = Promise.all([
-          System.import('containers/UserForm/reducer'),
-          System.import('containers/EditUser/reducer'),
-          System.import('containers/EditUser/sagas'),
-          System.import('containers/EditUser'),
-        ]);
-
-        const renderRoute = loadModule(cb);
-
-        importModules.then(([userFormReducer, reducer, sagas, component]) => {
-          injectReducer('editUser', reducer.default);
-          injectReducer('userForm', userFormReducer.default);
-          injectSagas(sagas.default);
-          renderRoute(component);
-        });
-
-        importModules.catch(errorLoading);
-      },
-    }, {
       path: '*',
       name: 'notfound',
       getComponent(nextState, cb) {
