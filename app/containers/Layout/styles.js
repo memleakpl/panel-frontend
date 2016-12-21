@@ -12,7 +12,7 @@ export const mainDivStyle = {
   justifyContent: 'space-between',
   flexDirection: 'row',
   padding: '20px auto',
-  height: '100vh',
+  minHeight: '100vh',
   backgroundColor: '#ECEFF1',
 };
 export const listItemStyle = {
