@@ -7,6 +7,8 @@
 import React from 'react';
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
 import { Card, CardTitle } from 'material-ui/Card';
+import FontIcon from 'material-ui/FontIcon';
+import IconButton from 'material-ui/IconButton';
 import { FormattedMessage } from 'react-intl';
 
 import { USER_TYPE } from './constants';
@@ -16,18 +18,29 @@ import messages from './messages';
 class UsersTable extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
     users: React.PropTypes.arrayOf(USER_TYPE),
-    onSelectionChange: React.PropTypes.func,
-    selectedUser: React.PropTypes.string,
+    editUser: React.PropTypes.func,
   };
 
+  constructor() {
+    super();
+    this.editUser = this.editUser.bind(this);
+  }
+
+  editUser(username) {
+    this.props.editUser(username);
+  }
   createTableRow(user) {
-    const selected = this.props.selectedUser === user.username;
     return (
-      <TableRow key={user.username} selected={selected}>
+      <TableRow key={user.username}>
         <TableRowColumn>{user.username}</TableRowColumn>
         <TableRowColumn>{user.firstName}</TableRowColumn>
         <TableRowColumn>{user.lastName}</TableRowColumn>
         <TableRowColumn>{user.email}</TableRowColumn>
+        <TableRowColumn>
+          <IconButton onClick={() => this.editUser(user.username)}>
+            <FontIcon className="material-icons" >mode_edit</FontIcon>
+          </IconButton>
+        </TableRowColumn>
       </TableRow>
     );
   }
@@ -38,16 +51,17 @@ class UsersTable extends React.PureComponent { // eslint-disable-line react/pref
     return (
       <Card style={{ margin: '25px', paddingTop: 10 }}>
         <CardTitle title={<FormattedMessage {...messages.usersList} />} />
-        <Table bordered fixedHeader={false} onRowSelection={this.props.onSelectionChange}>
-          <TableHeader displaySelectAll={false}>
+        <Table bordered fixedHeader={false} selectable={false}>
+          <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
             <TableRow>
               <TableHeaderColumn><FormattedMessage {...messages.username} /></TableHeaderColumn>
               <TableHeaderColumn><FormattedMessage {...messages.firstName} /></TableHeaderColumn>
               <TableHeaderColumn><FormattedMessage {...messages.lastName} /></TableHeaderColumn>
               <TableHeaderColumn><FormattedMessage {...messages.email} /></TableHeaderColumn>
+              <TableHeaderColumn />
             </TableRow>
           </TableHeader>
-          <TableBody stripedRows >
+          <TableBody stripedRows displayRowCheckbox={false}>
             {rows}
           </TableBody>
         </Table>

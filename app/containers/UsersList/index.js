@@ -6,32 +6,31 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 import selectUsersList from './selectors';
 import UsersTable from '../../components/UsersTable';
 import { USER_TYPE } from '../../components/UsersTable/constants';
-import { getUsers, setSelectedUser } from './actions';
+import { getUsers } from './actions';
 
 
 export class UsersList extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
     users: React.PropTypes.arrayOf(USER_TYPE),
     dispatch: React.PropTypes.func,
-    selectedUser: React.PropTypes.string.isRequired,
   };
   constructor() {
     super();
-    this.onSelectionChange = this.onSelectionChange.bind(this);
+    this.editUser = this.editUser.bind(this);
   }
   componentDidMount() {
     this.props.dispatch(getUsers());
   }
-  onSelectionChange(selectedRows) {
-    const selectedUser = selectedRows.length > 0 ? this.props.users[selectedRows[0]].username : '';
-    this.props.dispatch(setSelectedUser(selectedUser));
+  editUser(username) {
+    this.props.dispatch(push(`/user/${username}`));
   }
   render() {
     return (
-      <UsersTable users={this.props.users} onSelectionChange={this.onSelectionChange} selectedUser={this.props.selectedUser} />
+      <UsersTable users={this.props.users} editUser={this.editUser} />
     );
   }
 
