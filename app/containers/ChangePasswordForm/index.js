@@ -30,6 +30,7 @@ export class ChangePasswordForm extends React.PureComponent { // eslint-disable-
     this.onNewPasswordChange = this.onNewPasswordChange.bind(this);
     this.onRepeatPasswordChange = this.onRepeatPasswordChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.handleEnterSubmit = this.handleEnterSubmit.bind(this);
   }
   onOldPasswordChange(_e, oldPassword) {
     this.props.dispatch(setOldPassword(oldPassword));
@@ -42,6 +43,11 @@ export class ChangePasswordForm extends React.PureComponent { // eslint-disable-
   }
   onSubmit() {
     this.props.dispatch(changePassword());
+  }
+  handleEnterSubmit(e) {
+    if (e.key === 'Enter') {
+      this.props.dispatch(changePassword());
+    }
   }
   validateForm() {
     return {
@@ -78,6 +84,7 @@ export class ChangePasswordForm extends React.PureComponent { // eslint-disable-
           <TextField
             type="password"
             fullWidth
+            onKeyPress={allValid ? this.handleEnterSubmit : null}
             errorText={oldPasswordErrorText}
             onChange={this.onOldPasswordChange}
             value={this.props.oldPassword}
@@ -88,6 +95,7 @@ export class ChangePasswordForm extends React.PureComponent { // eslint-disable-
           <TextField
             type="password"
             fullWidth
+            onKeyPress={allValid ? this.handleEnterSubmit : null}
             onChange={this.onNewPasswordChange}
             errorText={!valid.newPasswordNotEmpty ? <span /> : null}
             value={this.props.newPassword}
@@ -98,6 +106,7 @@ export class ChangePasswordForm extends React.PureComponent { // eslint-disable-
           <TextField
             type="password"
             fullWidth
+            onKeyPress={allValid ? this.handleEnterSubmit : null}
             onChange={this.onRepeatPasswordChange}
             errorText={repeatErrorText}
             value={this.props.repeatPassword}

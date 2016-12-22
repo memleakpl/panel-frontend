@@ -80,7 +80,6 @@ function mapStateToProps(_state) { // eslint-disable-line no-unused-vars
 
 function mapDispatchToProps(dispatch) { // eslint-disable-line no-unused-vars
   return {
-    dispatch,
   };
 }
 

@@ -3,7 +3,7 @@
 // Individual exports for testing
 import { call, put, select } from 'redux-saga/effects';
 import { takeLatest } from 'redux-saga';
-import { CHANGE_PASSWORD_API_URL, CHANGE_PASSWORD } from './constants';
+import { CHANGE_PASSWORD_API_URL, CHANGE_PASSWORD_REQUEST } from './constants';
 import selectChangePasswordForm from './selectors';
 import { changePasswordError, changePasswordSuccess } from './actions';
 
@@ -30,11 +30,11 @@ function* changePassword() {
     yield put(changePasswordError());
   }
 }
-export function* defaultSaga() {
-  yield* takeLatest(CHANGE_PASSWORD, changePassword);
+export function* changePasswordSaga() {
+  yield* takeLatest(CHANGE_PASSWORD_REQUEST, changePassword);
 }
 
 // All sagas to be loaded
 export default [
-  defaultSaga,
+  changePasswordSaga,
 ];

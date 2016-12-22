@@ -10,7 +10,7 @@ import {
   SET_OLD_PASSWORD,
   CHANGE_PASSWORD_SUCCESS,
   CHANGE_PASSWORD_ERROR,
-  CHANGE_PASSWORD,
+  CHANGE_PASSWORD_REQUEST,
 } from './constants';
 
 export function setOldPassword(oldPassword) {
@@ -36,7 +36,7 @@ export function setRepeatPassword(repeatPassword) {
 
 export function changePassword() {
   return {
-    type: CHANGE_PASSWORD,
+    type: CHANGE_PASSWORD_REQUEST,
   };
 }
 
