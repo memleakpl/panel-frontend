@@ -10,7 +10,7 @@ import { push } from 'react-router-redux';
 import selectUsersList from './selectors';
 import UsersTable from '../../components/UsersTable';
 import { USER_TYPE } from '../../components/UsersTable/constants';
-import { getUsers, setDeletionUser } from './actions';
+import { getUsers, setDeletionUser, deleteUserRequest } from './actions';
 
 
 export class UsersList extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
@@ -36,7 +36,7 @@ export class UsersList extends React.PureComponent { // eslint-disable-line reac
     this.props.dispatch(setDeletionUser(username));
   }
   deleteUser(username) {
-    console.log(`TODO: delete user ${username}`);
+    this.props.dispatch(deleteUserRequest(username));
   }
   cancelDeleteUser() {
     this.props.dispatch(setDeletionUser(null));

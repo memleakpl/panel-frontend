@@ -6,7 +6,7 @@
 
 import { fromJS } from 'immutable';
 import {
-  GET_USERS_SUCCESS, GET_USERS_ERROR, SET_DELETION_USER,
+  GET_USERS_SUCCESS, GET_USERS_ERROR, SET_DELETION_USER, DELETE_USER_SUCCESS,
 } from './constants';
 
 const initialState = fromJS({
@@ -23,6 +23,8 @@ function usersListReducer(state = initialState, action) {
       return state.set('error', true);
     case SET_DELETION_USER:
       return state.set('deletionUser', action.value);
+    case DELETE_USER_SUCCESS:
+      return state.set('deletionUser', null);
     default:
       return state;
   }
