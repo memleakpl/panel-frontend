@@ -30,4 +30,16 @@ export default defineMessages({
     id: 'app.components.UsersTable.usersList',
     defaultMessage: 'Email',
   },
+  deleteDialogBody: {
+    id: 'app.components.UsersTable.deleteDialogBody',
+    defaultMessage: 'Do you want remove user {username}?',
+  },
+  deleteDialogCancel: {
+    id: 'app.components.UsersTable.deleteDialogCancel',
+    defaultMessage: 'No',
+  },
+  deleteDialogConfirm: {
+    id: 'app.components.UsersTable.deleteDialogConfirm',
+    defaultMessage: 'Yes',
+  },
 });

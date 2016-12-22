@@ -4,7 +4,7 @@
  *
  */
 
-import { GET_USERS_SUCCESS, GET_USERS_ERROR, GET_USERS } from './constants';
+import { GET_USERS_SUCCESS, GET_USERS_ERROR, GET_USERS, SET_DELETION_USER } from './constants';
 
 export function getUsersSuccess(users) {
   return {
@@ -21,5 +21,12 @@ export function getUsers() {
 export function getUsersError() {
   return {
     type: GET_USERS_ERROR,
+  };
+}
+
+export function setDeletionUser(username) {
+  return {
+    type: SET_DELETION_USER,
+    value: username,
   };
 }

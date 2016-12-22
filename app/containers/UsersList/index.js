@@ -10,17 +10,21 @@ import { push } from 'react-router-redux';
 import selectUsersList from './selectors';
 import UsersTable from '../../components/UsersTable';
 import { USER_TYPE } from '../../components/UsersTable/constants';
-import { getUsers } from './actions';
+import { getUsers, setDeletionUser } from './actions';
 
 
 export class UsersList extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
     users: React.PropTypes.arrayOf(USER_TYPE),
     dispatch: React.PropTypes.func,
+    deletionUser: React.PropTypes.string,
   };
   constructor() {
     super();
     this.editUser = this.editUser.bind(this);
+    this.startDeleteUser = this.startDeleteUser.bind(this);
+    this.cancelDeleteUser = this.cancelDeleteUser.bind(this);
+    this.deleteUser = this.deleteUser.bind(this);
   }
   componentDidMount() {
     this.props.dispatch(getUsers());
@@ -28,9 +32,25 @@ export class UsersList extends React.PureComponent { // eslint-disable-line reac
   editUser(username) {
     this.props.dispatch(push(`/user/${username}`));
   }
+  startDeleteUser(username) {
+    this.props.dispatch(setDeletionUser(username));
+  }
+  deleteUser(username) {
+    console.log(`TODO: delete user ${username}`);
+  }
+  cancelDeleteUser() {
+    this.props.dispatch(setDeletionUser(null));
+  }
   render() {
     return (
-      <UsersTable users={this.props.users} editUser={this.editUser} />
+      <UsersTable
+        users={this.props.users}
+        deletionUser={this.props.deletionUser}
+        editUser={this.editUser}
+        startDeleteUser={this.startDeleteUser}
+        cancelDeleteUser={this.cancelDeleteUser}
+        deleteUser={this.deleteUser}
+      />
     );
   }
 
