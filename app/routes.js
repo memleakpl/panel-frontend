@@ -113,6 +113,26 @@ export default function createRoutes(store) {
 
             importModules.catch(errorLoading);
           },
+        }, {
+          path: '/password/change',
+          name: 'changePasswordForm',
+          getComponent(nextState, cb) {
+            const importModules = Promise.all([
+              System.import('containers/ChangePasswordForm/reducer'),
+              System.import('containers/ChangePasswordForm/sagas'),
+              System.import('containers/ChangePasswordForm'),
+            ]);
+
+            const renderRoute = loadModule(cb);
+
+            importModules.then(([reducer, sagas, component]) => {
+              injectReducer('changePasswordForm', reducer.default);
+              injectSagas(sagas.default);
+              renderRoute(component);
+            });
+
+            importModules.catch(errorLoading);
+          },
         },
       ],
     },

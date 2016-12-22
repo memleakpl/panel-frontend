@@ -26,4 +26,8 @@ export default defineMessages({
     id: 'app.containers.Layout.logout',
     defaultMessage: 'Logout',
   },
+  changePassword: {
+    id: 'app.containers.Layout.changePassword',
+    defaultMessage: 'Change password',
+  },
 });
