@@ -70,7 +70,6 @@ export default function createRoutes(store) {
 
         importModules.catch(errorLoading);
       },
-      onEnter: () => requireAuth(store),
       childRoutes: [
         {
           path: '/users',
@@ -92,6 +91,7 @@ export default function createRoutes(store) {
 
             importModules.catch(errorLoading);
           },
+          onEnter: () => requireAuth(store),
         },
         {
           path: '/user/create',
@@ -115,6 +115,7 @@ export default function createRoutes(store) {
 
             importModules.catch(errorLoading);
           },
+          onEnter: () => requireAuth(store),
         },
       ],
     },
