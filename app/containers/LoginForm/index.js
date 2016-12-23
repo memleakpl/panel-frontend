@@ -35,8 +35,9 @@ export class LoginForm extends React.PureComponent {
   onPasswordChange(_e, password) {
     this.props.dispatch(setPassword(password));
   }
-  onSubmit() {
+  onSubmit(e) {
     this.props.dispatch(requestLogin());
+    e.preventDefault();
   }
   render() {
     return (
