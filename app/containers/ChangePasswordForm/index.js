@@ -11,10 +11,18 @@ import { FormattedMessage } from 'react-intl';
 import { Card, CardTitle } from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
-
+import Notifications from 'react-notification-system-redux';
 import selectChangePasswordForm from './selectors';
 import messages from './messages';
 import { setNewPassword, setOldPassword, setRepeatPassword, changePassword } from './actions';
+
+
+// FIXME: Delete, only for checking how it works!
+const notificationOpts = {
+  title: 'Something happened',
+  position: 'tr',
+  autoDismiss: 0,
+};
 
 export class ChangePasswordForm extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
@@ -42,6 +50,7 @@ export class ChangePasswordForm extends React.PureComponent { // eslint-disable-
     this.props.dispatch(setRepeatPassword(repeatPassword));
   }
   onSubmit() {
+    this.props.dispatch(Notifications.success(notificationOpts)); // FIXME: Delete, only for checking how it works!
     this.props.dispatch(changePassword());
   }
   handleEnterSubmit(e) {

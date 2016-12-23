@@ -200,6 +200,8 @@
     "react-dom": "15.4.1",
     "react-helmet": "3.1.0",
     "react-intl": "2.1.5",
+    "react-notification-system": "^0.2.11",
+    "react-notification-system-redux": "^1.0.11",
     "react-redux": "4.4.5",
     "react-router": "3.0.0",
     "react-router-redux": "4.0.6",

@@ -8,6 +8,8 @@ import { fromJS } from 'immutable';
 import { LOCATION_CHANGE } from 'react-router-redux';
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
 
+import { reducer as notifications } from 'react-notification-system-redux';
+
 /*
  * routeReducer
  *
@@ -41,6 +43,7 @@ function routeReducer(state = routeInitialState, action = null) {
  */
 export default function createReducer(asyncReducers) {
   return combineReducers({
+    notifications,
     route: routeReducer,
     language: languageProviderReducer,
     ...asyncReducers,
