@@ -3,7 +3,9 @@
  * ChangePasswordForm constants
  *
  */
+
 import { API_ROOT } from '../../constants';
+
 
 export const SET_OLD_PASSWORD = 'app/ChangePasswordForm/SET_OLD_PASSWORD';
 export const SET_NEW_PASSWORD = 'app/ChangePasswordForm/SET_NEW_PASSWORD';
@@ -15,3 +17,4 @@ export const CHANGE_PASSWORD_ERROR = 'app/ChangePasswordForm/CHANGE_PASSWORD_ERR
 export const CHANGE_PASSWORD_API_URL = `${API_ROOT}/user/password`;
 
 export const CHANGE_PASSWORD_URL = '/password/change';
+

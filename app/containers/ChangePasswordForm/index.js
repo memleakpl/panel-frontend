@@ -11,10 +11,10 @@ import { FormattedMessage } from 'react-intl';
 import { Card, CardTitle } from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
-
 import selectChangePasswordForm from './selectors';
 import messages from './messages';
 import { setNewPassword, setOldPassword, setRepeatPassword, changePassword } from './actions';
+
 
 export class ChangePasswordForm extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
@@ -30,7 +30,6 @@ export class ChangePasswordForm extends React.PureComponent { // eslint-disable-
     this.onNewPasswordChange = this.onNewPasswordChange.bind(this);
     this.onRepeatPasswordChange = this.onRepeatPasswordChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-    this.handleEnterSubmit = this.handleEnterSubmit.bind(this);
   }
   onOldPasswordChange(_e, oldPassword) {
     this.props.dispatch(setOldPassword(oldPassword));
@@ -41,13 +40,9 @@ export class ChangePasswordForm extends React.PureComponent { // eslint-disable-
   onRepeatPasswordChange(_e, repeatPassword) {
     this.props.dispatch(setRepeatPassword(repeatPassword));
   }
-  onSubmit() {
+  onSubmit(e) {
     this.props.dispatch(changePassword());
-  }
-  handleEnterSubmit(e) {
-    if (e.key === 'Enter') {
-      this.props.dispatch(changePassword());
-    }
+    e.preventDefault();
   }
   validateForm() {
     return {
@@ -80,11 +75,10 @@ export class ChangePasswordForm extends React.PureComponent { // eslint-disable-
     return (
       <Card style={{ margin: '100px auto', padding: 50, width: 800 }}>
         <CardTitle title={<FormattedMessage {...messages.header} />} />
-        <div>
+        <form onSubmit={this.onSubmit}>
           <TextField
             type="password"
             fullWidth
-            onKeyPress={allValid ? this.handleEnterSubmit : null}
             errorText={oldPasswordErrorText}
             onChange={this.onOldPasswordChange}
             value={this.props.oldPassword}
@@ -95,7 +89,6 @@ export class ChangePasswordForm extends React.PureComponent { // eslint-disable-
           <TextField
             type="password"
             fullWidth
-            onKeyPress={allValid ? this.handleEnterSubmit : null}
             onChange={this.onNewPasswordChange}
             errorText={!valid.newPasswordNotEmpty ? <span /> : null}
             value={this.props.newPassword}
@@ -106,7 +99,6 @@ export class ChangePasswordForm extends React.PureComponent { // eslint-disable-
           <TextField
             type="password"
             fullWidth
-            onKeyPress={allValid ? this.handleEnterSubmit : null}
             onChange={this.onRepeatPasswordChange}
             errorText={repeatErrorText}
             value={this.props.repeatPassword}
@@ -115,13 +107,13 @@ export class ChangePasswordForm extends React.PureComponent { // eslint-disable-
           />
           <br />
           <RaisedButton
-            onClick={this.onSubmit}
+            type="submit"
             disabled={!allValid}
             fullWidth
             primary
             label={<FormattedMessage {...messages.changePassword} />}
           />
-        </div>
+        </form>
       </Card>
     );
   }
