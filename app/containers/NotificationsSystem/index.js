@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import Notifications from 'react-notification-system-redux';
 import selectNotificationsSystem from './selectors';
 
-// FIXME: Change to default specified usage.
+
 export class NotificationsSystem extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
     notifications: React.PropTypes.array,
