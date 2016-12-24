@@ -3,6 +3,7 @@
 // See http://blog.mxstbr.com/2016/01/react-apps-with-pages for more information
 // about the code splitting business
 import { getAsyncInjectors } from 'utils/asyncInjectors';
+import { requireAuth } from 'utils/auth';
 
 const errorLoading = (err) => {
   console.error('Dynamic page loading failed', err); // eslint-disable-line no-console
@@ -58,12 +59,14 @@ export default function createRoutes(store) {
       name: 'layout',
       getComponent(nextState, cb) {
         const importModules = Promise.all([
+          System.import('containers/Layout/sagas'),
           System.import('containers/Layout'),
         ]);
 
         const renderRoute = loadModule(cb);
 
-        importModules.then(([component]) => {
+        importModules.then(([sagas, component]) => {
+          injectSagas(sagas.default);
           renderRoute(component);
         });
 
@@ -90,6 +93,7 @@ export default function createRoutes(store) {
 
             importModules.catch(errorLoading);
           },
+          onEnter: () => requireAuth(store),
         },
         {
           path: '/user/create',
@@ -133,32 +137,34 @@ export default function createRoutes(store) {
 
             importModules.catch(errorLoading);
           },
+          onEnter: () => requireAuth(store),
+        },
+        {
+          path: '/user/:username',
+          name: 'editUser',
+          getComponent(nextState, cb) {
+            const importModules = Promise.all([
+              System.import('containers/UserForm/reducer'),
+              System.import('containers/EditUser/reducer'),
+              System.import('containers/EditUser/sagas'),
+              System.import('containers/EditUser'),
+            ]);
+
+            const renderRoute = loadModule(cb);
+
+            importModules.then(([userFormReducer, reducer, sagas, component]) => {
+              injectReducer('editUser', reducer.default);
+              injectReducer('userForm', userFormReducer.default);
+              injectSagas(sagas.default);
+              renderRoute(component);
+            });
+
+            importModules.catch(errorLoading);
+          },
         },
       ],
     },
     {
-      path: '/user/:username',
-      name: 'editUser',
-      getComponent(nextState, cb) {
-        const importModules = Promise.all([
-          System.import('containers/UserForm/reducer'),
-          System.import('containers/EditUser/reducer'),
-          System.import('containers/EditUser/sagas'),
-          System.import('containers/EditUser'),
-        ]);
-
-        const renderRoute = loadModule(cb);
-
-        importModules.then(([userFormReducer, reducer, sagas, component]) => {
-          injectReducer('editUser', reducer.default);
-          injectReducer('userForm', userFormReducer.default);
-          injectSagas(sagas.default);
-          renderRoute(component);
-        });
-
-        importModules.catch(errorLoading);
-      },
-    }, {
       path: '*',
       name: 'notfound',
       getComponent(nextState, cb) {

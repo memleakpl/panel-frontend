@@ -15,6 +15,7 @@ import ActionExitToApp from 'material-ui/svg-icons/action/exit-to-app';
 import { Link } from 'react-router';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
+import { logout } from './actions';
 import { USERS_LIST_URL } from '../UsersList/constants';
 import { CREATE_USER_URL } from '../CreateUser/constants';
 import { CHANGE_PASSWORD_URL } from '../ChangePasswordForm/constants';
@@ -23,8 +24,16 @@ import { activeLinkStyle, mainDivStyle, listItemStyle, linkStyle, listStyle, chi
 
 export class Layout extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
+    dispatch: React.PropTypes.func,
     children: React.PropTypes.node,
   };
+  constructor() {
+    super();
+    this.logout = this.logout.bind(this);
+  }
+  logout() {
+    this.props.dispatch(logout());
+  }
   render() {
     return (
       <div style={mainDivStyle}>
@@ -60,11 +69,13 @@ export class Layout extends React.PureComponent { // eslint-disable-line react/p
               rightIcon={<ActionLockOutline />}
             />
           </Link>
-          <ListItem
-            style={listItemStyle}
-            primaryText={<FormattedMessage {...messages.logout} />}
-            rightIcon={<ActionExitToApp />}
-          />
+          <Link style={linkStyle} onClick={this.logout}>
+            <ListItem
+              style={listItemStyle}
+              primaryText={<FormattedMessage {...messages.logout} />}
+              rightIcon={<ActionExitToApp />}
+            />
+          </Link>
         </List>
         <div style={childrenDivStyle}>
           {this.props.children}
@@ -80,6 +91,7 @@ function mapStateToProps(_state) { // eslint-disable-line no-unused-vars
 
 function mapDispatchToProps(dispatch) { // eslint-disable-line no-unused-vars
   return {
+    dispatch,
   };
 }
 
