@@ -30,5 +30,6 @@ export const listStyle = {
 };
 export const childrenDivStyle = {
   flex: 0.87,
+  padding: '0 50px',
 };
 
