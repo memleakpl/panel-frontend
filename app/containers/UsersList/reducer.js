@@ -6,13 +6,13 @@
 
 import { fromJS } from 'immutable';
 import {
-  DEFAULT_ACTION, GET_USERS_SUCCESS, GET_USERS_ERROR, SET_SELECTED_USER,
+  GET_USERS_SUCCESS, GET_USERS_ERROR, SET_DELETION_USER, DELETE_USER_SUCCESS,
 } from './constants';
 
 const initialState = fromJS({
   users: [],
   error: false,
-  selectedUser: '',
+  deletionUser: null,
 });
 
 function usersListReducer(state = initialState, action) {
@@ -21,10 +21,10 @@ function usersListReducer(state = initialState, action) {
       return state.set('users', action.value);
     case GET_USERS_ERROR:
       return state.set('error', true);
-    case SET_SELECTED_USER:
-      return state.set('selectedUser', action.value);
-    case DEFAULT_ACTION:
-      return state;
+    case SET_DELETION_USER:
+      return state.set('deletionUser', action.value);
+    case DELETE_USER_SUCCESS:
+      return state.set('deletionUser', null);
     default:
       return state;
   }
