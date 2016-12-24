@@ -57,11 +57,13 @@ export class Layout extends React.PureComponent { // eslint-disable-line react/p
             primaryText={<FormattedMessage {...messages.groups} />}
             rightIcon={<ActionList />}
           />
-          <ListItem
-            style={listItemStyle}
-            primaryText={<FormattedMessage {...messages.addGroup} />}
-            rightIcon={<ContentAddCircleOutline />}
-          />
+          <Link to="/group/create" style={linkStyle} activeStype={activeLinkStyle}>
+            <ListItem
+              style={listItemStyle}
+              primaryText={<FormattedMessage {...messages.addGroup} />}
+              rightIcon={<ContentAddCircleOutline />}
+            />
+          </Link>
           <Link to={CHANGE_PASSWORD_URL} style={linkStyle} activeStyle={activeLinkStyle}>
             <ListItem
               style={listItemStyle}
