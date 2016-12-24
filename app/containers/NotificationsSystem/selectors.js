@@ -16,7 +16,9 @@ const selectNotificationsSystemDomain = () => (state) => state.get('notification
 
 const selectNotificationsSystem = () => createSelector(
   selectNotificationsSystemDomain(),
-  (substate) => substate.toJS()
+  (substate) => ({
+    notifications: substate.toJS(),
+  })
 );
 
 export default selectNotificationsSystem;

@@ -34,4 +34,8 @@ export default defineMessages({
     id: 'app.container.ChangePasswordForm.notMatchingError',
     defaultMessage: 'Passwords are not the same!',
   },
+  passwordChanged: {
+    id: 'app.container.ChangePasswordForm.passwordChanged',
+    defaultMessage: 'Password changed',
+  },
 });

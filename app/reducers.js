@@ -38,12 +38,15 @@ function routeReducer(state = routeInitialState, action = null) {
   }
 }
 
+function notificationsReducer(state = fromJS([]), action) {
+  return fromJS(notifications(state.toJS(), action));
+}
 /**
  * Creates the main reducer with the asynchronously loaded ones
  */
 export default function createReducer(asyncReducers) {
   return combineReducers({
-    notifications,
+    notifications: notificationsReducer,
     route: routeReducer,
     language: languageProviderReducer,
     ...asyncReducers,
