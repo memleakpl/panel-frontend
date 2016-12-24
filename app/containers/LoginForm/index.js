@@ -35,14 +35,15 @@ export class LoginForm extends React.PureComponent {
   onPasswordChange(_e, password) {
     this.props.dispatch(setPassword(password));
   }
-  onSubmit() {
+  onSubmit(e) {
     this.props.dispatch(requestLogin());
+    e.preventDefault();
   }
   render() {
     return (
       <Card style={{ margin: '100px auto', padding: 50, width: 400 }} >
         <CardTitle title={<FormattedMessage {...messages.header} />} />
-        <div>
+        <form onSubmit={this.onSubmit}>
           <TextField
             hintText={<FormattedMessage {...messages.usernameHint} />}
             onChange={this.onUsernameChange}
@@ -64,12 +65,12 @@ export class LoginForm extends React.PureComponent {
           />
           <br />
           <RaisedButton
-            onClick={this.onSubmit}
+            type="submit"
             primary
             fullWidth
             label={<FormattedMessage {...messages.login} />}
           />
-        </div>
+        </form>
       </Card>
     );
   }
