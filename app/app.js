@@ -63,7 +63,6 @@ injectTapEventPlugin();
 const render = (translatedMessages) => {
   ReactDOM.render(
     <MuiThemeProvider>
-
       <Provider store={store}>
         <LanguageProvider messages={translatedMessages}>
           <NotificationsSystem>

@@ -117,7 +117,9 @@ export default function createRoutes(store) {
 
             importModules.catch(errorLoading);
           },
-        }, {
+          onEnter: () => requireAuth(store),
+        },
+        {
           path: '/password/change',
           name: 'changePasswordForm',
           getComponent(nextState, cb) {
@@ -161,6 +163,7 @@ export default function createRoutes(store) {
 
             importModules.catch(errorLoading);
           },
+          onEnter: () => requireAuth(store),
         },
       ],
     },

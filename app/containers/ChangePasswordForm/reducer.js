@@ -29,7 +29,7 @@ function changePasswordFormReducer(state = initialState, action) {
     case SET_REPEAT_PASSWORD:
       return state.set('repeatPassword', action.value);
     case CHANGE_PASSWORD_SUCCESS:
-      return state.set('error', false);
+      return initialState;
     case CHANGE_PASSWORD_ERROR:
       return state.set('error', true);
     default:

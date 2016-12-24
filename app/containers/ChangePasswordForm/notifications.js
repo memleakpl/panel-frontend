@@ -12,3 +12,9 @@ export const CHANGE_PASSWORD_SUCCESS_NOTIFICATION = {
   position: 'tr',
   autoDismiss: 1.5,
 };
+
+export const CHANGE_PASSWORD_ERROR_NOTIFICATION = {
+  title: <FormattedMessage {...messages.changePasswordError} />,
+  position: 'tr',
+  autoDismiss: 1.5,
+};

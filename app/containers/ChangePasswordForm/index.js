@@ -13,7 +13,7 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import selectChangePasswordForm from './selectors';
 import messages from './messages';
-import { setNewPassword, setOldPassword, setRepeatPassword, changePassword } from './actions';
+import { setNewPassword, setOldPassword, setRepeatPassword, changePasswordRequest } from './actions';
 
 
 export class ChangePasswordForm extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
@@ -41,7 +41,7 @@ export class ChangePasswordForm extends React.PureComponent { // eslint-disable-
     this.props.dispatch(setRepeatPassword(repeatPassword));
   }
   onSubmit(e) {
-    this.props.dispatch(changePassword());
+    this.props.dispatch(changePasswordRequest());
     e.preventDefault();
   }
   validateForm() {

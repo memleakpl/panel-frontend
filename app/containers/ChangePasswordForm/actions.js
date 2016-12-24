@@ -34,7 +34,7 @@ export function setRepeatPassword(repeatPassword) {
   };
 }
 
-export function changePassword() {
+export function changePasswordRequest() {
   return {
     type: CHANGE_PASSWORD_REQUEST,
   };
