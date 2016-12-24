@@ -4,7 +4,8 @@
 import { call, put, select } from 'redux-saga/effects';
 import { takeLatest } from 'redux-saga';
 import Notifications from 'react-notification-system-redux';
-import { CHANGE_PASSWORD_API_URL, CHANGE_PASSWORD_REQUEST, CHANGE_PASSWORD_SUCCESS_NOTIFICATION } from './constants';
+import { CHANGE_PASSWORD_API_URL, CHANGE_PASSWORD_REQUEST } from './constants';
+import { CHANGE_PASSWORD_SUCCESS_NOTIFICATION } from './notifications';
 import selectChangePasswordForm from './selectors';
 import { changePasswordError, changePasswordSuccess } from './actions';
 
