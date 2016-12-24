@@ -29,6 +29,6 @@ export const listStyle = {
   backgroundColor: white,
 };
 export const childrenDivStyle = {
-  flex: 0.8,
+  flex: 0.87,
 };
 

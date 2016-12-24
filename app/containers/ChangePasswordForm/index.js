@@ -73,7 +73,7 @@ export class ChangePasswordForm extends React.PureComponent { // eslint-disable-
     const oldPasswordErrorText = this.createOldPasswordErrorText(valid);
     const allValid = valid.oldPasswordNotEmpty && valid.newPasswordNotEmpty && valid.matchingNewPassword;
     return (
-      <Card style={{ margin: '100px auto', padding: 50, width: 800 }}>
+      <Card style={{ margin: '100px auto', padding: 40, maxWidth: 800 }}>
         <CardTitle title={<FormattedMessage {...messages.header} />} />
         <form onSubmit={this.onSubmit}>
           <TextField
