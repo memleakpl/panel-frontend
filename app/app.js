@@ -31,6 +31,7 @@ import { translationMessages } from './i18n';
 
 // Import the CSS reset, which HtmlWebpackPlugin transfers to the build folder
 import 'sanitize.css/sanitize.css';
+import NotificationsSystem from 'containers/NotificationsSystem';
 
 // Create redux store with history
 // this uses the singleton browserHistory provided by react-router
@@ -64,15 +65,17 @@ const render = (translatedMessages) => {
     <MuiThemeProvider>
       <Provider store={store}>
         <LanguageProvider messages={translatedMessages}>
-          <Router
-            history={history}
-            routes={rootRoute}
-            render={
-              // Scroll to top when going to a new page, imitating default browser
-              // behaviour
-              applyRouterMiddleware(useScroll())
-            }
-          />
+          <NotificationsSystem>
+            <Router
+              history={history}
+              routes={rootRoute}
+              render={
+                // Scroll to top when going to a new page, imitating default browser
+                // behaviour
+                applyRouterMiddleware(useScroll())
+              }
+            />
+          </NotificationsSystem>
         </LanguageProvider>
       </Provider>
     </MuiThemeProvider>,
