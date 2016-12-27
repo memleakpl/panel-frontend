@@ -27,7 +27,19 @@ export default defineMessages({
     defaultMessage: 'Description',
   },
   getGroupsErrorMessage: {
-    id: 'app.components.UsersTable.getGroupsErrorMessage',
+    id: 'app.components.GroupsTable.getGroupsErrorMessage',
     defaultMessage: 'Cannot get groups list from server',
+  },
+  deleteDialogBody: {
+    id: 'app.components.GroupsTable.deleteDialogBody',
+    defaultMessage: 'Do you want remove group {groupname}?',
+  },
+  deleteDialogCancel: {
+    id: 'app.components.GroupsTable.deleteDialogCancel',
+    defaultMessage: 'No',
+  },
+  deleteDialogConfirm: {
+    id: 'app.components.GroupsTable.deleteDialogConfirm',
+    defaultMessage: 'Yes',
   },
 });

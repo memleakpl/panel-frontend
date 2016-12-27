@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import selectGroupsList from './selectors';
 import GroupsTable from '../../components/GroupsTable';
 import { GROUP_TYPE } from '../../components/GroupsTable/constants';
-import { getGroupsRequest } from './actions';
+import { getGroupsRequest, setDeletionGroup, deleteGroupRequest } from './actions';
 
 export class GroupsList extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
@@ -17,9 +17,25 @@ export class GroupsList extends React.PureComponent { // eslint-disable-line rea
     dispatch: React.PropTypes.func,
     error: React.PropTypes.bool.isRequired,
     loading: React.PropTypes.bool.isRequired,
+    deletionGroup: React.PropTypes.string,
   };
+  constructor() {
+    super();
+    this.startDeleteGroup = this.startDeleteGroup.bind(this);
+    this.deleteGroup = this.deleteGroup.bind(this);
+    this.cancelDeleteGroup = this.cancelDeleteGroup.bind(this);
+  }
   componentDidMount() {
     this.props.dispatch(getGroupsRequest());
+  }
+  startDeleteGroup(groupname) {
+    this.props.dispatch(setDeletionGroup(groupname));
+  }
+  deleteGroup(groupname) {
+    this.props.dispatch(deleteGroupRequest(groupname));
+  }
+  cancelDeleteGroup() {
+    this.props.dispatch(setDeletionGroup(null));
   }
   render() {
     return (
@@ -27,6 +43,10 @@ export class GroupsList extends React.PureComponent { // eslint-disable-line rea
         groups={this.props.groups}
         error={this.props.error}
         loading={this.props.loading}
+        deletionGroup={this.props.deletionGroup}
+        startDeleteGroup={this.startDeleteGroup}
+        cancelDeleteGroup={this.cancelDeleteGroup}
+        deleteGroup={this.deleteGroup}
       />
     );
   }

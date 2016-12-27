@@ -5,13 +5,14 @@
  */
 import { fromJS, Map } from 'immutable';
 import {
-  GET_GROUPS_SUCCESS, GET_GROUPS_ERROR,
+  GET_GROUPS_SUCCESS, GET_GROUPS_ERROR, SET_DELETION_GROUP, DELETE_GROUP_SUCCESS, DELETE_GROUP_ERROR,
 } from './constants';
 
 const initialState = fromJS({
   groups: [],
   error: false,
   loading: true,
+  deletionGroup: null,
 });
 
 function groupsListReducer(state = initialState, action) {
@@ -26,6 +27,12 @@ function groupsListReducer(state = initialState, action) {
         error: true,
         loading: false,
       }));
+    case SET_DELETION_GROUP:
+      return state.set('deletionGroup', action.value);
+    case DELETE_GROUP_SUCCESS:
+      return state.set('deletionGroup', null);
+    case DELETE_GROUP_ERROR:
+      return state.set('deletionGroup', null);
     default:
       return state;
   }
