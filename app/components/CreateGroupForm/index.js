@@ -49,7 +49,7 @@ class CreateGroupForm extends React.PureComponent { // eslint-disable-line react
             floatingLabelFixed
           />
           <TextField
-            hintText={<FormattedMessage {...messages.descriptionName} />}
+            hintText={<FormattedMessage {...messages.descriptionHint} />}
             onChange={this.props.onDescriptionChange}
             value={this.props.description}
             errorText={!valid.description ? <span /> : null}

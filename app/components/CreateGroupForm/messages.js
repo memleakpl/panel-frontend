@@ -20,11 +20,11 @@ export default defineMessages({
   },
   descriptionHint: {
     id: 'app.components.CreateGroupForm.descriptionHint',
-    defaultMessage: 'Group description',
+    defaultMessage: 'Accounts used to authenticate remote services',
   },
   descriptionLabel: {
     id: 'app.components.CreateGroupForm.descriptionLabel',
-    defaultMessage: 'Accounts used to authenticate various services',
+    defaultMessage: 'Group description',
   },
   create: {
     id: 'app.components.CreateGroupForm.create',
