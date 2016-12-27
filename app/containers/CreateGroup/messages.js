@@ -8,6 +8,10 @@ import { defineMessages } from 'react-intl';
 export default defineMessages({
   header: {
     id: 'app.containers.CreateGroup.header',
-    defaultMessage: 'This is CreateGroup container !',
+    defaultMessage: 'Create new group',
+  },
+  create: {
+    id: 'app.containers.CreateGroup.create',
+    defaultMessage: 'Create',
   },
 });

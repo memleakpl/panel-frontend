@@ -18,6 +18,7 @@ import messages from './messages';
 import { logout } from './actions';
 import { USERS_LIST_URL } from '../UsersList/constants';
 import { CREATE_USER_URL } from '../CreateUser/constants';
+import { CREATE_GROUP_URL } from '../CreateGroup/constants';
 import { CHANGE_PASSWORD_URL } from '../ChangePasswordForm/constants';
 import { activeLinkStyle, mainDivStyle, listItemStyle, linkStyle, listStyle, childrenDivStyle } from './styles';
 
@@ -57,7 +58,7 @@ export class Layout extends React.PureComponent { // eslint-disable-line react/p
             primaryText={<FormattedMessage {...messages.groups} />}
             rightIcon={<ActionList />}
           />
-          <Link to="/group/create" style={linkStyle} activeStype={activeLinkStyle}>
+          <Link to={CREATE_GROUP_URL} style={linkStyle} activeStyle={activeLinkStyle}>
             <ListItem
               style={listItemStyle}
               primaryText={<FormattedMessage {...messages.addGroup} />}

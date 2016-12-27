@@ -170,6 +170,7 @@ export default function createRoutes(store) {
           name: 'createGroup',
           getComponent(nextState, cb) {
             const importModules = Promise.all([
+              System.import('containers/GroupForm/reducer'),
               System.import('containers/CreateGroup/reducer'),
               System.import('containers/CreateGroup/sagas'),
               System.import('containers/CreateGroup'),
@@ -177,7 +178,8 @@ export default function createRoutes(store) {
 
             const renderRoute = loadModule(cb);
 
-            importModules.then(([reducer, sagas, component]) => {
+            importModules.then(([groupFormReducer, reducer, sagas, component]) => {
+              injectReducer('groupForm', groupFormReducer.default);
               injectReducer('createGroup', reducer.default);
               injectSagas(sagas.default);
               renderRoute(component);
@@ -185,6 +187,7 @@ export default function createRoutes(store) {
 
             importModules.catch(errorLoading);
           },
+          onEnter: () => requireAuth(store),
         },
       ],
     },

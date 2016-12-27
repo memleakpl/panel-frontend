@@ -5,11 +5,26 @@
  */
 
 import {
-  DEFAULT_ACTION,
+  REQUEST_CREATE_GROUP,
+  CREATE_GROUP_ERROR,
+  CREATE_GROUP_SUCCESS,
 } from './constants';
 
-export function defaultAction() {
+export function requestCreateGroup() {
   return {
-    type: DEFAULT_ACTION,
+    type: REQUEST_CREATE_GROUP,
   };
 }
+
+export function createGroupError() {
+  return {
+    type: CREATE_GROUP_ERROR,
+  };
+}
+
+export function createGroupSuccess() {
+  return {
+    type: CREATE_GROUP_SUCCESS,
+  };
+}
+

@@ -6,15 +6,15 @@
 
 import { fromJS } from 'immutable';
 import {
-  DEFAULT_ACTION,
+  CREATE_GROUP_SUCCESS,
 } from './constants';
 
 const initialState = fromJS({});
 
 function createGroupReducer(state = initialState, action) {
   switch (action.type) {
-    case DEFAULT_ACTION:
-      return state;
+    case CREATE_GROUP_SUCCESS:
+      return initialState;
     default:
       return state;
   }
