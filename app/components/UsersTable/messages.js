@@ -42,4 +42,8 @@ export default defineMessages({
     id: 'app.components.UsersTable.deleteDialogConfirm',
     defaultMessage: 'Yes',
   },
+  getUsersErrorMessage: {
+    id: 'app.components.UsersTable.getUsersErrorMessage',
+    defaultMessage: 'Cannot get users list from server',
+  },
 });

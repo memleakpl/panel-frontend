@@ -26,4 +26,8 @@ export default defineMessages({
     id: 'app.components.GroupsTable.description',
     defaultMessage: 'Description',
   },
+  getGroupsErrorMessage: {
+    id: 'app.components.UsersTable.getGroupsErrorMessage',
+    defaultMessage: 'Cannot get groups list from server',
+  },
 });

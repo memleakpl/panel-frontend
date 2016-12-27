@@ -12,6 +12,7 @@ import IconButton from 'material-ui/IconButton';
 import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
 import { FormattedMessage } from 'react-intl';
+import CircularProgress from 'material-ui/CircularProgress';
 
 import { USER_TYPE } from './constants';
 import messages from './messages';
@@ -20,6 +21,8 @@ import messages from './messages';
 class UsersTable extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
     users: React.PropTypes.arrayOf(USER_TYPE),
+    error: React.PropTypes.bool.isRequired,
+    loading: React.PropTypes.bool.isRequired,
     editUser: React.PropTypes.func,
     startDeleteUser: React.PropTypes.func,
     cancelDeleteUser: React.PropTypes.func,
@@ -65,8 +68,7 @@ class UsersTable extends React.PureComponent { // eslint-disable-line react/pref
       </TableRow>
     );
   }
-
-  render() {
+  renderTable() {
     const rows = this.props.users.map((user) =>
       this.createTableRow(user)
     );
@@ -83,8 +85,7 @@ class UsersTable extends React.PureComponent { // eslint-disable-line react/pref
     ];
 
     return (
-      <Card style={{ margin: '25px', marginLeft: '9%', paddingTop: 10 }}>
-        <CardTitle title={<FormattedMessage {...messages.usersList} />} />
+      <div>
         <Dialog modal actions={actions} open={this.props.deletionUser != null}>
           <FormattedMessage {...messages.deleteDialogBody} values={{ username: this.props.deletionUser }} />
         </Dialog>
@@ -102,6 +103,30 @@ class UsersTable extends React.PureComponent { // eslint-disable-line react/pref
             {rows}
           </TableBody>
         </Table>
+      </div>
+    );
+  }
+  renderComponent() {
+    if (this.props.error) {
+      return (
+        <div style={{ textAlign: 'center' }}>
+          <FormattedMessage {...messages.getUsersErrorMessage} />
+        </div>
+      );
+    } else if (this.props.loading) {
+      return (
+        <div style={{ textAlign: 'center' }}>
+          <CircularProgress />;
+        </div>
+      );
+    }
+    return this.renderTable();
+  }
+  render() {
+    return (
+      <Card style={{ margin: '25px', marginLeft: '9%', paddingTop: 10 }}>
+        <CardTitle title={<FormattedMessage {...messages.usersList} />} />
+        {this.renderComponent()}
       </Card>
     );
   }

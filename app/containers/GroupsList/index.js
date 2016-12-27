@@ -15,13 +15,19 @@ export class GroupsList extends React.PureComponent { // eslint-disable-line rea
   static propTypes = {
     groups: React.PropTypes.arrayOf(GROUP_TYPE),
     dispatch: React.PropTypes.func,
+    error: React.PropTypes.bool.isRequired,
+    loading: React.PropTypes.bool.isRequired,
   };
   componentDidMount() {
     this.props.dispatch(getGroupsRequest());
   }
   render() {
     return (
-      <GroupsTable groups={this.props.groups} />
+      <GroupsTable
+        groups={this.props.groups}
+        error={this.props.error}
+        loading={this.props.loading}
+      />
     );
   }
 }

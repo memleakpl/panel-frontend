@@ -16,6 +16,8 @@ import { getUsers, setDeletionUser, deleteUserRequest } from './actions';
 export class UsersList extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
     users: React.PropTypes.arrayOf(USER_TYPE),
+    error: React.PropTypes.bool.isRequired,
+    loading: React.PropTypes.bool.isRequired,
     dispatch: React.PropTypes.func,
     deletionUser: React.PropTypes.string,
   };
@@ -45,6 +47,8 @@ export class UsersList extends React.PureComponent { // eslint-disable-line reac
     return (
       <UsersTable
         users={this.props.users}
+        error={this.props.error}
+        loading={this.props.loading}
         deletionUser={this.props.deletionUser}
         editUser={this.editUser}
         startDeleteUser={this.startDeleteUser}
