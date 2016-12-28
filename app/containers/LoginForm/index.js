@@ -15,6 +15,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import messages from './messages';
 import selectLoginForm from './selectors';
 import { setUsername, setPassword, requestLogin } from './actions';
+import { CARD_STYLE } from '../../styles';
 
 export class LoginForm extends React.PureComponent {
   static propTypes = {
@@ -41,7 +42,7 @@ export class LoginForm extends React.PureComponent {
   }
   render() {
     return (
-      <Card style={{ margin: '100px auto', padding: 50, width: 400 }} >
+      <Card style={CARD_STYLE} >
         <CardTitle title={<FormattedMessage {...messages.header} />} />
         <form onSubmit={this.onSubmit}>
           <TextField
