@@ -5,19 +5,19 @@
  */
 
 import React from 'react';
-import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
+import { connect } from 'react-redux';
 
-import selectCreateGroup from './selectors';
+import { createGroupRequest } from './actions';
 import messages from './messages';
-import { requestCreateGroup } from './actions';
+import selectCreateGroup from './selectors';
 
 import GroupForm from '../GroupForm';
 
 export class CreateGroup extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
     dispatch: React.PropTypes.func.isRequired,
-  }
+  };
 
   constructor() {
     super();
@@ -25,7 +25,7 @@ export class CreateGroup extends React.PureComponent { // eslint-disable-line re
   }
 
   onSubmit() {
-    this.props.dispatch(requestCreateGroup());
+    this.props.dispatch(createGroupRequest());
   }
 
   render() {

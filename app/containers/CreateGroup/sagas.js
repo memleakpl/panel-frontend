@@ -2,10 +2,9 @@ import { call, put, select } from 'redux-saga/effects';
 import { takeLatest } from 'redux-saga';
 
 import { createGroupError, createGroupSuccess } from './actions';
-import { CREATE_GROUP_API_URL, REQUEST_CREATE_GROUP } from './constants';
+import { CREATE_GROUP_API_URL, CREATE_GROUP_REQUEST } from './constants';
 
 import selectGroupForm from '../GroupForm/selectors';
-
 
 function callCreate(group) {
   return fetch(CREATE_GROUP_API_URL, {
@@ -29,7 +28,7 @@ function* createGroup() {
 }
 
 function* defaultSaga() {
-  yield* takeLatest(REQUEST_CREATE_GROUP, createGroup);
+  yield* takeLatest(CREATE_GROUP_REQUEST, createGroup);
 }
 
 // All sagas to be loaded

@@ -8,20 +8,26 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import selectGroupForm from './selectors';
-import { setDescription, setName } from './actions';
+import { setDescription, setName, setOwner } from './actions';
 
 import CreateGroupForm from '../../components/CreateGroupForm';
 
 export class GroupForm extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
+    button: React.PropTypes.element,
+    header: React.PropTypes.element,
+    description: React.PropTypes.string.isRequired,
+    name: React.PropTypes.string.isRequired,
+    owner: React.PropTypes.string.isRequired,
     dispatch: React.PropTypes.func.isRequired,
     onSubmit: React.PropTypes.func,
-  }
+  };
 
   constructor() {
     super();
     this.onDescriptionChange = this.onDescriptionChange.bind(this);
     this.onNameChange = this.onNameChange.bind(this);
+    this.onOwnerChange = this.onOwnerChange.bind(this);
   }
 
   onDescriptionChange(_e, description) {
@@ -32,12 +38,21 @@ export class GroupForm extends React.PureComponent { // eslint-disable-line reac
     this.props.dispatch(setName(name));
   }
 
+  onOwnerChange(_e, owner) {
+    this.props.dispatch(setOwner(owner));
+  }
+
   render() {
     return (
       <CreateGroupForm
-        {...this.props}
+        button={this.props.button}
+        header={this.props.header}
+        description={this.props.description}
+        name={this.props.name}
+        owner={this.props.owner}
         onDescriptionChange={this.onDescriptionChange}
         onNameChange={this.onNameChange}
+        onOwnerChange={this.onOwnerChange}
         onSubmit={this.props.onSubmit}
       />
     );

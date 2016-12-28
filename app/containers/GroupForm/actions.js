@@ -7,6 +7,7 @@
 import {
   SET_DESCRIPTION,
   SET_NAME,
+  SET_OWNER,
 } from './constants';
 
 export function setDescription(description) {
@@ -23,3 +24,9 @@ export function setName(name) {
   };
 }
 
+export function setOwner(owner) {
+  return {
+    type: SET_OWNER,
+    value: owner,
+  };
+}
