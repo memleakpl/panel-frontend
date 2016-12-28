@@ -1,12 +1,13 @@
 import { call, put, select } from 'redux-saga/effects';
 import { takeLatest, takeEvery } from 'redux-saga';
 import { push } from 'react-router-redux';
+import { bootstrap } from '../../utils/sagas';
 import { FETCH_USER_REQUEST, EDIT_USER_REQUEST, API_GET_USER, API_EDIT_USER, LIST_USERS_URL } from './constants';
 import selectUserForm from '../UserForm/selectors';
 import { setUser } from '../UserForm/actions';
 import { fetchUserSuccess, fetchUserError, editUserSuccess, editUserError } from './actions';
 
-function fetchUser(username) {
+function callFetchUser(username) {
   return fetch(`${API_GET_USER}${username}`, {
     method: 'GET',
     headers: {
@@ -16,9 +17,9 @@ function fetchUser(username) {
   }).then((response) => response.json());
 }
 
-function* fetchUserSaga(action) {
+function* fetchUser(action) {
   try {
-    const user = yield call(fetchUser, action.value);
+    const user = yield call(callFetchUser, action.value);
     yield put(fetchUserSuccess(user));
     yield put(setUser(user));
   } catch (e) {
@@ -26,7 +27,7 @@ function* fetchUserSaga(action) {
   }
 }
 
-function editUser(user) {
+function callEditUser(user) {
   return fetch(`${API_EDIT_USER}${user.username}`, {
     method: 'PUT',
     headers: {
@@ -37,10 +38,10 @@ function editUser(user) {
   });
 }
 
-function* editUserSage() {
+function* editUser() {
   try {
     const user = yield select(selectUserForm());
-    yield call(editUser, user);
+    yield call(callEditUser, user);
     yield put(editUserSuccess());
     yield put(push(LIST_USERS_URL));
   } catch (e) {
@@ -48,12 +49,16 @@ function* editUserSage() {
   }
 }
 
-function* defaultSaga() {
-  yield takeLatest(FETCH_USER_REQUEST, fetchUserSaga);
-  yield takeEvery(EDIT_USER_REQUEST, editUserSage);
+function* fetchUserSaga() {
+  yield takeLatest(FETCH_USER_REQUEST, fetchUser);
+}
+
+function* editUserSaga() {
+  yield takeEvery(EDIT_USER_REQUEST, editUser);
 }
 
 // All sagas to be loaded
-export default [
-  defaultSaga,
-];
+export default bootstrap([
+  fetchUserSaga,
+  editUserSaga,
+]);

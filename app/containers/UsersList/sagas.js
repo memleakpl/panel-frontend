@@ -1,6 +1,7 @@
 import { put, call } from 'redux-saga/effects';
 import { takeLatest, takeEvery } from 'redux-saga';
 
+import { bootstrap } from '../../utils/sagas';
 import { GET_USERS_URL, GET_USERS, DELETE_USER_REQUEST, API_DELETE_USER_URL } from './constants';
 import { getUsersSuccess, getUsersError, deleteUserSuccess, deleteUserError } from './actions';
 
@@ -40,7 +41,7 @@ function* deleteUser(action) {
   }
 }
 
-function* defaultSaga() {
+function* getUsersSaga() {
   yield* takeLatest(GET_USERS, getUsers);
 }
 
@@ -49,7 +50,7 @@ function* deleteSaga() {
 }
 
 // All sagas to be loaded
-export default [
-  defaultSaga,
+export default bootstrap([
+  getUsersSaga,
   deleteSaga,
-];
+]);
