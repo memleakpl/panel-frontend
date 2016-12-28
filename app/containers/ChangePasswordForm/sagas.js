@@ -1,10 +1,10 @@
 // import { take, call, put, select } from 'redux-saga/effects';
 
 // Individual exports for testing
-import { call, put, select, fork, take, cancel } from 'redux-saga/effects';
+import { call, put, select, fork } from 'redux-saga/effects';
 import { takeLatest, takeEvery } from 'redux-saga';
 import Notifications from 'react-notification-system-redux';
-import { LOCATION_CHANGE } from 'react-router-redux';
+import { bootstrap } from '../../utils/sagas';
 import { CHANGE_PASSWORD_API_URL, CHANGE_PASSWORD_REQUEST, CHANGE_PASSWORD_SUCCESS, CHANGE_PASSWORD_ERROR } from './constants';
 import { CHANGE_PASSWORD_SUCCESS_NOTIFICATION, CHANGE_PASSWORD_ERROR_NOTIFICATION } from './notifications';
 import selectChangePasswordForm from './selectors';
@@ -41,31 +41,21 @@ export function* notifyChangePasswordError() {
   yield put(Notifications.error(CHANGE_PASSWORD_ERROR_NOTIFICATION));
 }
 
-export function* changePasswordWatcher() {
+export function* changePasswordSaga() {
   yield fork(takeLatest, CHANGE_PASSWORD_REQUEST, changePassword);
 }
 
-export function* notifyChangePasswordSuccessWatcher() {
+export function* notifyChangePasswordSuccessSaga() {
   yield fork(takeEvery, CHANGE_PASSWORD_SUCCESS, notifyChangePasswordSuccess);
 }
 
-export function* notifyChangePasswordErrorWatcher() {
+export function* notifyChangePasswordErrorSaga() {
   yield fork(takeEvery, CHANGE_PASSWORD_ERROR, notifyChangePasswordError);
 }
 
-export function* changePasswordBootstrap() {
-  const changeWatcher = yield fork(changePasswordWatcher);
-  const notifySuccessWatcher = yield fork(notifyChangePasswordSuccessWatcher);
-  const notifyErrorWatcher = yield fork(notifyChangePasswordErrorWatcher);
-
-
-  yield take(LOCATION_CHANGE);
-  yield cancel(changeWatcher);
-  yield cancel(notifySuccessWatcher);
-  yield cancel(notifyErrorWatcher);
-}
-
 // All sagas to be loaded
-export default [
-  changePasswordBootstrap,
-];
+export default bootstrap([
+  changePasswordSaga,
+  notifyChangePasswordSuccessSaga,
+  notifyChangePasswordErrorSaga,
+]);

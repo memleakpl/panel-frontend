@@ -1,6 +1,8 @@
 import { call, put } from 'redux-saga/effects';
 import { takeLatest } from 'redux-saga';
 import { push } from 'react-router-redux';
+
+import { bootstrap } from '../../utils/sagas';
 import { LOGOUT, LOGOUT_API_URL } from './constants';
 
 function callLogout() {
@@ -22,6 +24,6 @@ function* logoutSaga() {
 }
 
 // All sagas to be loaded
-export default [
+export default bootstrap([
   logoutSaga,
-];
+]);

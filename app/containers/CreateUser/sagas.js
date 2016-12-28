@@ -1,6 +1,7 @@
 import { call, put, select } from 'redux-saga/effects';
 import { takeLatest } from 'redux-saga';
 
+import { bootstrap } from '../../utils/sagas';
 import selectUserForm from '../UserForm/selectors';
 import { CREATE_USER_API_URL, REQUEST_CREATE_USER } from './constants';
 import { requestCreateUserSuccess, requestCreateUserError } from './actions';
@@ -27,11 +28,9 @@ function* createUser() {
   }
 }
 
-function* defaultSaga() {
+function* createUserWatcher() {
   yield* takeLatest(REQUEST_CREATE_USER, createUser);
 }
 
 // All sagas to be loaded
-export default [
-  defaultSaga,
-];
+export default bootstrap([createUserWatcher]);
