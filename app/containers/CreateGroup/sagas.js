@@ -6,6 +6,8 @@ import { CREATE_GROUP_API_URL, CREATE_GROUP_REQUEST } from './constants';
 
 import selectGroupForm from '../GroupForm/selectors';
 
+import { bootstrap } from '../../utils/sagas';
+
 function callCreate(group) {
   return fetch(CREATE_GROUP_API_URL, {
     method: 'POST',
@@ -32,6 +34,4 @@ function* defaultSaga() {
 }
 
 // All sagas to be loaded
-export default [
-  defaultSaga,
-];
+export default bootstrap([defaultSaga]);
