@@ -6,9 +6,11 @@ import { fork, take, cancel } from 'redux-saga/effects';
 import { LOCATION_CHANGE } from 'react-router-redux';
 
 export function bootstrap(sagas) {
-  return [function* () {
+  function* bootstrapSaga() {
     const tasks = yield sagas.map((saga) => fork(saga));
     yield take(LOCATION_CHANGE);
     yield tasks.map((task) => cancel(task));
-  }];
+  }
+
+  return [bootstrapSaga];
 }
