@@ -84,7 +84,7 @@ class UsersTable extends React.PureComponent { // eslint-disable-line react/pref
     ];
 
     return (
-      <Card style={CARD_STYLE}>
+      <Card style={{ ...CARD_STYLE, maxWidth: 1400, padding: 0 }}>
         <CardTitle title={<FormattedMessage {...messages.usersList} />} />
         <Dialog modal actions={actions} open={this.props.deletionUser != null}>
           <FormattedMessage {...messages.deleteDialogBody} values={{ username: this.props.deletionUser }} />

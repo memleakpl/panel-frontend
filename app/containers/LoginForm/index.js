@@ -42,7 +42,7 @@ export class LoginForm extends React.PureComponent {
   }
   render() {
     return (
-      <Card style={CARD_STYLE} >
+      <Card style={{ ...CARD_STYLE, maxWidth: 400 }} >
         <CardTitle title={<FormattedMessage {...messages.header} />} />
         <form onSubmit={this.onSubmit}>
           <TextField
