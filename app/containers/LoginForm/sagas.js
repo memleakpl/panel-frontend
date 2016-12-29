@@ -1,6 +1,7 @@
 import { call, put, select } from 'redux-saga/effects';
 import { takeLatest } from 'redux-saga';
 import { push } from 'react-router-redux';
+import { bootstrap } from '../../utils/sagas';
 import { REQUEST_LOGIN, LOGIN_API_URL, AFTER_LOGIN_URL } from './constants';
 import selectLoginForm from './selectors';
 import { requestLoginSuccess, requestLoginError } from './actions';
@@ -30,11 +31,11 @@ function* login() {
 }
 
 // Individual exports for testing
-export function* defaultSaga() {
+export function* loginSaga() {
   yield* takeLatest(REQUEST_LOGIN, login);
 }
 
 // All sagas to be loaded
-export default [
-  defaultSaga,
-];
+export default bootstrap([
+  loginSaga,
+]);
