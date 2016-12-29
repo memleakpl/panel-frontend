@@ -16,6 +16,7 @@ export class GroupForm extends React.PureComponent { // eslint-disable-line reac
   static propTypes = {
     button: React.PropTypes.element,
     header: React.PropTypes.element,
+    loading: React.PropTypes.bool.isRequired,
     description: React.PropTypes.string,
     name: React.PropTypes.string,
     owner: React.PropTypes.string,
@@ -47,6 +48,7 @@ export class GroupForm extends React.PureComponent { // eslint-disable-line reac
       <CreateGroupForm
         button={this.props.button}
         header={this.props.header}
+        loading={this.props.loading}
         description={this.props.description}
         name={this.props.name}
         owner={this.props.owner}

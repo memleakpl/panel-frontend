@@ -19,6 +19,7 @@ class CreateGroupForm extends React.PureComponent { // eslint-disable-line react
   static propTypes = {
     button: React.PropTypes.element,
     header: React.PropTypes.element,
+    loading: React.PropTypes.bool.isRequired,
     description: React.PropTypes.string.isRequired,
     name: React.PropTypes.string.isRequired,
     owner: React.PropTypes.string.isRequired,
@@ -72,7 +73,7 @@ class CreateGroupForm extends React.PureComponent { // eslint-disable-line react
           />
           <RaisedButton
             onClick={this.props.onSubmit}
-            disabled={!allValid}
+            disabled={!allValid || this.props.loading}
             primary
             fullWidth
             label={this.props.button}

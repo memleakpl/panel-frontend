@@ -16,6 +16,7 @@ import GroupForm from '../GroupForm';
 
 export class CreateGroup extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
+    loading: React.PropTypes.bool,
     dispatch: React.PropTypes.func.isRequired,
   };
 
@@ -33,6 +34,7 @@ export class CreateGroup extends React.PureComponent { // eslint-disable-line re
       <GroupForm
         button={<FormattedMessage {...messages.create} />}
         header={<FormattedMessage {...messages.header} />}
+        loading={this.props.loading}
         dispatch={this.props.dispatch}
         onSubmit={this.onSubmit}
       />
