@@ -21,6 +21,7 @@ export class LoginForm extends React.PureComponent {
     dispatch: React.PropTypes.func.isRequired,
     username: React.PropTypes.string.isRequired,
     password: React.PropTypes.string.isRequired,
+    loading: React.PropTypes.bool.isRequired,
     error: React.PropTypes.bool.isRequired,
   }
   constructor() {
@@ -68,6 +69,7 @@ export class LoginForm extends React.PureComponent {
             type="submit"
             primary
             fullWidth
+            disabled={this.props.loading}
             label={<FormattedMessage {...messages.login} />}
           />
         </form>
