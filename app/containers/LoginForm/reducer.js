@@ -29,9 +29,13 @@ function loginFormReducer(state = initialState, action = null) {
     case REQUEST_LOGIN:
       return state.set('loading', true);
     case REQUEST_LOGIN_SUCCESS:
-      return state.set('loading', false);
+      return initialState;
     case REQUEST_LOGIN_ERROR:
-      return state.merge({ error: true, loading: false });
+      return state.merge({
+        error: true,
+        password: '',
+        loading: false,
+      });
     default:
       return state;
   }
