@@ -28,9 +28,9 @@ function* createUser() {
   }
 }
 
-function* createUserWatcher() {
+function* createUserSaga() {
   yield* takeLatest(REQUEST_CREATE_USER, createUser);
 }
 
 // All sagas to be loaded
-export default bootstrap([createUserWatcher]);
+export default bootstrap([createUserSaga]);
