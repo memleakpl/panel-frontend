@@ -13,3 +13,11 @@ export function deleteGroupErrorNotification(groupname) {
     autoDismiss: 2,
   });
 }
+
+export function deleteGroupSuccessNotification(groupname) {
+  return ({
+    title: <FormattedMessage {...messages.deleteGroupSuccess} values={{ group: groupname }} />,
+    position: 'tr',
+    autoDismiss: 2,
+  });
+}

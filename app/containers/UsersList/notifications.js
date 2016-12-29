@@ -13,3 +13,11 @@ export function deleteUserErrorNotification(username) {
     autoDismiss: 2,
   });
 }
+
+export function deleteUserSuccessNotification(username) {
+  return ({
+    title: <FormattedMessage {...messages.deleteUserSuccess} values={{ user: username }} />,
+    position: 'tr',
+    autoDismiss: 2,
+  });
+}

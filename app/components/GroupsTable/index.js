@@ -13,6 +13,7 @@ import FontIcon from 'material-ui/FontIcon';
 import IconButton from 'material-ui/IconButton';
 import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
+import { redA700 } from 'material-ui/styles/colors';
 import messages from './messages';
 import { GROUP_TYPE } from './constants';
 
@@ -92,27 +93,24 @@ class GroupsTable extends React.Component { // eslint-disable-line react/prefer-
       </div>
     );
   }
-  renderComponent() {
-    if (this.props.error) {
-      return (
-        <div style={{ textAlign: 'center' }}>
+  render() {
+    const error = this.props.error ?
+      (
+        <div style={{ margin: '30px', color: redA700 }}>
           <FormattedMessage {...messages.getGroupsErrorMessage} />
         </div>
-      );
-    } else if (this.props.loading) {
-      return (
-        <div style={{ textAlign: 'center' }}>
-          <CircularProgress />
-        </div>
-      );
-    }
-    return this.renderTable();
-  }
-  render() {
+      ) :
+      undefined;
+    const loading = this.props.loading ? <CircularProgress style={{ margin: '30px' }} /> : undefined;
+    const table = (!this.props.loading && !this.props.error) ? this.renderTable() : undefined;
     return (
       <Card style={{ margin: '25px', marginLeft: '9%', paddingTop: 10 }} >
         <CardTitle title={<FormattedMessage {...messages.groupsList} />} />
-        {this.renderComponent()}
+        <div style={{ textAlign: 'center' }}>
+          {error}
+          {loading}
+          {table}
+        </div>
       </Card>
     );
   }

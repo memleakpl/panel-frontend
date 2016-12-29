@@ -47,9 +47,10 @@ export function deleteGroupRequest(groupname) {
   };
 }
 
-export function deleteGroupSuccess() {
+export function deleteGroupSuccess(groupname) {
   return {
     type: DELETE_GROUP_SUCCESS,
+    value: groupname,
   };
 }
 

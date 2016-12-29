@@ -9,4 +9,8 @@ export default defineMessages({
     id: 'app.containers.GroupsList.deleteGroupError',
     defaultMessage: 'Cannot delete group {group}.',
   },
+  deleteGroupSuccess: {
+    id: 'app.containers.GroupsList.deleteGroupSuccess',
+    defaultMessage: 'Group {group} has been deleted.',
+  },
 });

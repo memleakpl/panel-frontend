@@ -14,4 +14,8 @@ export default defineMessages({
     id: 'app.containers.UsersList.deleteUserError',
     defaultMessage: 'Cannot delete user {user}.',
   },
+  deleteUserSuccess: {
+    id: 'app.containers.UsersList.deleteUserSuccess',
+    defaultMessage: 'User {user} has been deleted.',
+  },
 });

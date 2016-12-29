@@ -46,9 +46,10 @@ export function deleteUserRequest(username) {
   };
 }
 
-export function deleteUserSuccess() {
+export function deleteUserSuccess(username) {
   return {
     type: DELETE_USER_SUCCESS,
+    value: username,
   };
 }
 

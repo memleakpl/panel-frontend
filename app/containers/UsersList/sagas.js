@@ -2,9 +2,16 @@ import { put, call } from 'redux-saga/effects';
 import { takeLatest, takeEvery } from 'redux-saga';
 import Notifications from 'react-notification-system-redux';
 import { bootstrap } from '../../utils/sagas';
-import { GET_USERS_URL, GET_USERS, DELETE_USER_REQUEST, DELETE_USER_ERROR, API_DELETE_USER_URL } from './constants';
+import {
+  GET_USERS_URL,
+  GET_USERS,
+  DELETE_USER_REQUEST,
+  DELETE_USER_ERROR,
+  DELETE_USER_SUCCESS,
+  API_DELETE_USER_URL,
+} from './constants';
 import { getUsersSuccess, getUsersError, deleteUserSuccess, deleteUserError } from './actions';
-import { deleteUserErrorNotification } from './notifications';
+import { deleteUserErrorNotification, deleteUserSuccessNotification } from './notifications';
 
 
 function callGetUsers() {
@@ -35,7 +42,7 @@ function* getUsers() {
 function* deleteUser(action) {
   try {
     yield call(callDeleteUser, action.value);
-    yield put(deleteUserSuccess());
+    yield put(deleteUserSuccess(action.value));
     yield getUsers();
   } catch (e) {
     yield put(deleteUserError(action.value));
@@ -48,6 +55,14 @@ function* notifyDeleteUserError(action) {
 
 function* notifyDeleteUserErrorSaga() {
   yield* takeEvery(DELETE_USER_ERROR, notifyDeleteUserError);
+}
+
+function* notifyDeleteUserSuccess(action) {
+  yield put(Notifications.error(deleteUserSuccessNotification(action.value)));
+}
+
+function* notifyDeleteUserSuccessSaga() {
+  yield* takeEvery(DELETE_USER_SUCCESS, notifyDeleteUserSuccess);
 }
 
 function* getUsersSaga() {
@@ -63,4 +78,5 @@ export default bootstrap([
   getUsersSaga,
   deleteSaga,
   notifyDeleteUserErrorSaga,
+  notifyDeleteUserSuccessSaga,
 ]);

@@ -8,9 +8,10 @@ import {
   DELETE_GROUPS_API_URL,
   DELETE_GROUP_REQUEST,
   DELETE_GROUP_ERROR,
+  DELETE_GROUP_SUCCESS,
 } from './constants';
 import { getGroupsError, getGroupsSuccess, deleteGroupSuccess, deleteGroupError } from './actions';
-import { deleteGroupErrorNotification } from './notifications';
+import { deleteGroupErrorNotification, deleteGroupSuccessNotification } from './notifications';
 
 function callGetGroups() {
   return fetch(GET_GROUPS_API_URL, {
@@ -40,15 +41,23 @@ function* getGroups() {
 function* deleteGroup(action) {
   try {
     yield call(callDeleteGroup, action.value);
-    yield put(deleteGroupSuccess());
+    yield put(deleteGroupSuccess(action.value));
     yield getGroups();
   } catch (e) {
     yield put(deleteGroupError(action.value));
   }
 }
 
+function* notifyDeleteGroupSuccess(action) {
+  yield put(Notifications.success(deleteGroupSuccessNotification(action.value)));
+}
+
 function* notifyDeleteGroupError(action) {
   yield put(Notifications.error(deleteGroupErrorNotification(action.value)));
+}
+
+function* notifyDeleteGroupSuccessSaga() {
+  yield takeEvery(DELETE_GROUP_SUCCESS, notifyDeleteGroupSuccess);
 }
 
 function* notifyDeleteGroupErrorSaga() {
@@ -68,4 +77,5 @@ export default bootstrap([
   deleteGroupSaga,
   getGroupsSaga,
   notifyDeleteGroupErrorSaga,
+  notifyDeleteGroupSuccessSaga,
 ]);
