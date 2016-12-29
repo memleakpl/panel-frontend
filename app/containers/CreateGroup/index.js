@@ -31,8 +31,9 @@ export class CreateGroup extends React.PureComponent { // eslint-disable-line re
   render() {
     return (
       <GroupForm
-        header={<FormattedMessage {...messages.header} />}
         button={<FormattedMessage {...messages.create} />}
+        header={<FormattedMessage {...messages.header} />}
+        dispatch={this.props.dispatch}
         onSubmit={this.onSubmit}
       />
     );

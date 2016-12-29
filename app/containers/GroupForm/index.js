@@ -16,9 +16,9 @@ export class GroupForm extends React.PureComponent { // eslint-disable-line reac
   static propTypes = {
     button: React.PropTypes.element,
     header: React.PropTypes.element,
-    description: React.PropTypes.string.isRequired,
-    name: React.PropTypes.string.isRequired,
-    owner: React.PropTypes.string.isRequired,
+    description: React.PropTypes.string,
+    name: React.PropTypes.string,
+    owner: React.PropTypes.string,
     dispatch: React.PropTypes.func.isRequired,
     onSubmit: React.PropTypes.func,
   };
