@@ -1,8 +1,16 @@
-import { call, put, fork, take, cancel } from 'redux-saga/effects';
+import { call, put, fork } from 'redux-saga/effects';
 import { takeLatest, takeEvery } from 'redux-saga';
-import { LOCATION_CHANGE } from 'react-router-redux';
-import { GET_GROUPS_API_URL, GET_GROUPS_REQUEST, DELETE_GROUPS_API_URL, DELETE_GROUP_REQUEST } from './constants';
+import Notifications from 'react-notification-system-redux';
+import { bootstrap } from '../../utils/sagas';
+import {
+  GET_GROUPS_API_URL,
+  GET_GROUPS_REQUEST,
+  DELETE_GROUPS_API_URL,
+  DELETE_GROUP_REQUEST,
+  DELETE_GROUP_ERROR,
+} from './constants';
 import { getGroupsError, getGroupsSuccess, deleteGroupSuccess, deleteGroupError } from './actions';
+import { deleteGroupErrorNotification } from './notifications';
 
 function callGetGroups() {
   return fetch(GET_GROUPS_API_URL, {
@@ -35,28 +43,29 @@ function* deleteGroup(action) {
     yield put(deleteGroupSuccess());
     yield getGroups();
   } catch (e) {
-    yield put(deleteGroupError());
+    yield put(deleteGroupError(action.value));
   }
 }
 
-function* deleteGroupWatcher() {
+function* notifyDeleteGroupError(action) {
+  yield put(Notifications.error(deleteGroupErrorNotification(action.value)));
+}
+
+function* notifyDeleteGroupErrorSaga() {
+  yield takeEvery(DELETE_GROUP_ERROR, notifyDeleteGroupError);
+}
+
+function* deleteGroupSaga() {
   yield fork(takeEvery, DELETE_GROUP_REQUEST, deleteGroup);
 }
 
-function* getGroupsWatcher() {
+function* getGroupsSaga() {
   yield fork(takeLatest, GET_GROUPS_REQUEST, getGroups);
 }
 
-function* groupsListBootstrap() {
-  const getWatcher = yield fork(getGroupsWatcher);
-  const deleteWatcher = yield fork(deleteGroupWatcher);
-
-  yield take(LOCATION_CHANGE);
-  yield cancel(getWatcher);
-  yield cancel(deleteWatcher);
-}
-
 // All sagas to be loaded
-export default [
-  groupsListBootstrap,
-];
+export default bootstrap([
+  deleteGroupSaga,
+  getGroupsSaga,
+  notifyDeleteGroupErrorSaga,
+]);

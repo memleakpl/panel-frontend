@@ -3,9 +3,13 @@
  * GroupsList reducer
  *
  */
-import { fromJS, Map } from 'immutable';
+import { fromJS } from 'immutable';
 import {
-  GET_GROUPS_SUCCESS, GET_GROUPS_ERROR, SET_DELETION_GROUP, DELETE_GROUP_SUCCESS, DELETE_GROUP_ERROR,
+  GET_GROUPS_SUCCESS,
+  GET_GROUPS_ERROR,
+  SET_DELETION_GROUP,
+  DELETE_GROUP_SUCCESS,
+  DELETE_GROUP_ERROR,
 } from './constants';
 
 const initialState = fromJS({
@@ -18,15 +22,9 @@ const initialState = fromJS({
 function groupsListReducer(state = initialState, action) {
   switch (action.type) {
     case GET_GROUPS_SUCCESS:
-      return state.merge(Map({
-        groups: action.value,
-        loading: false,
-      }));
+      return state.merge({ groups: action.value, loading: false });
     case GET_GROUPS_ERROR:
-      return state.merge(Map({
-        error: true,
-        loading: false,
-      }));
+      return state.merge({ error: true, loading: false });
     case SET_DELETION_GROUP:
       return state.set('deletionGroup', action.value);
     case DELETE_GROUP_SUCCESS:

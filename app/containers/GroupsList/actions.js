@@ -53,8 +53,9 @@ export function deleteGroupSuccess() {
   };
 }
 
-export function deleteGroupError() {
+export function deleteGroupError(groupname) {
   return {
     type: DELETE_GROUP_ERROR,
+    value: groupname,
   };
 }

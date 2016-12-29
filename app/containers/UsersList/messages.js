@@ -10,4 +10,8 @@ export default defineMessages({
     id: 'app.containers.UsersList.header',
     defaultMessage: 'This is UsersList container !',
   },
+  deleteUserError: {
+    id: 'app.containers.UsersList.deleteUserError',
+    defaultMessage: 'Cannot delete user {user}.',
+  },
 });

@@ -1,9 +1,10 @@
 import { put, call } from 'redux-saga/effects';
 import { takeLatest, takeEvery } from 'redux-saga';
-
+import Notifications from 'react-notification-system-redux';
 import { bootstrap } from '../../utils/sagas';
-import { GET_USERS_URL, GET_USERS, DELETE_USER_REQUEST, API_DELETE_USER_URL } from './constants';
+import { GET_USERS_URL, GET_USERS, DELETE_USER_REQUEST, DELETE_USER_ERROR, API_DELETE_USER_URL } from './constants';
 import { getUsersSuccess, getUsersError, deleteUserSuccess, deleteUserError } from './actions';
+import { deleteUserErrorNotification } from './notifications';
 
 
 function callGetUsers() {
@@ -37,8 +38,16 @@ function* deleteUser(action) {
     yield put(deleteUserSuccess());
     yield getUsers();
   } catch (e) {
-    yield put(deleteUserError());
+    yield put(deleteUserError(action.value));
   }
+}
+
+function* notifyDeleteUserError(action) {
+  yield put(Notifications.error(deleteUserErrorNotification(action.value)));
+}
+
+function* notifyDeleteUserErrorSaga() {
+  yield* takeEvery(DELETE_USER_ERROR, notifyDeleteUserError);
 }
 
 function* getUsersSaga() {
@@ -53,4 +62,5 @@ function* deleteSaga() {
 export default bootstrap([
   getUsersSaga,
   deleteSaga,
+  notifyDeleteUserErrorSaga,
 ]);
