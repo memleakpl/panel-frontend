@@ -15,6 +15,7 @@ import { FormattedMessage } from 'react-intl';
 
 import { USER_TYPE } from './constants';
 import messages from './messages';
+import { CARD_STYLE } from '../../styles';
 
 
 class UsersTable extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
@@ -83,7 +84,7 @@ class UsersTable extends React.PureComponent { // eslint-disable-line react/pref
     ];
 
     return (
-      <Card style={{ margin: '25px', marginLeft: '9%', paddingTop: 10 }}>
+      <Card style={{ ...CARD_STYLE, maxWidth: 1400, padding: 0 }}>
         <CardTitle title={<FormattedMessage {...messages.usersList} />} />
         <Dialog modal actions={actions} open={this.props.deletionUser != null}>
           <FormattedMessage {...messages.deleteDialogBody} values={{ username: this.props.deletionUser }} />
