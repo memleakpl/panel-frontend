@@ -15,13 +15,20 @@ export function bootstrap(sagas) {
   return [bootstrapSaga];
 }
 
+function RestError(response) {
+  this.status = response.status;
+  this.message = `Server returned ${!response.ok ? 'error' : ''} code ${response.status}`;
+  this.details = () => response.json().then(
+    (details) => details,
+    () => this.message);
+}
+RestError.prototype = Object.create(RestError.prototype);
+RestError.prototype.constructor = RestError;
+
 function throwMessageOnError(responsePromise) {
   return responsePromise.then((response) => {
-    if (response.ok) return responsePromise;
-
-    return response.json().then((details) => {
-      throw new Error(details.message);
-    });
+    if (!response.ok) throw new RestError(response);
+    return responsePromise;
   });
 }
 

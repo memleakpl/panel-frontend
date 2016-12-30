@@ -27,7 +27,8 @@ function* createGroup() {
     yield call(callCreate, group);
     yield put(createGroupSuccess(group));
   } catch (e) {
-    yield put(createGroupError(group, e.message));
+    const details = yield call(e.details);
+    yield put(createGroupError(group, details.message));
   }
 }
 
