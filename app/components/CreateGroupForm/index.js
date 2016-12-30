@@ -57,7 +57,7 @@ class CreateGroupForm extends React.PureComponent { // eslint-disable-line react
     return (
       <Card style={CARD_STYLE}>
         <CardTitle title={this.props.header} />
-        <form onSubmit={console.log('test')}>
+        <form onSubmit={this.onSubmit}>
           <TextField
             hintText={<FormattedMessage {...messages.nameHint} />}
             onChange={this.props.onNameChange}
@@ -87,7 +87,6 @@ class CreateGroupForm extends React.PureComponent { // eslint-disable-line react
           />
           <RaisedButton
             type="submit"
-            onClick={this.onSubmit}
             disabled={!allValid || this.props.loading}
             primary
             fullWidth
