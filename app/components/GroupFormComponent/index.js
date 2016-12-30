@@ -1,6 +1,6 @@
 /**
 *
-* CreateGroupForm
+* GroupFormComponent
 *
 */
 
@@ -19,7 +19,7 @@ const DESCRIPTION_PATTERN = /[a-z0-9ęóąśłżźćń-]+/i;
 const NAME_PATTERN = /[a-z0-9]+/;
 const OWNER_PATTERN = NAME_PATTERN;
 
-class CreateGroupForm extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+class GroupFormComponent extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
     button: React.PropTypes.element,
     header: React.PropTypes.element,
@@ -98,4 +98,4 @@ class CreateGroupForm extends React.PureComponent { // eslint-disable-line react
   }
 }
 
-export default CreateGroupForm;
+export default GroupFormComponent;

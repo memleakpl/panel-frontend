@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import selectGroupForm from './selectors';
 import { setDescription, setName, setOwner } from './actions';
 
-import CreateGroupForm from '../../components/CreateGroupForm';
+import GroupFormComponent from '../../components/GroupFormComponent';
 
 export class GroupForm extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
@@ -45,7 +45,7 @@ export class GroupForm extends React.PureComponent { // eslint-disable-line reac
 
   render() {
     return (
-      <CreateGroupForm
+      <GroupFormComponent
         button={this.props.button}
         header={this.props.header}
         loading={this.props.loading}
