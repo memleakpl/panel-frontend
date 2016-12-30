@@ -1,7 +1,7 @@
 /*
- * CreateUserForm Messages
+ * EditUser Messages
  *
- * This contains all the text for the CreateUserForm component.
+ * This contains all the text for the EditUser component.
  */
 import { defineMessages } from 'react-intl';
 
