@@ -32,7 +32,6 @@ function usersListReducer(state = initialState, action) {
     case SET_DELETION_USER:
       return state.set('deletionUser', action.value);
     case DELETE_USER_SUCCESS:
-      return state.set('deletionUser', null);
     case DELETE_USER_ERROR:
       return state.set('deletionUser', null);
     default:

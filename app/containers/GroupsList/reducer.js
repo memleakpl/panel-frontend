@@ -31,7 +31,6 @@ function groupsListReducer(state = initialState, action) {
     case SET_DELETION_GROUP:
       return state.set('deletionGroup', action.value);
     case DELETE_GROUP_SUCCESS:
-      return state.set('deletionGroup', null);
     case DELETE_GROUP_ERROR:
       return state.set('deletionGroup', null);
     default:
