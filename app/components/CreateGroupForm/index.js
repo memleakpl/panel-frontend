@@ -5,11 +5,15 @@
 */
 
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
+
 import { Card, CardTitle } from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
-import { FormattedMessage } from 'react-intl';
+
 import messages from './messages';
+
+import { CARD_STYLE } from '../../styles';
 
 const DESCRIPTION_PATTERN = /[a-z0-9ęóąśłżźćń-]+/i;
 const NAME_PATTERN = /[a-z0-9]+/;
@@ -41,7 +45,7 @@ class CreateGroupForm extends React.PureComponent { // eslint-disable-line react
     const valid = this.validateForm();
     const allValid = valid.description && valid.name && valid.owner;
     return (
-      <Card style={{ margin: '100px auto', padding: 50, width: 800 }} >
+      <Card style={CARD_STYLE}>
         <CardTitle title={this.props.header} />
         <div>
           <TextField

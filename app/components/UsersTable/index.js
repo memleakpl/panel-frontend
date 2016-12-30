@@ -12,14 +12,18 @@ import IconButton from 'material-ui/IconButton';
 import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
 import { FormattedMessage } from 'react-intl';
-
+import CircularProgress from 'material-ui/CircularProgress';
+import { redA700 } from 'material-ui/styles/colors';
 import { USER_TYPE } from './constants';
 import messages from './messages';
+import { CARD_STYLE } from '../../styles';
 
 
 class UsersTable extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
     users: React.PropTypes.arrayOf(USER_TYPE),
+    error: React.PropTypes.bool.isRequired,
+    loading: React.PropTypes.bool.isRequired,
     editUser: React.PropTypes.func,
     startDeleteUser: React.PropTypes.func,
     cancelDeleteUser: React.PropTypes.func,
@@ -65,8 +69,7 @@ class UsersTable extends React.PureComponent { // eslint-disable-line react/pref
       </TableRow>
     );
   }
-
-  render() {
+  renderTable() {
     const rows = this.props.users.map((user) =>
       this.createTableRow(user)
     );
@@ -83,8 +86,7 @@ class UsersTable extends React.PureComponent { // eslint-disable-line react/pref
     ];
 
     return (
-      <Card style={{ margin: '25px', marginLeft: '9%', paddingTop: 10 }}>
-        <CardTitle title={<FormattedMessage {...messages.usersList} />} />
+      <div>
         <Dialog modal actions={actions} open={this.props.deletionUser != null}>
           <FormattedMessage {...messages.deleteDialogBody} values={{ username: this.props.deletionUser }} />
         </Dialog>
@@ -102,6 +104,26 @@ class UsersTable extends React.PureComponent { // eslint-disable-line react/pref
             {rows}
           </TableBody>
         </Table>
+      </div>
+    );
+  }
+  render() {
+    const error = this.props.error ?
+      (<div style={{ margin: '30px', color: redA700 }}>
+        <FormattedMessage {...messages.getUsersErrorMessage} />
+      </div>) :
+      undefined;
+    const loading = this.props.loading ? <CircularProgress style={{ margin: '30px' }} /> : undefined;
+    const table = (!this.props.loading && !this.props.error) ? this.renderTable() : undefined;
+
+    return (
+      <Card style={{ ...CARD_STYLE, maxWidth: 1400, padding: 0 }}>
+        <CardTitle title={<FormattedMessage {...messages.usersList} />} />
+        <div style={{ textAlign: 'center' }}>
+          {error}
+          {loading}
+          {table}
+        </div>
       </Card>
     );
   }
