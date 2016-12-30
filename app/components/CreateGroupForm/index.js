@@ -33,6 +33,16 @@ class CreateGroupForm extends React.PureComponent { // eslint-disable-line react
     onSubmit: React.PropTypes.func.isRequired,
   };
 
+  constructor() {
+    super();
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  onSubmit(e) {
+    this.props.onSubmit();
+    e.preventDefault();
+  }
+
   validateForm() {
     return {
       name: NAME_PATTERN.test(this.props.name),
@@ -47,7 +57,7 @@ class CreateGroupForm extends React.PureComponent { // eslint-disable-line react
     return (
       <Card style={CARD_STYLE}>
         <CardTitle title={this.props.header} />
-        <div>
+        <form onSubmit={console.log('test')}>
           <TextField
             hintText={<FormattedMessage {...messages.nameHint} />}
             onChange={this.props.onNameChange}
@@ -76,13 +86,14 @@ class CreateGroupForm extends React.PureComponent { // eslint-disable-line react
             floatingLabelFixed
           />
           <RaisedButton
-            onClick={this.props.onSubmit}
+            type="submit"
+            onClick={this.onSubmit}
             disabled={!allValid || this.props.loading}
             primary
             fullWidth
             label={this.props.button}
           />
-        </div>
+        </form>
       </Card>
     );
   }
