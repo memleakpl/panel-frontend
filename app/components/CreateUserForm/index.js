@@ -12,7 +12,6 @@ import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import { CARD_STYLE } from '../../styles';
 
-
 const USERNAME_PATTERN = /[a-z0-9]+/;
 const EMAIL_PATTERN = /^([\w.+-]+)@([\w-]+\.)*([\w-]+)$/i;
 const NAME_PATTERN = /[a-z0-9ęóąśłżźćń-]+/i;

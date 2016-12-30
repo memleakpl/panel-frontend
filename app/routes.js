@@ -165,6 +165,28 @@ export default function createRoutes(store) {
           },
           onEnter: () => requireAuth(store),
         },
+        {
+          path: '/groups',
+          name: 'groupsList',
+          getComponent(nextState, cb) {
+            const importModules = Promise.all([
+              System.import('containers/GroupsList/reducer'),
+              System.import('containers/GroupsList/sagas'),
+              System.import('containers/GroupsList'),
+            ]);
+
+            const renderRoute = loadModule(cb);
+
+            importModules.then(([reducer, sagas, component]) => {
+              injectReducer('groupsList', reducer.default);
+              injectSagas(sagas.default);
+              renderRoute(component);
+            });
+
+            importModules.catch(errorLoading);
+          },
+          onEnter: () => requireAuth(store),
+        },
       ],
     },
     {

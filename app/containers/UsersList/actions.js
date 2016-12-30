@@ -46,14 +46,16 @@ export function deleteUserRequest(username) {
   };
 }
 
-export function deleteUserSuccess() {
+export function deleteUserSuccess(username) {
   return {
     type: DELETE_USER_SUCCESS,
+    value: username,
   };
 }
 
-export function deleteUserError() {
+export function deleteUserError(username) {
   return {
     type: DELETE_USER_ERROR,
+    value: username,
   };
 }

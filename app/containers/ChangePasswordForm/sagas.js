@@ -6,7 +6,7 @@ import { takeLatest, takeEvery } from 'redux-saga';
 import Notifications from 'react-notification-system-redux';
 import { bootstrap } from '../../utils/sagas';
 import { CHANGE_PASSWORD_API_URL, CHANGE_PASSWORD_REQUEST, CHANGE_PASSWORD_SUCCESS, CHANGE_PASSWORD_ERROR } from './constants';
-import { CHANGE_PASSWORD_SUCCESS_NOTIFICATION, CHANGE_PASSWORD_ERROR_NOTIFICATION } from './notifications';
+import { changePasswordErrorNotification, changePasswordSuccessNotification } from './notifications';
 import selectChangePasswordForm from './selectors';
 import { changePasswordError, changePasswordSuccess } from './actions';
 
@@ -33,23 +33,23 @@ function* changePassword() {
     yield put(changePasswordError());
   }
 }
-export function* notifyChangePasswordSuccess() {
-  yield put(Notifications.success(CHANGE_PASSWORD_SUCCESS_NOTIFICATION));
+function* notifyChangePasswordSuccess() {
+  yield put(Notifications.success(changePasswordSuccessNotification()));
 }
 
-export function* notifyChangePasswordError() {
-  yield put(Notifications.error(CHANGE_PASSWORD_ERROR_NOTIFICATION));
+function* notifyChangePasswordError() {
+  yield put(Notifications.error(changePasswordErrorNotification()));
 }
 
-export function* changePasswordSaga() {
+function* changePasswordSaga() {
   yield fork(takeLatest, CHANGE_PASSWORD_REQUEST, changePassword);
 }
 
-export function* notifyChangePasswordSuccessSaga() {
+function* notifyChangePasswordSuccessSaga() {
   yield fork(takeEvery, CHANGE_PASSWORD_SUCCESS, notifyChangePasswordSuccess);
 }
 
-export function* notifyChangePasswordErrorSaga() {
+function* notifyChangePasswordErrorSaga() {
   yield fork(takeEvery, CHANGE_PASSWORD_ERROR, notifyChangePasswordError);
 }
 
