@@ -8,7 +8,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import selectUserForm from './selectors';
 import { setUsername, setFirstName, setLastName, setEmail } from './actions';
-import CreateUserForm from '../../components/CreateUserForm';
+import UserFormComponent from '../../components/UserFormComponent';
 
 export class UserForm extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
@@ -37,7 +37,7 @@ export class UserForm extends React.PureComponent { // eslint-disable-line react
   }
   render() {
     return (
-      <CreateUserForm
+      <UserFormComponent
         {...this.props}
         onUsernameChange={this.onUsernameChange}
         onFirstNameChange={this.onFirstNameChange}

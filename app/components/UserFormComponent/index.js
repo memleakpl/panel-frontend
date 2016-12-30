@@ -1,6 +1,6 @@
 /**
 *
-* CreateUserForm
+* UserFormComponent
 *
 */
 
@@ -16,7 +16,7 @@ const USERNAME_PATTERN = /[a-z0-9]+/;
 const EMAIL_PATTERN = /^([\w.+-]+)@([\w-]+\.)*([\w-]+)$/i;
 const NAME_PATTERN = /[a-z0-9ęóąśłżźćń-]+/i;
 
-class CreateUserForm extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+class UserFormComponent extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
     username: React.PropTypes.string.isRequired,
     onUsernameChange: React.PropTypes.func.isRequired,
@@ -99,4 +99,4 @@ class CreateUserForm extends React.PureComponent { // eslint-disable-line react/
   }
 }
 
-export default CreateUserForm;
+export default UserFormComponent;
