@@ -109,11 +109,9 @@ class UsersTable extends React.PureComponent { // eslint-disable-line react/pref
   }
   render() {
     const error = this.props.error ?
-      (
-        <div style={{ margin: '30px', color: redA700 }}>
-          <FormattedMessage {...messages.getUsersErrorMessage} />
-        </div>
-      ) :
+      (<div style={{ margin: '30px', color: redA700 }}>
+        <FormattedMessage {...messages.getUsersErrorMessage} />
+      </div>) :
       undefined;
     const loading = this.props.loading ? <CircularProgress style={{ margin: '30px' }} /> : undefined;
     const table = (!this.props.loading && !this.props.error) ? this.renderTable() : undefined;
