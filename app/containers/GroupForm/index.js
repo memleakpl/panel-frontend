@@ -20,7 +20,7 @@ export class GroupForm extends React.PureComponent { // eslint-disable-line reac
     description: React.PropTypes.string,
     name: React.PropTypes.string,
     owner: React.PropTypes.string,
-    dispatch: React.PropTypes.func.isRequired,
+    dispatch: React.PropTypes.func,
     onSubmit: React.PropTypes.func,
   };
 
