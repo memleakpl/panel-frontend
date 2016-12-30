@@ -14,3 +14,17 @@ export function bootstrap(sagas) {
 
   return [bootstrapSaga];
 }
+
+function throwMessageOnError(responsePromise) {
+  return responsePromise.then((response) => {
+    if (response.ok) return responsePromise;
+
+    return response.json().then((details) => {
+      throw new Error(details.message);
+    });
+  });
+}
+
+export function checkedFetch(input, init) {
+  return throwMessageOnError(fetch(input, init));
+}

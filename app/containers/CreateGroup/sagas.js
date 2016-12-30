@@ -1,15 +1,17 @@
 import { call, put, select } from 'redux-saga/effects';
-import { takeLatest } from 'redux-saga';
+import { takeEvery, takeLatest } from 'redux-saga';
+import Notifications from 'react-notification-system-redux';
 
 import { createGroupError, createGroupSuccess } from './actions';
-import { CREATE_GROUP_API_URL, CREATE_GROUP_REQUEST } from './constants';
+import { CREATE_GROUP_API_URL, CREATE_GROUP_REQUEST, CREATE_GROUP_ERROR, CREATE_GROUP_SUCCESS } from './constants';
+import { createGroupErrorNotification, createGroupSuccessNotification } from './notifications';
 
 import selectGroupForm from '../GroupForm/selectors';
 
-import { bootstrap } from '../../utils/sagas';
+import { bootstrap, checkedFetch } from '../../utils/sagas';
 
 function callCreate(group) {
-  return fetch(CREATE_GROUP_API_URL, {
+  return checkedFetch(CREATE_GROUP_API_URL, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json; charset=utf-8',
@@ -20,18 +22,30 @@ function callCreate(group) {
 }
 
 function* createGroup() {
+  const group = yield select(selectGroupForm());
   try {
-    const group = yield select(selectGroupForm());
     yield call(callCreate, group);
-    yield put(createGroupSuccess());
+    yield put(createGroupSuccess(group));
   } catch (e) {
-    yield put(createGroupError());
+    yield put(createGroupError(group, e.message));
   }
 }
 
-function* defaultSaga() {
-  yield* takeLatest(CREATE_GROUP_REQUEST, createGroup);
+function* fetchSaga() {
+  yield takeLatest(CREATE_GROUP_REQUEST, createGroup);
+}
+
+function* notificationSaga() {
+  yield takeEvery(CREATE_GROUP_SUCCESS, function* notifyCreateGroupSuccess(action) {
+    yield put(Notifications.success(createGroupSuccessNotification(action.value)));
+  });
+  yield takeEvery(CREATE_GROUP_ERROR, function* notifyCreateGroupError(action) {
+    yield put(Notifications.error(createGroupErrorNotification(action.value.group, action.value.message)));
+  });
 }
 
 // All sagas to be loaded
-export default bootstrap([defaultSaga]);
+export default bootstrap([
+  fetchSaga,
+  notificationSaga,
+]);

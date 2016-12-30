@@ -16,15 +16,20 @@ export function createGroupRequest() {
   };
 }
 
-export function createGroupError() {
+export function createGroupError(group, message) {
   return {
     type: CREATE_GROUP_ERROR,
+    value: {
+      group,
+      message,
+    },
   };
 }
 
-export function createGroupSuccess() {
+export function createGroupSuccess(group) {
   return {
     type: CREATE_GROUP_SUCCESS,
+    value: group,
   };
 }
 

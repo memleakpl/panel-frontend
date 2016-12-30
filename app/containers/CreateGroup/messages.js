@@ -14,4 +14,12 @@ export default defineMessages({
     id: 'app.containers.CreateGroup.create',
     defaultMessage: 'Create',
   },
+  successNotificationTitle: {
+    id: 'app.containers.CreateGroup.successNotificationTitle',
+    defaultMessage: 'Group "{groupName}" has been created.',
+  },
+  errorNotificationTitle: {
+    id: 'app.containers.CreateGroup.errorNotificationTitle',
+    defaultMessage: 'An error occurred during "{groupName}" creation.',
+  },
 });
