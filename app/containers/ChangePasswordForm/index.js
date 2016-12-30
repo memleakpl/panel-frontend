@@ -11,6 +11,7 @@ import { FormattedMessage } from 'react-intl';
 import { Card, CardTitle } from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
+import { CARD_STYLE } from '../../styles';
 import selectChangePasswordForm from './selectors';
 import messages from './messages';
 import { setNewPassword, setOldPassword, setRepeatPassword, changePasswordRequest } from './actions';
@@ -73,7 +74,7 @@ export class ChangePasswordForm extends React.PureComponent { // eslint-disable-
     const oldPasswordErrorText = this.createOldPasswordErrorText(valid);
     const allValid = valid.oldPasswordNotEmpty && valid.newPasswordNotEmpty && valid.matchingNewPassword;
     return (
-      <Card style={{ margin: '100px auto', padding: 40, maxWidth: 800 }}>
+      <Card style={CARD_STYLE}>
         <CardTitle title={<FormattedMessage {...messages.header} />} />
         <form onSubmit={this.onSubmit}>
           <TextField

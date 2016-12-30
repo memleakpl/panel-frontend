@@ -16,6 +16,7 @@ import CircularProgress from 'material-ui/CircularProgress';
 import { redA700 } from 'material-ui/styles/colors';
 import { USER_TYPE } from './constants';
 import messages from './messages';
+import { CARD_STYLE } from '../../styles';
 
 
 class UsersTable extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
@@ -118,7 +119,7 @@ class UsersTable extends React.PureComponent { // eslint-disable-line react/pref
     const table = (!this.props.loading && !this.props.error) ? this.renderTable() : undefined;
 
     return (
-      <Card style={{ margin: '25px', marginLeft: '9%', paddingTop: 10 }}>
+      <Card style={{ ...CARD_STYLE, maxWidth: 1400, padding: 0 }}>
         <CardTitle title={<FormattedMessage {...messages.usersList} />} />
         <div style={{ textAlign: 'center' }}>
           {error}

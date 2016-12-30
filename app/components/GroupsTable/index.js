@@ -16,6 +16,7 @@ import Dialog from 'material-ui/Dialog';
 import { redA700 } from 'material-ui/styles/colors';
 import messages from './messages';
 import { GROUP_TYPE } from './constants';
+import { CARD_STYLE } from '../../styles';
 
 class GroupsTable extends React.Component { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
@@ -104,7 +105,7 @@ class GroupsTable extends React.Component { // eslint-disable-line react/prefer-
     const loading = this.props.loading ? <CircularProgress style={{ margin: '30px' }} /> : undefined;
     const table = (!this.props.loading && !this.props.error) ? this.renderTable() : undefined;
     return (
-      <Card style={{ margin: '25px', marginLeft: '9%', paddingTop: 10 }} >
+      <Card style={{ ...CARD_STYLE, maxWidth: 1400, padding: 0 }} >
         <CardTitle title={<FormattedMessage {...messages.groupsList} />} />
         <div style={{ textAlign: 'center' }}>
           {error}
