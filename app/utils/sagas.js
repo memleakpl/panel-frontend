@@ -17,7 +17,7 @@ export function bootstrap(sagas) {
 
 function RestError(response) {
   this.status = response.status;
-  this.message = `Server returned ${!response.ok ? 'error' : ''} code ${response.status}`;
+  this.message = `Server returned code ${response.status}`;
   this.details = () => response.json().then(
     (details) => details,
     () => this.message);
