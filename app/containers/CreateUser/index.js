@@ -14,8 +14,8 @@ import messages from './messages';
 
 export class CreateUser extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
-    dispatch: React.PropTypes.func.isRequired,
-  }
+    dispatch: React.PropTypes.func,
+  };
   constructor() {
     super();
     this.onSubmit = this.onSubmit.bind(this);

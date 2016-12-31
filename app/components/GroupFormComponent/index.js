@@ -21,7 +21,7 @@ const OWNER_PATTERN = NAME_PATTERN;
 
 class GroupFormComponent extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
-    button: React.PropTypes.element,
+    button: React.PropTypes.element.isRequired,
     header: React.PropTypes.element,
     loading: React.PropTypes.bool.isRequired,
     description: React.PropTypes.string.isRequired,
