@@ -5,14 +5,14 @@
  */
 
 import {
-  CREATE_GROUP_REQUEST,
+  CREATE_GROUP,
   CREATE_GROUP_ERROR,
   CREATE_GROUP_SUCCESS,
 } from './constants';
 
-export function createGroupRequest() {
+export function createGroup() {
   return {
-    type: CREATE_GROUP_REQUEST,
+    type: CREATE_GROUP,
   };
 }
 

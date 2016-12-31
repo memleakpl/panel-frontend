@@ -4,9 +4,9 @@ import Notifications from 'react-notification-system-redux';
 import { bootstrap } from '../../utils/sagas';
 import {
   GET_GROUPS_API_URL,
-  GET_GROUPS_REQUEST,
+  GET_GROUPS,
   DELETE_GROUPS_API_URL,
-  DELETE_GROUP_REQUEST,
+  DELETE_GROUP,
   DELETE_GROUP_ERROR,
   DELETE_GROUP_SUCCESS,
 } from './constants';
@@ -65,11 +65,11 @@ function* notifyDeleteGroupErrorSaga() {
 }
 
 function* deleteGroupSaga() {
-  yield fork(takeEvery, DELETE_GROUP_REQUEST, deleteGroup);
+  yield fork(takeEvery, DELETE_GROUP, deleteGroup);
 }
 
 function* getGroupsSaga() {
-  yield fork(takeLatest, GET_GROUPS_REQUEST, getGroups);
+  yield fork(takeLatest, GET_GROUPS, getGroups);
 }
 
 // All sagas to be loaded

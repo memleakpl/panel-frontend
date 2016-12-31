@@ -2,10 +2,10 @@ import { call, put, select } from 'redux-saga/effects';
 import { takeLatest, takeEvery } from 'redux-saga';
 import { push } from 'react-router-redux';
 import { bootstrap } from '../../utils/sagas';
-import { FETCH_USER_REQUEST, EDIT_USER_REQUEST, API_GET_USER, API_EDIT_USER, LIST_USERS_URL } from './constants';
+import { GET_USER, EDIT_USER, API_GET_USER, API_EDIT_USER, LIST_USERS_URL } from './constants';
 import selectUserForm from '../UserForm/selectors';
 import { setUser } from '../UserForm/actions';
-import { fetchUserSuccess, fetchUserError, editUserSuccess, editUserError } from './actions';
+import { getUserSuccess, getUserError, editUserSuccess, editUserError } from './actions';
 
 function callFetchUser(username) {
   return fetch(`${API_GET_USER}${username}`, {
@@ -20,10 +20,10 @@ function callFetchUser(username) {
 function* fetchUser(action) {
   try {
     const user = yield call(callFetchUser, action.value);
-    yield put(fetchUserSuccess(user));
+    yield put(getUserSuccess(user));
     yield put(setUser(user));
   } catch (e) {
-    yield put(fetchUserError());
+    yield put(getUserError());
   }
 }
 
@@ -50,11 +50,11 @@ function* editUser() {
 }
 
 function* fetchUserSaga() {
-  yield takeLatest(FETCH_USER_REQUEST, fetchUser);
+  yield takeLatest(GET_USER, fetchUser);
 }
 
 function* editUserSaga() {
-  yield takeEvery(EDIT_USER_REQUEST, editUser);
+  yield takeEvery(EDIT_USER, editUser);
 }
 
 // All sagas to be loaded

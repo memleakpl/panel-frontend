@@ -7,9 +7,9 @@
 import {
   SET_USERNAME,
   SET_PASSWORD,
-  REQUEST_LOGIN,
-  REQUEST_LOGIN_SUCCESS,
-  REQUEST_LOGIN_ERROR,
+  LOGIN,
+  LOGIN_SUCCESS,
+  LOGIN_ERROR,
 } from './constants';
 
 export function setUsername(username) {
@@ -26,20 +26,20 @@ export function setPassword(password) {
   };
 }
 
-export function requestLogin() {
+export function login() {
   return {
-    type: REQUEST_LOGIN,
+    type: LOGIN,
   };
 }
 
-export function requestLoginSuccess() {
+export function loginSuccess() {
   return {
-    type: REQUEST_LOGIN_SUCCESS,
+    type: LOGIN_SUCCESS,
   };
 }
 
-export function requestLoginError() {
+export function loginError() {
   return {
-    type: REQUEST_LOGIN_ERROR,
+    type: LOGIN_ERROR,
   };
 }

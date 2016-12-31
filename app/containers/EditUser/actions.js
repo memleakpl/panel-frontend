@@ -5,37 +5,37 @@
  */
 
 import {
-  FETCH_USER_REQUEST,
-  FETCH_USER_SUCCESS,
-  FETCH_USER_ERROR,
-  EDIT_USER_REQUEST,
+  GET_USER,
+  GET_USER_SUCCESS,
+  GET_USER_ERROR,
+  EDIT_USER,
   EDIT_USER_SUCCESS,
   EDIT_USER_ERROR,
 } from './constants';
 
-export function requestUserFetch(username) {
+export function getUser(username) {
   return {
-    type: FETCH_USER_REQUEST,
+    type: GET_USER,
     value: username,
   };
 }
 
-export function fetchUserSuccess(user) {
+export function getUserSuccess(user) {
   return {
-    type: FETCH_USER_SUCCESS,
+    type: GET_USER_SUCCESS,
     value: user,
   };
 }
 
-export function fetchUserError() {
+export function getUserError() {
   return {
-    type: FETCH_USER_ERROR,
+    type: GET_USER_ERROR,
   };
 }
 
-export function requestEditUser() {
+export function editUser() {
   return {
-    type: EDIT_USER_REQUEST,
+    type: EDIT_USER,
   };
 }
 

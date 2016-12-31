@@ -8,7 +8,7 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 
-import { createGroupRequest } from './actions';
+import { createGroup } from './actions';
 import messages from './messages';
 import selectCreateGroup from './selectors';
 
@@ -26,7 +26,7 @@ export class CreateGroup extends React.PureComponent { // eslint-disable-line re
   }
 
   onSubmit() {
-    this.props.dispatch(createGroupRequest());
+    this.props.dispatch(createGroup());
   }
 
   render() {

@@ -8,7 +8,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import selectCreateUser from './selectors';
-import { requestCreateUser } from './actions';
+import { createUser } from './actions';
 import UserForm from '../UserForm';
 import messages from './messages';
 
@@ -21,7 +21,7 @@ export class CreateUser extends React.PureComponent { // eslint-disable-line rea
     this.onSubmit = this.onSubmit.bind(this);
   }
   onSubmit() {
-    this.props.dispatch(requestCreateUser());
+    this.props.dispatch(createUser());
   }
   render() {
     return (

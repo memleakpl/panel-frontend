@@ -5,7 +5,7 @@ import { call, put, select, fork } from 'redux-saga/effects';
 import { takeLatest, takeEvery } from 'redux-saga';
 import Notifications from 'react-notification-system-redux';
 import { bootstrap } from '../../utils/sagas';
-import { CHANGE_PASSWORD_API_URL, CHANGE_PASSWORD_REQUEST, CHANGE_PASSWORD_SUCCESS, CHANGE_PASSWORD_ERROR } from './constants';
+import { CHANGE_PASSWORD_API_URL, CHANGE_PASSWORD, CHANGE_PASSWORD_SUCCESS, CHANGE_PASSWORD_ERROR } from './constants';
 import { changePasswordErrorNotification, changePasswordSuccessNotification } from './notifications';
 import selectChangePasswordForm from './selectors';
 import { changePasswordError, changePasswordSuccess } from './actions';
@@ -42,7 +42,7 @@ function* notifyChangePasswordError() {
 }
 
 function* changePasswordSaga() {
-  yield fork(takeLatest, CHANGE_PASSWORD_REQUEST, changePassword);
+  yield fork(takeLatest, CHANGE_PASSWORD, changePassword);
 }
 
 function* notifyChangePasswordSuccessSaga() {

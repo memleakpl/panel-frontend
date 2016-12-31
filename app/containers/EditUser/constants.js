@@ -5,10 +5,10 @@
  */
 import { API_ROOT } from '../../constants';
 
-export const FETCH_USER_REQUEST = 'app/EditUser/FETCH_USER_REQUEST';
-export const FETCH_USER_SUCCESS = 'app/EditUser/FETCH_USER_SUCCESS';
-export const FETCH_USER_ERROR = 'app/EditUser/FETCH_USER_ERROR';
-export const EDIT_USER_REQUEST = 'app/EditUser/EDIT_USER_REQUEST';
+export const GET_USER = 'app/EditUser/GET_USER';
+export const GET_USER_SUCCESS = 'app/EditUser/GET_USER_SUCCESS';
+export const GET_USER_ERROR = 'app/EditUser/GET_USER_ERROR';
+export const EDIT_USER = 'app/EditUser/EDIT_USER';
 export const EDIT_USER_SUCCESS = 'app/EditUser/EDIT_USER_SUCCESS';
 export const EDIT_USER_ERROR = 'app/EditUser/EDIT_USER_ERROR';
 

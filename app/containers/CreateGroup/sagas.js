@@ -3,7 +3,7 @@ import { takeEvery, takeLatest } from 'redux-saga';
 import Notifications from 'react-notification-system-redux';
 
 import { createGroupError, createGroupSuccess } from './actions';
-import { CREATE_GROUP_API_URL, CREATE_GROUP_REQUEST, CREATE_GROUP_ERROR, CREATE_GROUP_SUCCESS } from './constants';
+import { CREATE_GROUP_API_URL, CREATE_GROUP, CREATE_GROUP_ERROR, CREATE_GROUP_SUCCESS } from './constants';
 import { createGroupErrorNotification, createGroupSuccessNotification } from './notifications';
 
 import selectGroupForm from '../GroupForm/selectors';
@@ -33,7 +33,7 @@ function* createGroup() {
 }
 
 function* fetchSaga() {
-  yield takeLatest(CREATE_GROUP_REQUEST, createGroup);
+  yield takeLatest(CREATE_GROUP, createGroup);
 }
 
 function* notificationSaga() {

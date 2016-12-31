@@ -5,7 +5,7 @@ import { bootstrap } from '../../utils/sagas';
 import {
   GET_USERS_URL,
   GET_USERS,
-  DELETE_USER_REQUEST,
+  DELETE_USER,
   DELETE_USER_ERROR,
   DELETE_USER_SUCCESS,
   API_DELETE_USER_URL,
@@ -70,7 +70,7 @@ function* getUsersSaga() {
 }
 
 function* deleteSaga() {
-  yield* takeEvery(DELETE_USER_REQUEST, deleteUser);
+  yield* takeEvery(DELETE_USER, deleteUser);
 }
 
 // All sagas to be loaded
