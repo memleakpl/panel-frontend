@@ -31,6 +31,16 @@ class UserFormComponent extends React.PureComponent { // eslint-disable-line rea
     onSubmit: React.PropTypes.func.isRequired,
   };
 
+  constructor() {
+    super();
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  onSubmit(e) {
+    this.props.onSubmit();
+    e.preventDefault();
+  }
+
   validateForm() {
     return {
       username: USERNAME_PATTERN.test(this.props.username),
@@ -46,7 +56,7 @@ class UserFormComponent extends React.PureComponent { // eslint-disable-line rea
     return (
       <Card style={CARD_STYLE} >
         <CardTitle title={this.props.header} />
-        <div>
+        <form onSubmit={this.onSubmit}>
           <TextField
             hintText={<FormattedMessage {...messages.usernameHint} />}
             onChange={this.props.onUsernameChange}
@@ -87,13 +97,14 @@ class UserFormComponent extends React.PureComponent { // eslint-disable-line rea
             fullWidth
           />
           <RaisedButton
+            type="submit"
             onClick={this.props.onSubmit}
             disabled={!allValid}
             primary
             fullWidth
             label={this.props.button}
           />
-        </div>
+        </form>
       </Card>
     );
   }
