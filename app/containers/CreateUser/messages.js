@@ -14,4 +14,12 @@ export default defineMessages({
     id: 'app.components.CreateUser.create',
     defaultMessage: 'Create',
   },
+  successNotificationTitle: {
+    id: 'app.containers.CreateGroup.successNotificationTitle',
+    defaultMessage: 'User "{username}" has been created.',
+  },
+  errorNotificationTitle: {
+    id: 'app.containers.CreateGroup.errorNotificationTitle',
+    defaultMessage: 'An error occurred during "{username}" creation.',
+  },
 });

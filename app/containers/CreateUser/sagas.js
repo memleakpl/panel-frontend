@@ -1,14 +1,15 @@
 import { call, put, select } from 'redux-saga/effects';
-import { takeLatest } from 'redux-saga';
-
-import { bootstrap } from '../../utils/sagas';
+import { takeLatest, takeEvery } from 'redux-saga';
+import Notifications from 'react-notification-system-redux';
+import { bootstrap, checkedFetch } from '../../utils/sagas';
 import selectUserForm from '../UserForm/selectors';
-import { CREATE_USER_API_URL, CREATE_USER } from './constants';
+import { CREATE_USER_API_URL, CREATE_USER, CREATE_USER_SUCCESS, CREATE_USER_ERROR } from './constants';
 import { createUserSuccess, createUserError } from './actions';
+import { createUserErrorNotification, createUserSuccessNotification } from './notifications';
 
 
 function callCreate(user) {
-  return fetch(CREATE_USER_API_URL, {
+  return checkedFetch(CREATE_USER_API_URL, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json; charset=utf-8',
@@ -19,13 +20,23 @@ function callCreate(user) {
 }
 
 function* createUser() {
+  const user = yield select(selectUserForm());
   try {
-    const user = yield select(selectUserForm());
     yield call(callCreate, user);
-    yield put(createUserSuccess());
+    yield put(createUserSuccess(user));
   } catch (e) {
-    yield put(createUserError());
+    const details = yield call(e.details);
+    yield put(createUserError(user, details.message));
   }
+}
+
+function* notificationSaga() {
+  yield takeEvery(CREATE_USER_SUCCESS, function* notifyCreateUserSuccess(action) {
+    yield put(Notifications.success(createUserSuccessNotification(action.value)));
+  });
+  yield takeEvery(CREATE_USER_ERROR, function* notifyCreateUserError(action) {
+    yield put(Notifications.error(createUserErrorNotification(action.value.user, action.value.message)));
+  });
 }
 
 function* createUserSaga() {
@@ -33,4 +44,7 @@ function* createUserSaga() {
 }
 
 // All sagas to be loaded
-export default bootstrap([createUserSaga]);
+export default bootstrap([
+  createUserSaga,
+  notificationSaga,
+]);

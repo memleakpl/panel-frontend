@@ -14,4 +14,16 @@ export default defineMessages({
     id: 'app.components.EditUser.save',
     defaultMessage: 'Save',
   },
+  editUserSuccessNotificationTitle: {
+    id: 'app.containers.CreateGroup.editUserSuccessNotificationTitle',
+    defaultMessage: 'User "{username}" has been modified.',
+  },
+  editUserErrorNotificationTitle: {
+    id: 'app.containers.CreateGroup.editUserErrorNotificationTitle',
+    defaultMessage: 'An error occurred during "{username}" edition.',
+  },
+  getUserErrorNotificationTitle: {
+    id: 'app.containers.CreateGroup.getUserErrorNotificationTitle',
+    defaultMessage: 'An error occurred during "{username}" edition.',
+  },
 });
