@@ -14,7 +14,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 import messages from './messages';
 import selectLoginForm from './selectors';
-import { setUsername, setPassword, requestLogin } from './actions';
+import { setUsername, setPassword, login } from './actions';
 import { CARD_STYLE } from '../../styles';
 
 export class LoginForm extends React.PureComponent {
@@ -38,7 +38,7 @@ export class LoginForm extends React.PureComponent {
     this.props.dispatch(setPassword(password));
   }
   onSubmit(e) {
-    this.props.dispatch(requestLogin());
+    this.props.dispatch(login());
     e.preventDefault();
   }
   render() {

@@ -4,24 +4,24 @@
  *
  */
 import {
-  REQUEST_CREATE_USER,
+  CREATE_USER,
   CREATE_USER_SUCCESS,
   CREATE_USER_ERROR,
 } from './constants';
 
-export function requestCreateUser() {
+export function createUser() {
   return {
-    type: REQUEST_CREATE_USER,
+    type: CREATE_USER,
   };
 }
 
-export function requestCreateUserSuccess() {
+export function createUserSuccess() {
   return {
     type: CREATE_USER_SUCCESS,
   };
 }
 
-export function requestCreateUserError() {
+export function createUserError() {
   return {
     type: CREATE_USER_ERROR,
   };

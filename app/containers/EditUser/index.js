@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import selectEditUser from './selectors';
 import UserForm from '../UserForm';
-import { requestUserFetch, requestEditUser } from './actions';
+import { getUser, editUser } from './actions';
 import messages from './messages';
 
 
@@ -25,10 +25,10 @@ export class EditUser extends React.PureComponent { // eslint-disable-line react
     this.onSubmit = this.onSubmit.bind(this);
   }
   componentDidMount() {
-    this.props.dispatch(requestUserFetch(this.props.params.username));
+    this.props.dispatch(getUser(this.props.params.username));
   }
   onSubmit() {
-    this.props.dispatch(requestEditUser());
+    this.props.dispatch(editUser());
   }
   render() {
     return (

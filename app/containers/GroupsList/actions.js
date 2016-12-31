@@ -5,18 +5,18 @@
  */
 
 import {
-  GET_GROUPS_REQUEST,
+  GET_GROUPS,
   GET_GROUPS_ERROR,
   GET_GROUPS_SUCCESS,
   SET_DELETION_GROUP,
-  DELETE_GROUP_REQUEST,
+  DELETE_GROUP,
   DELETE_GROUP_ERROR,
   DELETE_GROUP_SUCCESS,
 } from './constants';
 
-export function getGroupsRequest() {
+export function getGroups() {
   return {
-    type: GET_GROUPS_REQUEST,
+    type: GET_GROUPS,
   };
 }
 
@@ -40,9 +40,9 @@ export function setDeletionGroup(groupname) {
   };
 }
 
-export function deleteGroupRequest(groupname) {
+export function deleteGroup(groupname) {
   return {
-    type: DELETE_GROUP_REQUEST,
+    type: DELETE_GROUP,
     value: groupname,
   };
 }

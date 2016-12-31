@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import selectGroupsList from './selectors';
 import GroupsTable from '../../components/GroupsTable';
 import { GROUP_TYPE } from '../../components/GroupsTable/constants';
-import { getGroupsRequest, setDeletionGroup, deleteGroupRequest } from './actions';
+import { getGroups, setDeletionGroup, deleteGroup } from './actions';
 
 export class GroupsList extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
@@ -26,13 +26,13 @@ export class GroupsList extends React.PureComponent { // eslint-disable-line rea
     this.cancelDeleteGroup = this.cancelDeleteGroup.bind(this);
   }
   componentDidMount() {
-    this.props.dispatch(getGroupsRequest());
+    this.props.dispatch(getGroups());
   }
   startDeleteGroup(groupname) {
     this.props.dispatch(setDeletionGroup(groupname));
   }
   deleteGroup(groupname) {
-    this.props.dispatch(deleteGroupRequest(groupname));
+    this.props.dispatch(deleteGroup(groupname));
   }
   cancelDeleteGroup() {
     this.props.dispatch(setDeletionGroup(null));

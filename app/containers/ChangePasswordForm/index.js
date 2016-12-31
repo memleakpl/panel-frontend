@@ -14,7 +14,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import { CARD_STYLE } from '../../styles';
 import selectChangePasswordForm from './selectors';
 import messages from './messages';
-import { setNewPassword, setOldPassword, setRepeatPassword, changePasswordRequest } from './actions';
+import { setNewPassword, setOldPassword, setRepeatPassword, changePassword } from './actions';
 
 
 export class ChangePasswordForm extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
@@ -42,7 +42,7 @@ export class ChangePasswordForm extends React.PureComponent { // eslint-disable-
     this.props.dispatch(setRepeatPassword(repeatPassword));
   }
   onSubmit(e) {
-    this.props.dispatch(changePasswordRequest());
+    this.props.dispatch(changePassword());
     e.preventDefault();
   }
   validateForm() {

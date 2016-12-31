@@ -9,7 +9,7 @@ import {
   GET_USERS_ERROR,
   GET_USERS,
   SET_DELETION_USER,
-  DELETE_USER_REQUEST,
+  DELETE_USER,
   DELETE_USER_SUCCESS,
   DELETE_USER_ERROR,
 } from './constants';
@@ -26,6 +26,7 @@ export function getUsers() {
     type: GET_USERS,
   };
 }
+
 export function getUsersError() {
   return {
     type: GET_USERS_ERROR,
@@ -39,9 +40,9 @@ export function setDeletionUser(username) {
   };
 }
 
-export function deleteUserRequest(username) {
+export function deleteUser(username) {
   return {
-    type: DELETE_USER_REQUEST,
+    type: DELETE_USER,
     value: username,
   };
 }

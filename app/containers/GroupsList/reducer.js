@@ -5,7 +5,7 @@
  */
 import { fromJS } from 'immutable';
 import {
-  GET_GROUPS_REQUEST,
+  GET_GROUPS,
   GET_GROUPS_SUCCESS,
   GET_GROUPS_ERROR,
   SET_DELETION_GROUP,
@@ -22,7 +22,7 @@ const initialState = fromJS({
 
 function groupsListReducer(state = initialState, action) {
   switch (action.type) {
-    case GET_GROUPS_REQUEST:
+    case GET_GROUPS:
       return state.set('loading', true);
     case GET_GROUPS_SUCCESS:
       return state.merge({ groups: action.value, loading: false, error: false });
