@@ -1,5 +1,5 @@
 import { call, put, select } from 'redux-saga/effects';
-import { takeLatest, takeEvery } from 'redux-saga';
+import { takeLatest } from 'redux-saga';
 import { push } from 'react-router-redux';
 import { bootstrap } from '../../utils/sagas';
 import { GET_USER, EDIT_USER, API_GET_USER, API_EDIT_USER, LIST_USERS_URL } from './constants';
@@ -54,7 +54,7 @@ function* fetchUserSaga() {
 }
 
 function* editUserSaga() {
-  yield takeEvery(EDIT_USER, editUser);
+  yield takeLatest(EDIT_USER, editUser);
 }
 
 // All sagas to be loaded

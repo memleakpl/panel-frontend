@@ -70,7 +70,7 @@ function* getUsersSaga() {
 }
 
 function* deleteSaga() {
-  yield* takeEvery(DELETE_USER, deleteUser);
+  yield* takeLatest(DELETE_USER, deleteUser);
 }
 
 // All sagas to be loaded
