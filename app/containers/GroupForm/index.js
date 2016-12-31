@@ -14,14 +14,14 @@ import GroupFormComponent from '../../components/GroupFormComponent';
 
 export class GroupForm extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
-    button: React.PropTypes.element,
+    button: React.PropTypes.element.isRequired,
     header: React.PropTypes.element,
     loading: React.PropTypes.bool.isRequired,
     description: React.PropTypes.string,
     name: React.PropTypes.string,
     owner: React.PropTypes.string,
     dispatch: React.PropTypes.func,
-    onSubmit: React.PropTypes.func,
+    onSubmit: React.PropTypes.func.isRequired,
   };
 
   constructor() {
