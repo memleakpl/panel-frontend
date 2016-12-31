@@ -18,6 +18,8 @@ const NAME_PATTERN = /[a-z0-9ęóąśłżźćń-]+/i;
 
 class UserFormComponent extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
+    button: React.PropTypes.element.isRequired,
+    header: React.PropTypes.element,
     username: React.PropTypes.string.isRequired,
     onUsernameChange: React.PropTypes.func.isRequired,
     firstName: React.PropTypes.string.isRequired,
@@ -26,10 +28,8 @@ class UserFormComponent extends React.PureComponent { // eslint-disable-line rea
     onLastNameChange: React.PropTypes.func.isRequired,
     email: React.PropTypes.string.isRequired,
     onEmailChange: React.PropTypes.func.isRequired,
-    onSubmit: React.PropTypes.func,
-    header: React.PropTypes.element,
-    button: React.PropTypes.element,
-  }
+    onSubmit: React.PropTypes.func.isRequired,
+  };
 
   validateForm() {
     return {
