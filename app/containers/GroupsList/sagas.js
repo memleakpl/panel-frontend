@@ -65,7 +65,7 @@ function* notifyDeleteGroupErrorSaga() {
 }
 
 function* deleteGroupSaga() {
-  yield fork(takeEvery, DELETE_GROUP, deleteGroup);
+  yield fork(takeLatest, DELETE_GROUP, deleteGroup);
 }
 
 function* getGroupsSaga() {
