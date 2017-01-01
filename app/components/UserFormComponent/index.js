@@ -98,7 +98,6 @@ class UserFormComponent extends React.PureComponent { // eslint-disable-line rea
           />
           <RaisedButton
             type="submit"
-            onClick={this.props.onSubmit}
             disabled={!allValid}
             primary
             fullWidth
