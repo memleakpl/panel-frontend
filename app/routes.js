@@ -93,7 +93,7 @@ export default function createRoutes(store) {
 
             importModules.catch(errorLoading);
           },
-          onEnter: () => requireAuth(store),
+          onEnter: requireAuth,
         },
         {
           path: '/user/create',
@@ -117,7 +117,7 @@ export default function createRoutes(store) {
 
             importModules.catch(errorLoading);
           },
-          onEnter: () => requireAuth(store),
+          onEnter: requireAuth,
         },
         {
           path: '/password/change',
@@ -139,7 +139,7 @@ export default function createRoutes(store) {
 
             importModules.catch(errorLoading);
           },
-          onEnter: () => requireAuth(store),
+          onEnter: requireAuth,
         },
         {
           path: '/user/:username',
@@ -163,7 +163,7 @@ export default function createRoutes(store) {
 
             importModules.catch(errorLoading);
           },
-          onEnter: () => requireAuth(store),
+          onEnter: requireAuth,
         },
         {
           path: '/groups',
@@ -185,7 +185,7 @@ export default function createRoutes(store) {
 
             importModules.catch(errorLoading);
           },
-          onEnter: () => requireAuth(store),
+          onEnter: requireAuth,
         },
         {
           path: '/group/create',
@@ -209,7 +209,7 @@ export default function createRoutes(store) {
 
             importModules.catch(errorLoading);
           },
-          onEnter: () => requireAuth(store),
+          onEnter: requireAuth,
         },
       ],
     },
