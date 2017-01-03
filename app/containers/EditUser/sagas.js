@@ -34,8 +34,7 @@ function* fetchUser(action) {
     yield put(getUserSuccess());
     yield put(setUser(user));
   } catch (e) {
-    const details = yield call(e.details);
-    yield put(getUserError(action.value, details.message));
+    yield put(getUserError(action.value));
   }
 }
 
@@ -57,20 +56,19 @@ function* editUser() {
     yield put(editUserSuccess(user));
     yield put(push(LIST_USERS_URL));
   } catch (e) {
-    const details = yield call(e.details);
-    yield put(editUserError(user, details.message));
+    yield put(editUserError(user));
   }
 }
 
 function* notificationSaga() {
   yield takeEvery(GET_USER_ERROR, function* notifyGetUserError(action) {
-    yield put(Notifications.error(getUserErrorNotification(action.value.username, action.value.message)));
+    yield put(Notifications.error(getUserErrorNotification(action.value)));
   });
   yield takeEvery(EDIT_USER_SUCCESS, function* notifyEditUserSuccess(action) {
     yield put(Notifications.success(editUserSuccessNotification(action.value)));
   });
   yield takeEvery(EDIT_USER_ERROR, function* notifyEditUserError(action) {
-    yield put(Notifications.error(editUserErrorNotification(action.value.user, action.value.message)));
+    yield put(Notifications.error(editUserErrorNotification(action.value)));
   });
 }
 

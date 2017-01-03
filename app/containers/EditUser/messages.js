@@ -24,6 +24,6 @@ export default defineMessages({
   },
   getUserErrorNotificationTitle: {
     id: 'app.containers.CreateGroup.getUserErrorNotificationTitle',
-    defaultMessage: 'An error occurred during "{username}" edition.',
+    defaultMessage: 'An error occurred during getting user "{userName}" .',
   },
 });

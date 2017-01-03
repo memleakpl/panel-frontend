@@ -26,13 +26,10 @@ export function getUserSuccess() {
   };
 }
 
-export function getUserError(username, message) {
+export function getUserError(username) {
   return {
     type: GET_USER_ERROR,
-    value: {
-      username,
-      message,
-    },
+    value: username,
   };
 }
 
@@ -49,12 +46,9 @@ export function editUserSuccess(user) {
   };
 }
 
-export function editUserError(user, message) {
+export function editUserError(user) {
   return {
     type: EDIT_USER_ERROR,
-    value: {
-      user,
-      message,
-    },
+    value: user,
   };
 }

@@ -22,12 +22,9 @@ export function createUserSuccess(user) {
   };
 }
 
-export function createUserError(user, message) {
+export function createUserError(user) {
   return {
     type: CREATE_USER_ERROR,
-    value: {
-      user,
-      message,
-    },
+    value: user,
   };
 }

@@ -7,10 +7,9 @@ import { FormattedMessage } from 'react-intl';
 
 import messages from './messages';
 
-export function createUserErrorNotification(user, message) {
+export function createUserErrorNotification(user) {
   return {
     title: <FormattedMessage {...messages.errorNotificationTitle} values={{ username: user.username }} />,
-    message,
   };
 }
 

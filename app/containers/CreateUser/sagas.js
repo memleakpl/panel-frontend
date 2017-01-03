@@ -25,8 +25,7 @@ function* createUser() {
     yield call(callCreate, user);
     yield put(createUserSuccess(user));
   } catch (e) {
-    const details = yield call(e.details);
-    yield put(createUserError(user, details.message));
+    yield put(createUserError(user));
   }
 }
 
@@ -35,7 +34,7 @@ function* notificationSaga() {
     yield put(Notifications.success(createUserSuccessNotification(action.value)));
   });
   yield takeEvery(CREATE_USER_ERROR, function* notifyCreateUserError(action) {
-    yield put(Notifications.error(createUserErrorNotification(action.value.user, action.value.message)));
+    yield put(Notifications.error(createUserErrorNotification(action.value)));
   });
 }
 
