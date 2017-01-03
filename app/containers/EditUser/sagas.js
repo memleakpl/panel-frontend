@@ -1,5 +1,6 @@
 import { call, put, select } from 'redux-saga/effects';
-import { takeLatest } from 'redux-saga';
+import { takeLatest, takeEvery } from 'redux-saga';
+import Notifications from 'react-notification-system-redux';
 import { push } from 'react-router-redux';
 import { bootstrap, checkedFetch } from '../../utils/sagas';
 import {
