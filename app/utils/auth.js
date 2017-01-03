@@ -5,9 +5,10 @@ export function requireAuth(nextState, replace, callback) {
     credentials: 'include',
     method: 'GET',
   }).then((response) => {
-    if (response.status !== 204) {
-      replace('/login');
-    }
+    if (response.status !== 204) replace('/login');
+    callback();
+  }).catch(() => {
+    replace('/login');
     callback();
   });
 }
