@@ -163,7 +163,7 @@ export default function createRoutes(store) {
 
             importModules.catch(errorLoading);
           },
-          onEnter: requireAuth,
+          // onEnter: requireAuth,
         },
         {
           path: '/groups',
@@ -210,6 +210,30 @@ export default function createRoutes(store) {
             importModules.catch(errorLoading);
           },
           onEnter: requireAuth,
+        },
+        {
+          path: '/group/:groupname',
+          name: 'editGroup',
+          getComponent(nextState, cb) {
+            const importModules = Promise.all([
+              System.import('containers/GroupForm/reducer'),
+              System.import('containers/EditGroup/reducer'),
+              System.import('containers/EditGroup/sagas'),
+              System.import('containers/EditGroup'),
+            ]);
+
+            const renderRoute = loadModule(cb);
+
+            importModules.then(([groupFormReducer, reducer, sagas, component]) => {
+              injectReducer('editGroup', reducer.default);
+              injectReducer('groupForm', groupFormReducer.default);
+              injectSagas(sagas.default);
+              renderRoute(component);
+            });
+
+            importModules.catch(errorLoading);
+          },
+
         },
       ],
     },

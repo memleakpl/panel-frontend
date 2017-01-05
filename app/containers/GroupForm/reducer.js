@@ -6,6 +6,7 @@
 
 import { fromJS } from 'immutable';
 import {
+  SET_GROUP,
   SET_DESCRIPTION,
   SET_NAME,
   SET_OWNER,
@@ -19,6 +20,8 @@ const initialState = fromJS({
 
 function groupFormReducer(state = initialState, action) {
   switch (action.type) {
+    case SET_GROUP:
+      return fromJS(action.value);
     case SET_DESCRIPTION:
       return state.set('description', action.value);
     case SET_NAME:

@@ -5,10 +5,18 @@
  */
 
 import {
+  SET_GROUP,
   SET_DESCRIPTION,
   SET_NAME,
   SET_OWNER,
 } from './constants';
+
+export function setGroup(group) {
+  return {
+    type: SET_GROUP,
+    value: group,
+  };
+}
 
 export function setDescription(description) {
   return {
