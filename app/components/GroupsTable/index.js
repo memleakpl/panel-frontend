@@ -26,6 +26,7 @@ class GroupsTable extends React.Component { // eslint-disable-line react/prefer-
     startDeleteGroup: React.PropTypes.func,
     cancelDeleteGroup: React.PropTypes.func,
     deleteGroup: React.PropTypes.func,
+    editGroup: React.PropTypes.func,
     deletionGroup: React.PropTypes.string,
   };
   constructor() {
@@ -33,6 +34,7 @@ class GroupsTable extends React.Component { // eslint-disable-line react/prefer-
     this.startDeleteGroup = this.startDeleteGroup.bind(this);
     this.cancelDeleteGroup = this.cancelDeleteGroup.bind(this);
     this.deleteGroup = this.deleteGroup.bind(this);
+    this.editGroup = this.editGroup.bind(this);
   }
 
   startDeleteGroup(groupname) {
@@ -44,6 +46,9 @@ class GroupsTable extends React.Component { // eslint-disable-line react/prefer-
   deleteGroup() {
     this.props.deleteGroup(this.props.deletionGroup);
   }
+  editGroup(groupname) {
+    this.props.editGroup(groupname);
+  }
   createTableRow(group) {
     return (
       <TableRow key={group.name}>
@@ -51,6 +56,9 @@ class GroupsTable extends React.Component { // eslint-disable-line react/prefer-
         <TableRowColumn>{group.owner}</TableRowColumn>
         <TableRowColumn>{group.description}</TableRowColumn>
         <TableRowColumn>
+          <IconButton onClick={() => this.editGroup(group.name)}>
+            <FontIcon className="material-icons" >mode_edit</FontIcon>
+          </IconButton>
           <IconButton onClick={() => this.startDeleteGroup(group.name)}>
             <FontIcon className="material-icons" >delete_forever</FontIcon>
           </IconButton>

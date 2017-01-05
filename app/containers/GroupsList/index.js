@@ -6,6 +6,7 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 import selectGroupsList from './selectors';
 import GroupsTable from '../../components/GroupsTable';
 import { GROUP_TYPE } from '../../components/GroupsTable/constants';
@@ -23,6 +24,7 @@ export class GroupsList extends React.PureComponent { // eslint-disable-line rea
     super();
     this.startDeleteGroup = this.startDeleteGroup.bind(this);
     this.deleteGroup = this.deleteGroup.bind(this);
+    this.editGroup = this.editGroup.bind(this);
     this.cancelDeleteGroup = this.cancelDeleteGroup.bind(this);
   }
   componentDidMount() {
@@ -37,6 +39,9 @@ export class GroupsList extends React.PureComponent { // eslint-disable-line rea
   cancelDeleteGroup() {
     this.props.dispatch(setDeletionGroup(null));
   }
+  editGroup(groupname) {
+    this.props.dispatch(push(`/group/${groupname}`));
+  }
   render() {
     return (
       <GroupsTable
@@ -47,6 +52,7 @@ export class GroupsList extends React.PureComponent { // eslint-disable-line rea
         startDeleteGroup={this.startDeleteGroup}
         cancelDeleteGroup={this.cancelDeleteGroup}
         deleteGroup={this.deleteGroup}
+        editGroup={this.editGroup}
       />
     );
   }

@@ -163,7 +163,7 @@ export default function createRoutes(store) {
 
             importModules.catch(errorLoading);
           },
-          // onEnter: requireAuth,
+          onEnter: requireAuth,
         },
         {
           path: '/groups',
@@ -233,7 +233,7 @@ export default function createRoutes(store) {
 
             importModules.catch(errorLoading);
           },
-
+          onEnter: requireAuth,
         },
       ],
     },
