@@ -4,36 +4,27 @@
  *
  */
 import {
-  SET_USERNAME,
-  SET_FIRST_NAME,
-  SET_LAST_NAME,
-  SET_EMAIL,
+  CREATE_USER,
+  CREATE_USER_SUCCESS,
+  CREATE_USER_ERROR,
 } from './constants';
 
-export function setUsername(username) {
+export function createUser() {
   return {
-    type: SET_USERNAME,
-    value: username,
+    type: CREATE_USER,
   };
 }
 
-export function setFirstName(firstName) {
+export function createUserSuccess(user) {
   return {
-    type: SET_FIRST_NAME,
-    value: firstName,
+    type: CREATE_USER_SUCCESS,
+    value: user,
   };
 }
 
-export function setLastName(lastName) {
+export function createUserError(user) {
   return {
-    type: SET_LAST_NAME,
-    value: lastName,
-  };
-}
-
-export function setEmail(email) {
-  return {
-    type: SET_EMAIL,
-    value: email,
+    type: CREATE_USER_ERROR,
+    value: user,
   };
 }

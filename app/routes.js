@@ -3,6 +3,7 @@
 // See http://blog.mxstbr.com/2016/01/react-apps-with-pages for more information
 // about the code splitting business
 import { getAsyncInjectors } from 'utils/asyncInjectors';
+import { requireAuth } from 'utils/auth';
 
 const errorLoading = (err) => {
   console.error('Dynamic page loading failed', err); // eslint-disable-line no-console
@@ -58,12 +59,14 @@ export default function createRoutes(store) {
       name: 'layout',
       getComponent(nextState, cb) {
         const importModules = Promise.all([
+          System.import('containers/Layout/sagas'),
           System.import('containers/Layout'),
         ]);
 
         const renderRoute = loadModule(cb);
 
-        importModules.then(([component]) => {
+        importModules.then(([sagas, component]) => {
+          injectSagas(sagas.default);
           renderRoute(component);
         });
 
@@ -90,12 +93,14 @@ export default function createRoutes(store) {
 
             importModules.catch(errorLoading);
           },
+          onEnter: requireAuth,
         },
         {
           path: '/user/create',
           name: 'createUser',
           getComponent(nextState, cb) {
             const importModules = Promise.all([
+              System.import('containers/UserForm/reducer'),
               System.import('containers/CreateUser/reducer'),
               System.import('containers/CreateUser/sagas'),
               System.import('containers/CreateUser'),
@@ -103,14 +108,108 @@ export default function createRoutes(store) {
 
             const renderRoute = loadModule(cb);
 
-            importModules.then(([reducer, sagas, component]) => {
+            importModules.then(([userFormReducer, reducer, sagas, component]) => {
               injectReducer('createUser', reducer.default);
+              injectReducer('userForm', userFormReducer.default);
               injectSagas(sagas.default);
               renderRoute(component);
             });
 
             importModules.catch(errorLoading);
           },
+          onEnter: requireAuth,
+        },
+        {
+          path: '/password/change',
+          name: 'changePasswordForm',
+          getComponent(nextState, cb) {
+            const importModules = Promise.all([
+              System.import('containers/ChangePasswordForm/reducer'),
+              System.import('containers/ChangePasswordForm/sagas'),
+              System.import('containers/ChangePasswordForm'),
+            ]);
+
+            const renderRoute = loadModule(cb);
+
+            importModules.then(([reducer, sagas, component]) => {
+              injectReducer('changePasswordForm', reducer.default);
+              injectSagas(sagas.default);
+              renderRoute(component);
+            });
+
+            importModules.catch(errorLoading);
+          },
+          onEnter: requireAuth,
+        },
+        {
+          path: '/user/:username',
+          name: 'editUser',
+          getComponent(nextState, cb) {
+            const importModules = Promise.all([
+              System.import('containers/UserForm/reducer'),
+              System.import('containers/EditUser/reducer'),
+              System.import('containers/EditUser/sagas'),
+              System.import('containers/EditUser'),
+            ]);
+
+            const renderRoute = loadModule(cb);
+
+            importModules.then(([userFormReducer, reducer, sagas, component]) => {
+              injectReducer('editUser', reducer.default);
+              injectReducer('userForm', userFormReducer.default);
+              injectSagas(sagas.default);
+              renderRoute(component);
+            });
+
+            importModules.catch(errorLoading);
+          },
+          onEnter: requireAuth,
+        },
+        {
+          path: '/groups',
+          name: 'groupsList',
+          getComponent(nextState, cb) {
+            const importModules = Promise.all([
+              System.import('containers/GroupsList/reducer'),
+              System.import('containers/GroupsList/sagas'),
+              System.import('containers/GroupsList'),
+            ]);
+
+            const renderRoute = loadModule(cb);
+
+            importModules.then(([reducer, sagas, component]) => {
+              injectReducer('groupsList', reducer.default);
+              injectSagas(sagas.default);
+              renderRoute(component);
+            });
+
+            importModules.catch(errorLoading);
+          },
+          onEnter: requireAuth,
+        },
+        {
+          path: '/group/create',
+          name: 'createGroup',
+          getComponent(nextState, cb) {
+            const importModules = Promise.all([
+              System.import('containers/GroupForm/reducer'),
+              System.import('containers/CreateGroup/reducer'),
+              System.import('containers/CreateGroup/sagas'),
+              System.import('containers/CreateGroup'),
+            ]);
+
+            const renderRoute = loadModule(cb);
+
+            importModules.then(([groupFormReducer, reducer, sagas, component]) => {
+              injectReducer('groupForm', groupFormReducer.default);
+              injectReducer('createGroup', reducer.default);
+              injectSagas(sagas.default);
+              renderRoute(component);
+            });
+
+            importModules.catch(errorLoading);
+          },
+          onEnter: requireAuth,
         },
       ],
     },

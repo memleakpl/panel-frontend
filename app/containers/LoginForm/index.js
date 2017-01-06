@@ -6,21 +6,23 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import selectLoginForm from './selectors';
-import { setUsername, setPassword, requestLogin } from './actions';
+import { FormattedMessage } from 'react-intl';
 
 import { Card, CardTitle } from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
-import { FormattedMessage } from 'react-intl';
 import messages from './messages';
+import selectLoginForm from './selectors';
+import { setUsername, setPassword, login } from './actions';
+import { CARD_STYLE } from '../../styles';
 
 export class LoginForm extends React.PureComponent {
   static propTypes = {
     dispatch: React.PropTypes.func.isRequired,
     username: React.PropTypes.string.isRequired,
     password: React.PropTypes.string.isRequired,
+    loading: React.PropTypes.bool.isRequired,
     error: React.PropTypes.bool.isRequired,
   }
   constructor() {
@@ -35,14 +37,15 @@ export class LoginForm extends React.PureComponent {
   onPasswordChange(_e, password) {
     this.props.dispatch(setPassword(password));
   }
-  onSubmit() {
-    this.props.dispatch(requestLogin());
+  onSubmit(e) {
+    this.props.dispatch(login());
+    e.preventDefault();
   }
   render() {
     return (
-      <Card style={{ margin: '100px auto', padding: 50, width: 400 }} >
+      <Card style={{ ...CARD_STYLE, maxWidth: 400 }} >
         <CardTitle title={<FormattedMessage {...messages.header} />} />
-        <div>
+        <form onSubmit={this.onSubmit}>
           <TextField
             hintText={<FormattedMessage {...messages.usernameHint} />}
             onChange={this.onUsernameChange}
@@ -64,12 +67,13 @@ export class LoginForm extends React.PureComponent {
           />
           <br />
           <RaisedButton
-            onClick={this.onSubmit}
+            type="submit"
             primary
             fullWidth
+            disabled={this.props.loading}
             label={<FormattedMessage {...messages.login} />}
           />
-        </div>
+        </form>
       </Card>
     );
   }
