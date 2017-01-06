@@ -1,7 +1,7 @@
 import { call, put, fork } from 'redux-saga/effects';
 import { takeLatest, takeEvery } from 'redux-saga';
 import Notifications from 'react-notification-system-redux';
-import { bootstrap } from '../../utils/sagas';
+import { bootstrap, checkedFetch } from '../../utils/sagas';
 import {
   GET_GROUPS_API_URL,
   GET_GROUPS,
@@ -14,14 +14,14 @@ import { getGroupsError, getGroupsSuccess, deleteGroupSuccess, deleteGroupError 
 import { deleteGroupErrorNotification, deleteGroupSuccessNotification } from './notifications';
 
 function callGetGroups() {
-  return fetch(GET_GROUPS_API_URL, {
+  return checkedFetch(GET_GROUPS_API_URL, {
     credentials: 'include',
     method: 'GET',
   }).then((response) => response.json());
 }
 
 function callDeleteGroup(groupname) {
-  return fetch(`${DELETE_GROUPS_API_URL}${groupname}`, {
+  return checkedFetch(`${DELETE_GROUPS_API_URL}${groupname}`, {
     credentials: 'include',
     method: 'DELETE',
   }).then((response) => {

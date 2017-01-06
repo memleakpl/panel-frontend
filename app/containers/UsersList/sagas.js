@@ -1,7 +1,7 @@
 import { put, call } from 'redux-saga/effects';
 import { takeLatest, takeEvery } from 'redux-saga';
 import Notifications from 'react-notification-system-redux';
-import { bootstrap } from '../../utils/sagas';
+import { bootstrap, checkedFetch } from '../../utils/sagas';
 import {
   GET_USERS_URL,
   GET_USERS,
@@ -15,18 +15,16 @@ import { deleteUserErrorNotification, deleteUserSuccessNotification } from './no
 
 
 function callGetUsers() {
-  return fetch(GET_USERS_URL, {
+  return checkedFetch(GET_USERS_URL, {
     credentials: 'include',
     method: 'GET',
   }).then((response) => response.json());
 }
 
 function callDeleteUser(username) {
-  return fetch(`${API_DELETE_USER_URL}${username}`, {
+  return checkedFetch(`${API_DELETE_USER_URL}${username}`, {
     credentials: 'include',
     method: 'DELETE',
-  }).then((response) => {
-    if (response.status !== 204) throw new Error('Delete failed');
   });
 }
 

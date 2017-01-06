@@ -1,21 +1,19 @@
 import { call, put, select } from 'redux-saga/effects';
 import { takeLatest } from 'redux-saga';
 import { push } from 'react-router-redux';
-import { bootstrap } from '../../utils/sagas';
+import { bootstrap, checkedFetch } from '../../utils/sagas';
 import { LOGIN, LOGIN_API_URL, AFTER_LOGIN_URL } from './constants';
 import selectLoginForm from './selectors';
 import { loginSuccess, loginError } from './actions';
 
 function callLogin(username, password) {
-  return fetch(LOGIN_API_URL, {
+  return checkedFetch(LOGIN_API_URL, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json; charset=utf-8',
     },
     credentials: 'include',
     body: JSON.stringify({ username, password }),
-  }).then((response) => {
-    if (response.status !== 204) throw new Error('Login failed');
   });
 }
 
