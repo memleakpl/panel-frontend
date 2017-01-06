@@ -2,15 +2,13 @@ import { call, put } from 'redux-saga/effects';
 import { takeLatest } from 'redux-saga';
 import { push } from 'react-router-redux';
 
-import { bootstrap } from '../../utils/sagas';
+import { bootstrap, checkedFetch } from '../../utils/sagas';
 import { LOGOUT, LOGOUT_API_URL } from './constants';
 
 function callLogout() {
-  return fetch(LOGOUT_API_URL, {
+  return checkedFetch(LOGOUT_API_URL, {
     method: 'POST',
     credentials: 'include',
-  }).then((response) => {
-    if (response.status !== 204) throw new Error('Login failed');
   });
 }
 
