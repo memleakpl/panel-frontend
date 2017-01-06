@@ -26,4 +26,8 @@ export default defineMessages({
     id: 'app.containers.CreateGroup.getUserErrorNotificationTitle',
     defaultMessage: 'An error occurred during getting user "{userName}" .',
   },
+  membershipHeader: {
+    id: 'app.containers.UserMembership.header',
+    defaultMessage: 'Manage user groups',
+  },
 });

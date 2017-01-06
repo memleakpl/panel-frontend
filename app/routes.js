@@ -147,16 +147,20 @@ export default function createRoutes(store) {
           getComponent(nextState, cb) {
             const importModules = Promise.all([
               System.import('containers/UserForm/reducer'),
+              System.import('containers/UserMembership/reducer'),
               System.import('containers/EditUser/reducer'),
               System.import('containers/EditUser/sagas'),
+              System.import('containers/UserMembership/sagas'),
               System.import('containers/EditUser'),
             ]);
 
             const renderRoute = loadModule(cb);
 
-            importModules.then(([userFormReducer, reducer, sagas, component]) => {
+            importModules.then(([userFormReducer, membershipReducer, reducer, membershipSagas, sagas, component]) => {
               injectReducer('editUser', reducer.default);
               injectReducer('userForm', userFormReducer.default);
+              injectReducer('userMembership', membershipReducer.default);
+              injectSagas(membershipSagas.default);
               injectSagas(sagas.default);
               renderRoute(component);
             });
