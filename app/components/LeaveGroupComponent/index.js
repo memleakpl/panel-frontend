@@ -17,7 +17,7 @@ import messages from './messages';
 function LeaveGroupComponent({ groups, checkedGroups, buttonDisabled, onCheck, onSubmit }) {
   return (
     <div style={{ marginTop: '40px' }}>
-      <Subheader>Current user groups</Subheader>
+      <Subheader><FormattedMessage {...messages.header} /></Subheader>
       <List>
         {groups.map((group) =>
           <ListItem
