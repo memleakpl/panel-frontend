@@ -32,6 +32,7 @@ export class CreateGroup extends React.PureComponent { // eslint-disable-line re
   render() {
     return (
       <GroupForm
+        disabledName={false}
         button={<FormattedMessage {...messages.create} />}
         header={<FormattedMessage {...messages.header} />}
         loading={this.props.loading}

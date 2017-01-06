@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import selectEditGroup from './selectors';
 import messages from './messages';
-import { GroupForm } from '../GroupForm';
+import GroupForm from '../GroupForm';
 import { getGroup, editGroup } from './actions';
 
 export class EditGroup extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
@@ -25,7 +25,6 @@ export class EditGroup extends React.PureComponent { // eslint-disable-line reac
     this.onSubmit = this.onSubmit.bind(this);
   }
   componentDidMount() {
-    console.log(this.props.params.groupname);
     this.props.dispatch(getGroup(this.props.params.groupname));
   }
   onSubmit() {
@@ -34,7 +33,9 @@ export class EditGroup extends React.PureComponent { // eslint-disable-line reac
   render() {
     return (
       <GroupForm
+        disabledName
         button={<FormattedMessage {...messages.save} />}
+        header={<FormattedMessage {...messages.header} />}
         loading={this.props.loading}
         onSubmit={this.onSubmit}
       />
