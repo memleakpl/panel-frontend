@@ -15,8 +15,8 @@ import messages from './messages';
 
 import { CARD_STYLE } from '../../styles';
 
-const DESCRIPTION_PATTERN = /[a-z0-9ęóąśłżźćń-]+/i;
-const NAME_PATTERN = /[a-z0-9]+/;
+const DESCRIPTION_PATTERN = /^[a-z0-9ęóąśłżźćń-]+$/i;
+const NAME_PATTERN = /^[a-z0-9]+$/;
 const OWNER_PATTERN = NAME_PATTERN;
 
 class GroupFormComponent extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
