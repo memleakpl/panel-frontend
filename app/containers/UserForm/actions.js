@@ -5,6 +5,7 @@
  */
 
 import {
+  CLEAR_FORM,
   SET_USER,
   SET_USERNAME,
   SET_FIRST_NAME,
@@ -44,5 +45,11 @@ export function setEmail(email) {
   return {
     type: SET_EMAIL,
     value: email,
+  };
+}
+
+export function clearForm() {
+  return {
+    type: CLEAR_FORM,
   };
 }
