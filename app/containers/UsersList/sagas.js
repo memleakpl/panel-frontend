@@ -1,6 +1,5 @@
 import { put, call } from 'redux-saga/effects';
 import { takeLatest, takeEvery } from 'redux-saga';
-import Notifications from 'react-notification-system-redux';
 import { bootstrap, checkedFetch } from '../../utils/sagas';
 import {
   GET_USERS_URL,
@@ -48,7 +47,7 @@ function* deleteUser(action) {
 }
 
 function* notifyDeleteUserError(action) {
-  yield put(Notifications.error(deleteUserErrorNotification(action.value)));
+  yield put(deleteUserErrorNotification(action.value));
 }
 
 function* notifyDeleteUserErrorSaga() {
@@ -56,7 +55,7 @@ function* notifyDeleteUserErrorSaga() {
 }
 
 function* notifyDeleteUserSuccess(action) {
-  yield put(Notifications.error(deleteUserSuccessNotification(action.value)));
+  yield put(deleteUserSuccessNotification(action.value));
 }
 
 function* notifyDeleteUserSuccessSaga() {

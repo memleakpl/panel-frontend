@@ -4,20 +4,18 @@
 
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+import Notifications from 'react-notification-system-redux';
+
 import messages from './messages';
 
 export function deleteGroupErrorNotification(groupname) {
-  return ({
+  return Notifications.error({
     title: <FormattedMessage {...messages.deleteGroupError} values={{ group: groupname }} />,
-    position: 'tr',
-    autoDismiss: 2,
   });
 }
 
 export function deleteGroupSuccessNotification(groupname) {
-  return ({
+  return Notifications.success({
     title: <FormattedMessage {...messages.deleteGroupSuccess} values={{ group: groupname }} />,
-    position: 'tr',
-    autoDismiss: 2,
   });
 }
