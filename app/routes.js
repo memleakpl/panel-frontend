@@ -59,13 +59,15 @@ export default function createRoutes(store) {
       name: 'layout',
       getComponent(nextState, cb) {
         const importModules = Promise.all([
+          System.import('containers/Layout/reducer'),
           System.import('containers/Layout/sagas'),
           System.import('containers/Layout'),
         ]);
 
         const renderRoute = loadModule(cb);
 
-        importModules.then(([sagas, component]) => {
+        importModules.then(([reducer, sagas, component]) => {
+          injectReducer('layout', reducer.default);
           injectSagas(sagas.default);
           renderRoute(component);
         });
