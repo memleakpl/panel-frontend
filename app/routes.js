@@ -101,16 +101,16 @@ export default function createRoutes(store) {
           getComponent(nextState, cb) {
             const importModules = Promise.all([
               System.import('containers/UserForm/reducer'),
-              System.import('containers/CreateUser/reducer'),
+              System.import('containers/UserForm/sagas'),
               System.import('containers/CreateUser/sagas'),
               System.import('containers/CreateUser'),
             ]);
 
             const renderRoute = loadModule(cb);
 
-            importModules.then(([userFormReducer, reducer, sagas, component]) => {
-              injectReducer('createUser', reducer.default);
+            importModules.then(([userFormReducer, userFormSagas, sagas, component]) => {
               injectReducer('userForm', userFormReducer.default);
+              injectSagas(userFormSagas.default);
               injectSagas(sagas.default);
               renderRoute(component);
             });
@@ -148,16 +148,18 @@ export default function createRoutes(store) {
             const importModules = Promise.all([
               System.import('containers/UserForm/reducer'),
               System.import('containers/EditUser/reducer'),
+              System.import('containers/UserForm/sagas'),
               System.import('containers/EditUser/sagas'),
               System.import('containers/EditUser'),
             ]);
 
             const renderRoute = loadModule(cb);
 
-            importModules.then(([userFormReducer, reducer, sagas, component]) => {
+            importModules.then(([userFormReducer, reducer, sagas, userFormSagas, component]) => {
               injectReducer('editUser', reducer.default);
               injectReducer('userForm', userFormReducer.default);
               injectSagas(sagas.default);
+              injectSagas(userFormSagas.default);
               renderRoute(component);
             });
 

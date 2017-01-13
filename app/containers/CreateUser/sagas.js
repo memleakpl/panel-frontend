@@ -3,6 +3,7 @@ import { takeLatest, takeEvery } from 'redux-saga';
 import Notifications from 'react-notification-system-redux';
 import { bootstrap, checkedFetch } from '../../utils/sagas';
 import selectUserForm from '../UserForm/selectors';
+import { clearForm } from '../UserForm/actions';
 import { CREATE_USER_API_URL, CREATE_USER, CREATE_USER_SUCCESS, CREATE_USER_ERROR } from './constants';
 import { createUserSuccess, createUserError } from './actions';
 import { createUserErrorNotification, createUserSuccessNotification } from './notifications';
@@ -24,6 +25,7 @@ function* createUser() {
   try {
     yield call(callCreate, user);
     yield put(createUserSuccess(user));
+    yield put(clearForm());
   } catch (e) {
     yield put(createUserError(user));
   }
