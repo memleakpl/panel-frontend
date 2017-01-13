@@ -1,6 +1,5 @@
 import { call, put, select } from 'redux-saga/effects';
 import { takeLatest, takeEvery } from 'redux-saga';
-import Notifications from 'react-notification-system-redux';
 import { bootstrap, checkedFetch } from '../../utils/sagas';
 import selectUserForm from '../UserForm/selectors';
 import { clearForm } from '../UserForm/actions';
@@ -33,10 +32,10 @@ function* createUser() {
 
 function* notificationSaga() {
   yield takeEvery(CREATE_USER_SUCCESS, function* notifyCreateUserSuccess(action) {
-    yield put(Notifications.success(createUserSuccessNotification(action.value)));
+    yield put(createUserSuccessNotification(action.value));
   });
   yield takeEvery(CREATE_USER_ERROR, function* notifyCreateUserError(action) {
-    yield put(Notifications.error(createUserErrorNotification(action.value)));
+    yield put(createUserErrorNotification(action.value));
   });
 }
 

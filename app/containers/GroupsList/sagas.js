@@ -1,6 +1,5 @@
 import { call, put, fork } from 'redux-saga/effects';
 import { takeLatest, takeEvery } from 'redux-saga';
-import Notifications from 'react-notification-system-redux';
 import { bootstrap, checkedFetch } from '../../utils/sagas';
 import {
   GET_GROUPS_API_URL,
@@ -49,11 +48,11 @@ function* deleteGroup(action) {
 }
 
 function* notifyDeleteGroupSuccess(action) {
-  yield put(Notifications.success(deleteGroupSuccessNotification(action.value)));
+  yield put(deleteGroupSuccessNotification(action.value));
 }
 
 function* notifyDeleteGroupError(action) {
-  yield put(Notifications.error(deleteGroupErrorNotification(action.value)));
+  yield put(deleteGroupErrorNotification(action.value));
 }
 
 function* notifyDeleteGroupSuccessSaga() {

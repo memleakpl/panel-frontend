@@ -1,6 +1,5 @@
 import { call, put, select } from 'redux-saga/effects';
 import { takeEvery, takeLatest } from 'redux-saga';
-import Notifications from 'react-notification-system-redux';
 
 import { createGroupError, createGroupSuccess } from './actions';
 import { CREATE_GROUP_API_URL, CREATE_GROUP, CREATE_GROUP_ERROR, CREATE_GROUP_SUCCESS } from './constants';
@@ -38,10 +37,10 @@ function* fetchSaga() {
 
 function* notificationSaga() {
   yield takeEvery(CREATE_GROUP_SUCCESS, function* notifyCreateGroupSuccess(action) {
-    yield put(Notifications.success(createGroupSuccessNotification(action.value)));
+    yield put(createGroupSuccessNotification(action.value));
   });
   yield takeEvery(CREATE_GROUP_ERROR, function* notifyCreateGroupError(action) {
-    yield put(Notifications.error(createGroupErrorNotification(action.value.group, action.value.message)));
+    yield put(createGroupErrorNotification(action.value.group, action.value.message));
   });
 }
 

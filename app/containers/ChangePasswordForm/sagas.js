@@ -3,7 +3,6 @@
 // Individual exports for testing
 import { call, put, select, fork } from 'redux-saga/effects';
 import { takeLatest, takeEvery } from 'redux-saga';
-import Notifications from 'react-notification-system-redux';
 import { bootstrap, checkedFetch } from '../../utils/sagas';
 import { CHANGE_PASSWORD_API_URL, CHANGE_PASSWORD, CHANGE_PASSWORD_SUCCESS, CHANGE_PASSWORD_ERROR } from './constants';
 import { changePasswordErrorNotification, changePasswordSuccessNotification } from './notifications';
@@ -32,11 +31,11 @@ function* changePassword() {
   }
 }
 function* notifyChangePasswordSuccess() {
-  yield put(Notifications.success(changePasswordSuccessNotification()));
+  yield put(changePasswordSuccessNotification());
 }
 
 function* notifyChangePasswordError() {
-  yield put(Notifications.error(changePasswordErrorNotification()));
+  yield put(changePasswordErrorNotification());
 }
 
 function* changePasswordSaga() {
