@@ -14,4 +14,8 @@ export default defineMessages({
     id: 'app.components.LeaveGroupComponent.leaveButtonLabel',
     defaultMessage: 'Leave selected groups',
   },
+  noMembershipMessage: {
+    id: 'app.components.LeaveGroupComponent.noMembershipMessage',
+    defaultMessage: 'User does not belong to any group.',
+  },
 });

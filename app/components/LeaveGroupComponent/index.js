@@ -18,22 +18,27 @@ function LeaveGroupComponent({ groups, checkedGroups, buttonDisabled, onCheck, o
   return (
     <div style={{ marginTop: '40px' }}>
       <Subheader><FormattedMessage {...messages.header} /></Subheader>
-      <List>
-        {groups.map((group) =>
-          <ListItem
-            key={group}
-            primaryText={group}
-            leftCheckbox={<Checkbox onCheck={() => onCheck(group)} checked={checkedGroups.includes(group)} />}
-          />)}
-      </List>
-      <div>
-        <RaisedButton
-          label={<FormattedMessage {...messages.leaveButtonLabel} />}
-          disabled={buttonDisabled || checkedGroups.length === 0}
-          onClick={onSubmit}
-          primary
-        />
-      </div>
+      { groups.length === 0 ?
+        <FormattedMessage {...messages.noMembershipMessage} /> :
+        <div>
+          <List>
+            {groups.map((group) =>
+              <ListItem
+                key={group}
+                primaryText={group}
+                leftCheckbox={<Checkbox onCheck={() => onCheck(group)} checked={checkedGroups.includes(group)} />}
+              />)}
+          </List>
+          <div>
+            <RaisedButton
+              label={<FormattedMessage {...messages.leaveButtonLabel} />}
+              disabled={buttonDisabled || checkedGroups.length === 0}
+              onClick={onSubmit}
+              primary
+            />
+          </div>
+        </div>
+      }
     </div>
   );
 }
