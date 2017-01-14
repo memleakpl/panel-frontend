@@ -27,7 +27,7 @@ export class UserMembership extends React.PureComponent { // eslint-disable-line
     group: React.PropTypes.string.isRequired,
     groups: React.PropTypes.array,
     currentGroups: React.PropTypes.array,
-    checkedGroups: React.PropTypes.array,
+    leaveGroups: React.PropTypes.array,
     joinButtonDisabled: React.PropTypes.bool.isRequired,
     leaveButtonDisabled: React.PropTypes.bool.isRequired,
     dispatch: React.PropTypes.func,
@@ -65,10 +65,10 @@ export class UserMembership extends React.PureComponent { // eslint-disable-line
             />
             <LeaveGroupComponent
               groups={this.props.currentGroups}
-              checkedGroups={this.props.checkedGroups}
+              checkedGroups={this.props.leaveGroups}
               buttonDisabled={this.props.leaveButtonDisabled}
               onCheck={(group) => this.props.dispatch(toggleLeaveGroup(group))}
-              onSubmit={() => this.props.dispatch(leaveGroups(this.props.user, this.props.checkedGroups))}
+              onSubmit={() => this.props.dispatch(leaveGroups(this.props.user, this.props.leaveGroups))}
             />
           </div>
         )}

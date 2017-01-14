@@ -27,7 +27,7 @@ const initialState = fromJS({
   group: '',
   groups: undefined,
   currentGroups: undefined,
-  checkedGroups: Set(), // TODO rename to leaveGroups
+  leaveGroups: Set(),
 });
 
 function userMembershipReducer(state = initialState, action) {
@@ -52,8 +52,8 @@ function userMembershipReducer(state = initialState, action) {
     case JOIN_GROUP_ERROR:
       return state.set('joinButtonDisabled', false);
     case TOGGLE_LEAVE_GROUP: {
-      const checkedGroups = state.get('checkedGroups');
-      return state.set('checkedGroups', checkedGroups.includes(action.value) ?
+      const checkedGroups = state.get('leaveGroups');
+      return state.set('leaveGroups', checkedGroups.includes(action.value) ?
         checkedGroups.remove(action.value) :
         checkedGroups.add(action.value));
     }

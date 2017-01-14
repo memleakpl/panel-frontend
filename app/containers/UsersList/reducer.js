@@ -24,7 +24,7 @@ const initialState = fromJS({
 function usersListReducer(state = initialState, action) {
   switch (action.type) {
     case GET_USERS:
-      return state.set('loading', true);
+      return state.merge({ loading: true, error: false, users: [] });
     case GET_USERS_SUCCESS:
       return state.merge({ users: action.value, loading: false, error: false });
     case GET_USERS_ERROR:

@@ -12,7 +12,6 @@ import { Card, CardTitle } from 'material-ui/Card';
 
 import { createUser } from './actions';
 import messages from './messages';
-import selectCreateUser from './selectors';
 
 import { CARD_STYLE } from '../../styles';
 import UserForm from '../UserForm';
@@ -44,7 +43,7 @@ export class CreateUser extends React.PureComponent { // eslint-disable-line rea
   }
 }
 
-const mapStateToProps = selectCreateUser();
+const mapStateToProps = () => ({});
 
 function mapDispatchToProps(dispatch) {
   return {

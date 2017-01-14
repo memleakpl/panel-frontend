@@ -1,6 +1,5 @@
 import { call, put, select } from 'redux-saga/effects';
 import { takeLatest, takeEvery } from 'redux-saga';
-import Notifications from 'react-notification-system-redux';
 import { push } from 'react-router-redux';
 import { bootstrap, checkedFetch } from '../../utils/sagas';
 import {
@@ -62,13 +61,13 @@ function* editUser() {
 
 function* notificationSaga() {
   yield takeEvery(GET_USER_ERROR, function* notifyGetUserError(action) {
-    yield put(Notifications.error(getUserErrorNotification(action.value)));
+    yield put(getUserErrorNotification(action.value));
   });
   yield takeEvery(EDIT_USER_SUCCESS, function* notifyEditUserSuccess(action) {
-    yield put(Notifications.success(editUserSuccessNotification(action.value)));
+    yield put(editUserSuccessNotification(action.value));
   });
   yield takeEvery(EDIT_USER_ERROR, function* notifyEditUserError(action) {
-    yield put(Notifications.error(editUserErrorNotification(action.value)));
+    yield put(editUserErrorNotification(action.value));
   });
 }
 

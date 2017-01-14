@@ -7,6 +7,7 @@
 import { API_ROOT } from '../../constants';
 
 export const GET_GROUPS_API_URL = `${API_ROOT}/group`;
+export const USER_API_URL = `${API_ROOT}/user`;
 
 export const GET_GROUP_MEMBERSHIPS = 'app/UserMembership/GET_GROUP_MEMBERSHIPS';
 export const GET_GROUP_MEMBERSHIPS_ERROR = 'app/UserMembership/GET_GROUP_MEMBERSHIPS_ERROR';

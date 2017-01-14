@@ -12,6 +12,7 @@ import {
 
 import {
   GET_GROUPS_API_URL,
+  USER_API_URL,
   GET_GROUP_MEMBERSHIPS,
   JOIN_GROUP,
   JOIN_GROUP_ERROR,
@@ -37,6 +38,13 @@ function callGetGroups() {
   }).then((response) => response.json());
 }
 
+function callGetUserGroups(user) {
+  return checkedFetch(`${USER_API_URL}/${user}/groups`, {
+    credentials: 'include',
+    method: 'GET',
+  }).then((response) => response.json());
+}
+
 function callJoinGroup(user, group) {
   return checkedFetch(`${GET_GROUPS_API_URL}/${group}/add/${user}`, {
     credentials: 'include',
@@ -52,11 +60,13 @@ function callLeaveGroup(user, group) {
     .catch(() => ({ user, group, error: true }));
 }
 
-function* fetchGroupMemberships() {
+function* fetchGroupMemberships(action) {
+  const user = action.value;
   try {
     const groups = yield call(callGetGroups);
-    const groupNames = groups.map((group) => group.name);
-    yield put(getGroupMembershipsSuccess(groupNames, groupNames));
+    const userGroups = yield call(callGetUserGroups, user);
+    const joinGroups = groups.map((group) => group.name).filter((group) => !userGroups.includes(group));
+    yield put(getGroupMembershipsSuccess(joinGroups, userGroups));
   } catch (e) {
     yield put(getGroupMembershipsError());
   }

@@ -10,9 +10,9 @@ import RaisedButton from 'material-ui/RaisedButton';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
-const USERNAME_PATTERN = /[a-z0-9]+/;
+const USERNAME_PATTERN = /^[a-z0-9]+$/;
 const EMAIL_PATTERN = /^([\w.+-]+)@([\w-]+\.)*([\w-]+)$/i;
-const NAME_PATTERN = /[a-z0-9ęóąśłżźćń-]+/i;
+const NAME_PATTERN = /^[a-z0-9ęóąśłżźćń-]+$/i;
 
 class UserFormComponent extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
