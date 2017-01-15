@@ -1,6 +1,5 @@
 import { takeLatest, takeEvery } from 'redux-saga';
 import { call, put } from 'redux-saga/effects';
-import Notifications from 'react-notification-system-redux';
 
 import { checkedFetch, bootstrap } from '../../utils/sagas';
 import {
@@ -111,16 +110,16 @@ export function* leaveGroupSaga() {
 
 export function* notificationSaga() {
   yield takeEvery(JOIN_GROUP_ERROR, function* notifyJoinGroupError(action) {
-    yield put(Notifications.error(joinGroupErrorNotification(action.value.user, action.value.group)));
+    yield put(joinGroupErrorNotification(action.value.user, action.value.group));
   });
   yield takeEvery(JOIN_GROUP_SUCCESS, function* notifyJoinGroupError(action) {
-    yield put(Notifications.success(joinGroupSuccessNotification(action.value.user, action.value.group)));
+    yield put(joinGroupSuccessNotification(action.value.user, action.value.group));
   });
   yield takeEvery(LEAVE_GROUP_ERROR, function* notifyLeaveGroupError(action) {
-    yield put(Notifications.error(leaveGroupErrorNotification(action.value.user, action.value.group)));
+    yield put(leaveGroupErrorNotification(action.value.user, action.value.group));
   });
   yield takeEvery(LEAVE_GROUP_SUCCESS, function* notifyLeaveGroupSuccess(action) {
-    yield put(Notifications.success(leaveGroupSuccessNotification(action.value.user, action.value.group)));
+    yield put(leaveGroupSuccessNotification(action.value.user, action.value.group));
   });
 }
 
