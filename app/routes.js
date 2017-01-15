@@ -218,6 +218,26 @@ export default function createRoutes(store) {
       ],
     },
     {
+      path: '/password/reset',
+      name: 'resetPasswordForm',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          System.import('containers/ResetPasswordForm/reducer'),
+          System.import('containers/ResetPasswordForm/sagas'),
+          System.import('containers/ResetPasswordForm'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([reducer, sagas, component]) => {
+          injectReducer('resetPasswordForm', reducer.default);
+          injectSagas(sagas.default);
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
+      },
+    }, {
       path: '*',
       name: 'notfound',
       getComponent(nextState, cb) {
