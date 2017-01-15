@@ -17,7 +17,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 import messages from './messages';
 import selectLoginForm from './selectors';
-import { setUsername, setPassword, login } from './actions';
+import { setUsername, setPassword, login, resetPassword } from './actions';
 import { CARD_STYLE } from '../../styles';
 import { PASSWORD_RESET_URL } from '../../urls';
 
@@ -28,6 +28,11 @@ export class LoginForm extends React.PureComponent {
     password: React.PropTypes.string.isRequired,
     loading: React.PropTypes.bool.isRequired,
     error: React.PropTypes.bool.isRequired,
+    location: React.PropTypes.shape({
+      query: React.PropTypes.shape({
+        token: React.PropTypes.string,
+      }),
+    }),
   }
   constructor() {
     super();
@@ -35,6 +40,14 @@ export class LoginForm extends React.PureComponent {
     this.onPasswordChange = this.onPasswordChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
+
+  componentDidMount() {
+    const token = this.props.location.query.token;
+    if (token === undefined) return;
+
+    this.props.dispatch(resetPassword(token));
+  }
+
   onUsernameChange(_e, username) {
     this.props.dispatch(setUsername(username));
   }
@@ -45,6 +58,7 @@ export class LoginForm extends React.PureComponent {
     this.props.dispatch(login());
     e.preventDefault();
   }
+
   render() {
     return (
       <Card style={{ ...CARD_STYLE, maxWidth: 400 }} >
