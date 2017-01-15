@@ -35,6 +35,7 @@ export class EditUser extends React.PureComponent { // eslint-disable-line react
       <UserForm
         header={<FormattedMessage {...messages.header} />}
         button={<FormattedMessage {...messages.save} />}
+        disableUsername
         onSubmit={this.onSubmit}
       />
     );

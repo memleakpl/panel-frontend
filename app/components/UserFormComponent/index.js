@@ -20,6 +20,7 @@ class UserFormComponent extends React.PureComponent { // eslint-disable-line rea
   static propTypes = {
     button: React.PropTypes.element.isRequired,
     header: React.PropTypes.element,
+    disableUsername: React.PropTypes.bool,
     username: React.PropTypes.string.isRequired,
     onUsernameChange: React.PropTypes.func.isRequired,
     firstName: React.PropTypes.string.isRequired,
@@ -60,6 +61,7 @@ class UserFormComponent extends React.PureComponent { // eslint-disable-line rea
           <TextField
             hintText={<FormattedMessage {...messages.usernameHint} />}
             onChange={this.props.onUsernameChange}
+            disabled={this.props.disableUsername}
             value={this.props.username}
             errorText={!valid.username ? <span /> : null}
             fullWidth
