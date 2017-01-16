@@ -16,7 +16,7 @@ const OWNER_PATTERN = NAME_PATTERN;
 
 class GroupFormComponent extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
-    disabledName: React.PropTypes.bool.isRequired,
+    disabledName: React.PropTypes.bool,
     button: React.PropTypes.element.isRequired,
     header: React.PropTypes.element,
     loading: React.PropTypes.bool.isRequired,

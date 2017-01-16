@@ -14,7 +14,7 @@ import GroupFormComponent from '../../components/GroupFormComponent';
 
 export class GroupForm extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
-    disabledName: React.PropTypes.bool.isRequired,
+    disabledName: React.PropTypes.bool,
     button: React.PropTypes.element.isRequired,
     header: React.PropTypes.element,
     loading: React.PropTypes.bool.isRequired,

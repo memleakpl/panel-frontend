@@ -34,7 +34,6 @@ export class CreateGroup extends React.PureComponent { // eslint-disable-line re
     return (
       <Card style={CARD_STYLE}>
         <GroupForm
-          disabledName={false}
           button={<FormattedMessage {...messages.create} />}
           header={<CardTitle title={<FormattedMessage {...messages.header} />} />}
           loading={this.props.loading}
