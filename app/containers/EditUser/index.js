@@ -11,9 +11,9 @@ import { FormattedMessage } from 'react-intl';
 import { Card, CardTitle } from 'material-ui/Card';
 import Divider from 'material-ui/Divider';
 
+import selectEditUser from './selectors';
 import { getUser, editUser } from './actions';
 import messages from './messages';
-import selectEditUser from './selectors';
 
 import { CARD_STYLE } from '../../styles';
 import UserMembership from '../UserMembership';
@@ -25,8 +25,7 @@ export class EditUser extends React.PureComponent { // eslint-disable-line react
     params: React.PropTypes.shape({
       username: React.PropTypes.string.isRequired,
     }).isRequired,
-  };
-
+  }
   constructor() {
     super();
     this.onSubmit = this.onSubmit.bind(this);
@@ -46,6 +45,7 @@ export class EditUser extends React.PureComponent { // eslint-disable-line react
         <UserForm
           header={<CardTitle title={<FormattedMessage {...messages.header} />} />}
           button={<FormattedMessage {...messages.save} />}
+          disableUsername
           onSubmit={this.onSubmit}
         />
         <Divider style={{ marginTop: '30px', marginBottom: '10px' }} />

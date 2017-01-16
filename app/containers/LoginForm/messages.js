@@ -30,4 +30,16 @@ export default defineMessages({
     id: 'app.containers.LoginForm.login',
     defaultMessage: 'Login',
   },
+  resetPassword: {
+    id: 'app.containers.LoginForm.resetPassword',
+    defaultMessage: 'Reset password',
+  },
+  resetPasswordError: {
+    id: 'app.containers.LoginForm.resetPasswordError',
+    defaultMessage: 'Unable to reset your password',
+  },
+  resetPasswordSuccess: {
+    id: 'app.containers.LoginForm.resetPasswordSuccess',
+    defaultMessage: 'New password sent via e-mail',
+  },
 });

@@ -1,6 +1,6 @@
 /*
  *
- * LoginForm
+ * ResetPasswordForm
  *
  */
 
@@ -8,54 +8,41 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 
-import { Link } from 'react-router';
-
-import { grey500 } from 'material-ui/styles/colors';
 import { Card, CardTitle } from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
-import messages from './messages';
-import selectLoginForm from './selectors';
-import { setUsername, setPassword, login, resetPassword } from './actions';
 import { CARD_STYLE } from '../../styles';
-import { PASSWORD_RESET_URL } from '../../urls';
 
-export class LoginForm extends React.PureComponent {
+import selectResetPasswordForm from './selectors';
+import messages from './messages';
+import { setUsername, setEmail, resetPassword } from './actions';
+
+
+export class ResetPasswordForm extends React.PureComponent {
   static propTypes = {
     dispatch: React.PropTypes.func.isRequired,
     username: React.PropTypes.string.isRequired,
-    password: React.PropTypes.string.isRequired,
+    email: React.PropTypes.string.isRequired,
     loading: React.PropTypes.bool.isRequired,
     error: React.PropTypes.bool.isRequired,
-    location: React.PropTypes.shape({
-      query: React.PropTypes.shape({
-        token: React.PropTypes.string,
-      }),
-    }),
   }
-  constructor() {
-    super();
+
+  constructor(props) {
+    super(props);
     this.onUsernameChange = this.onUsernameChange.bind(this);
-    this.onPasswordChange = this.onPasswordChange.bind(this);
+    this.onEmailChange = this.onEmailChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-  }
-
-  componentDidMount() {
-    const token = this.props.location.query.token;
-    if (token === undefined) return;
-
-    this.props.dispatch(resetPassword(token));
   }
 
   onUsernameChange(_e, username) {
     this.props.dispatch(setUsername(username));
   }
-  onPasswordChange(_e, password) {
-    this.props.dispatch(setPassword(password));
+  onEmailChange(_e, password) {
+    this.props.dispatch(setEmail(password));
   }
   onSubmit(e) {
-    this.props.dispatch(login());
+    this.props.dispatch(resetPassword());
     e.preventDefault();
   }
 
@@ -75,12 +62,13 @@ export class LoginForm extends React.PureComponent {
           />
           <br />
           <TextField
-            type="password"
-            onChange={this.onPasswordChange}
-            value={this.props.password}
-            errorText={this.props.error ? <FormattedMessage {...messages.error} /> : null}
+            hintText={<FormattedMessage {...messages.emailHint} />}
+            type="e-mail"
+            onChange={this.onEmailChange}
+            value={this.props.email}
+            errorText={this.props.error ? <span /> : null}
             fullWidth
-            floatingLabelText={<FormattedMessage {...messages.password} />}
+            floatingLabelText={<FormattedMessage {...messages.email} />}
             floatingLabelFixed
           />
           <br />
@@ -89,18 +77,15 @@ export class LoginForm extends React.PureComponent {
             primary
             fullWidth
             disabled={this.props.loading}
-            label={<FormattedMessage {...messages.login} />}
+            label={<FormattedMessage {...messages.reset} />}
           />
         </form>
-        <Link style={{ fontSize: '0.7em', textDecoration: 'initial', color: grey500 }} to={PASSWORD_RESET_URL}>
-          <FormattedMessage {...messages.resetPassword} />
-        </Link>
       </Card>
     );
   }
 }
 
-const mapStateToProps = selectLoginForm();
+const mapStateToProps = selectResetPasswordForm();
 
 function mapDispatchToProps(dispatch) {
   return {
@@ -108,4 +93,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
+export default connect(mapStateToProps, mapDispatchToProps)(ResetPasswordForm);

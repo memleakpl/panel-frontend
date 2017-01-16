@@ -43,28 +43,28 @@ export class Layout extends React.PureComponent { // eslint-disable-line react/p
   }
   render() {
     const adminLinks = [
-      <Link to={USERS_LIST_URL} style={linkStyle} activeStyle={activeLinkStyle}>
+      <Link to={USERS_LIST_URL} style={linkStyle} activeStyle={activeLinkStyle} key="users">
         <ListItem
           style={listItemStyle}
           primaryText={<FormattedMessage {...messages.users} />}
           rightIcon={<ActionList />}
         />
       </Link>,
-      <Link to={CREATE_USER_URL} style={linkStyle} activeStyle={activeLinkStyle}>
+      <Link to={CREATE_USER_URL} style={linkStyle} activeStyle={activeLinkStyle} key="addUser">
         <ListItem
           style={listItemStyle}
           primaryText={<FormattedMessage {...messages.addUser} />}
           rightIcon={<ContentAddCircleOutline />}
         />
       </Link>,
-      <Link to={GROUPS_LIST_URL} style={linkStyle} activeStyle={activeLinkStyle}>
+      <Link to={GROUPS_LIST_URL} style={linkStyle} activeStyle={activeLinkStyle} key="groups">
         <ListItem
           style={listItemStyle}
           primaryText={<FormattedMessage {...messages.groups} />}
           rightIcon={<ActionList />}
         />
       </Link>,
-      <Link to={CREATE_GROUP_URL} style={linkStyle} activeStyle={activeLinkStyle}>
+      <Link to={CREATE_GROUP_URL} style={linkStyle} activeStyle={activeLinkStyle} key="addGroup">
         <ListItem
           style={listItemStyle}
           primaryText={<FormattedMessage {...messages.addGroup} />}
@@ -102,7 +102,7 @@ export class Layout extends React.PureComponent { // eslint-disable-line react/p
 
 const mapStateToProps = selectLayout();
 
-function mapDispatchToProps(dispatch) { // eslint-disable-line no-unused-vars
+function mapDispatchToProps(dispatch) {
   return {
     dispatch,
   };
