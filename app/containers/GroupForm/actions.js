@@ -5,6 +5,7 @@
  */
 
 import {
+  CLEAR_FORM,
   SET_GROUP,
   SET_DESCRIPTION,
   SET_NAME,
@@ -36,5 +37,11 @@ export function setOwner(owner) {
   return {
     type: SET_OWNER,
     value: owner,
+  };
+}
+
+export function clearForm() {
+  return {
+    type: CLEAR_FORM,
   };
 }

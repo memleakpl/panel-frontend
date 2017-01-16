@@ -23,7 +23,7 @@ const initialState = fromJS({
 function editGroupReducer(state = initialState, action) {
   switch (action.type) {
     case GET_GROUP:
-      return state.set('getLoading', true);
+      return state.merge({ getError: false, getLoading: true });
     case GET_GROUP_ERROR:
       return state.merge({ getError: true, getLoading: false });
     case GET_GROUP_SUCCESS:
