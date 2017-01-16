@@ -10,8 +10,6 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import messages from './messages';
 
-import { CARD_STYLE } from '../../styles';
-
 const DESCRIPTION_PATTERN = /^[a-z0-9ęóąśłżźćń-]+$/i;
 const NAME_PATTERN = /^[a-z0-9]+$/;
 const OWNER_PATTERN = NAME_PATTERN;
