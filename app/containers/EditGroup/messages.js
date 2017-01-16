@@ -16,7 +16,7 @@ export default defineMessages({
   },
   getGroupErrorMessage: {
     id: 'app.containers.EditGroup.getGroupErrorMessage',
-    defaultMessage: 'An error occurred during getting group "{groupName}."',
+    defaultMessage: 'An error occurred during getting group "{groupName}".',
   },
   editGroupSuccessNotificationTitle: {
     id: 'app.containers.EditGroup.editGroupSuccessNotificationTitle',
