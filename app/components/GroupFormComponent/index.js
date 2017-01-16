@@ -6,14 +6,9 @@
 
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-
-import { Card, CardTitle } from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
-
 import messages from './messages';
-
-import { CARD_STYLE } from '../../styles';
 
 const DESCRIPTION_PATTERN = /[a-z0-9ęóąśłżźćń-]+/i;
 const NAME_PATTERN = /[a-z0-9]+/;
@@ -56,8 +51,8 @@ class GroupFormComponent extends React.PureComponent { // eslint-disable-line re
     const valid = this.validateForm();
     const allValid = valid.description && valid.name && valid.owner;
     return (
-      <Card style={CARD_STYLE}>
-        <CardTitle title={this.props.header} />
+      <div>
+        {this.props.header}
         <form onSubmit={this.onSubmit}>
           <TextField
             disabled={this.props.disabledName}
@@ -95,7 +90,7 @@ class GroupFormComponent extends React.PureComponent { // eslint-disable-line re
             label={this.props.button}
           />
         </form>
-      </Card>
+      </div>
     );
   }
 }

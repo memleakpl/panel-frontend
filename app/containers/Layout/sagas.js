@@ -4,6 +4,7 @@ import { push } from 'react-router-redux';
 
 import { bootstrap } from '../../utils/sagas';
 import { LOGOUT, LOGOUT_API_URL } from './constants';
+import { LOGIN_URL } from '../LoginForm/constants';
 
 function callLogout() {
   return fetch(LOGOUT_API_URL, {
@@ -16,7 +17,7 @@ function callLogout() {
 
 function* logout() {
   yield call(callLogout);
-  yield put(push('/login'));
+  yield put(push(LOGIN_URL));
 }
 
 function* logoutSaga() {

@@ -1,6 +1,5 @@
 import { call, put, select } from 'redux-saga/effects';
 import { takeLatest, takeEvery } from 'redux-saga';
-import Notifications from 'react-notification-system-redux';
 import { push } from 'react-router-redux';
 import { bootstrap, checkedFetch } from '../../utils/sagas';
 import {
@@ -8,7 +7,6 @@ import {
   EDIT_GROUP_ERROR,
   EDIT_GROUP_SUCCESS,
   GET_GROUP,
-  GET_GROUP_ERROR,
   API_GET_GROUP,
   API_EDIT_GROUP,
   LIST_GROUPS_URL,
@@ -16,7 +14,7 @@ import {
 import { setGroup } from '../GroupForm/actions';
 import selectGroupForm from '../GroupForm/selectors';
 import { getGroupSuccess, getGroupError, editGroupError, editGroupSuccess } from './actions';
-import { getGroupErrorNotification, editGroupErrorNotification, editGroupSuccessNotification } from './notifications';
+import { editGroupErrorNotification, editGroupSuccessNotification } from './notifications';
 
 function callFetchGroup(groupname) {
   return checkedFetch(`${API_GET_GROUP}${groupname}`, {
@@ -69,14 +67,11 @@ function* editGroupSaga() {
 }
 
 function* notificationSaga() {
-  yield takeEvery(GET_GROUP_ERROR, function* notifyGetGroupError(action) {
-    yield put(Notifications.error(getGroupErrorNotification(action.value)));
-  });
   yield takeEvery(EDIT_GROUP_ERROR, function* notifyEditGroupError(action) {
-    yield put(Notifications.error(editGroupErrorNotification(action.value)));
+    yield put(editGroupErrorNotification(action.value));
   });
   yield takeEvery(EDIT_GROUP_SUCCESS, function* notifyEditGroupSuccess(action) {
-    yield put(Notifications.success(editGroupSuccessNotification(action.value)));
+    yield put(editGroupSuccessNotification(action.value));
   });
 }
 

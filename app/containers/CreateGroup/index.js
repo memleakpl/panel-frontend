@@ -7,12 +7,13 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-
+import { Card, CardTitle } from 'material-ui/Card';
 import { createGroup } from './actions';
 import messages from './messages';
 import selectCreateGroup from './selectors';
 
 import GroupForm from '../GroupForm';
+import { CARD_STYLE } from '../../styles';
 
 export class CreateGroup extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
@@ -31,13 +32,15 @@ export class CreateGroup extends React.PureComponent { // eslint-disable-line re
 
   render() {
     return (
-      <GroupForm
-        disabledName={false}
-        button={<FormattedMessage {...messages.create} />}
-        header={<FormattedMessage {...messages.header} />}
-        loading={this.props.loading}
-        onSubmit={this.onSubmit}
-      />
+      <Card style={CARD_STYLE}>
+        <GroupForm
+          disabledName={false}
+          button={<FormattedMessage {...messages.create} />}
+          header={<CardTitle title={<FormattedMessage {...messages.header} />} />}
+          loading={this.props.loading}
+          onSubmit={this.onSubmit}
+        />
+      </Card>
     );
   }
 }
