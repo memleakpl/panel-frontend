@@ -13,6 +13,10 @@ export const LOGIN = 'app/LoginForm/LOGIN';
 export const LOGIN_SUCCESS = 'app/LoginForm/LOGIN_SUCCESS';
 export const LOGIN_ERROR = 'app/LoginForm/LOGIN_ERROR';
 
+export const RESET_PASSWORD = 'app/LoginForm/RESET_PASSWORD';
+export const RESET_PASSWORD_SUCCESS = 'app/LoginForm/RESET_PASSWORD_SUCCESS';
+export const RESET_PASSWORD_ERROR = 'app/LoginForm/RESET_PASSWORD_ERROR';
+
 export const LOGIN_API_URL = `${API_ROOT}/login`;
 export const ISADMIN_API_URL = `${API_ROOT}/user/isAdmin`;
 

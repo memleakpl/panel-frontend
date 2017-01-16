@@ -1,15 +1,12 @@
 /*
  *
- * LoginForm actions
+ * ResetPasswordForm actions
  *
  */
 
 import {
   SET_USERNAME,
-  SET_PASSWORD,
-  LOGIN,
-  LOGIN_SUCCESS,
-  LOGIN_ERROR,
+  SET_EMAIL,
   RESET_PASSWORD,
   RESET_PASSWORD_SUCCESS,
   RESET_PASSWORD_ERROR,
@@ -22,35 +19,16 @@ export function setUsername(username) {
   };
 }
 
-export function setPassword(password) {
+export function setEmail(password) {
   return {
-    type: SET_PASSWORD,
+    type: SET_EMAIL,
     value: password,
   };
 }
 
-export function login() {
-  return {
-    type: LOGIN,
-  };
-}
-
-export function loginSuccess() {
-  return {
-    type: LOGIN_SUCCESS,
-  };
-}
-
-export function loginError() {
-  return {
-    type: LOGIN_ERROR,
-  };
-}
-
-export function resetPassword(token) {
+export function resetPassword() {
   return {
     type: RESET_PASSWORD,
-    value: token,
   };
 }
 
