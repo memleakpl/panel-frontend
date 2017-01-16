@@ -4,21 +4,19 @@
 
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+import Notifications from 'react-notification-system-redux';
+
 import messages from './messages';
 
 
 export function changePasswordSuccessNotification() {
-  return ({
+  return Notifications.success({
     title: <FormattedMessage {...messages.passwordChanged} />,
-    position: 'tr',
-    autoDismiss: 1.5,
   });
 }
 
 export function changePasswordErrorNotification() {
-  return ({
+  return Notifications.error({
     title: <FormattedMessage {...messages.changePasswordError} />,
-    position: 'tr',
-    autoDismiss: 1.5,
   });
 }

@@ -20,16 +20,16 @@ export function getUser(username) {
   };
 }
 
-export function getUserSuccess(user) {
+export function getUserSuccess() {
   return {
     type: GET_USER_SUCCESS,
-    value: user,
   };
 }
 
-export function getUserError() {
+export function getUserError(username) {
   return {
     type: GET_USER_ERROR,
+    value: username,
   };
 }
 
@@ -39,14 +39,16 @@ export function editUser() {
   };
 }
 
-export function editUserSuccess() {
+export function editUserSuccess(user) {
   return {
     type: EDIT_USER_SUCCESS,
+    value: user,
   };
 }
 
-export function editUserError() {
+export function editUserError(user) {
   return {
     type: EDIT_USER_ERROR,
+    value: user,
   };
 }

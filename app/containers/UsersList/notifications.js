@@ -4,20 +4,18 @@
 
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+import Notifications from 'react-notification-system-redux';
+
 import messages from './messages';
 
 export function deleteUserErrorNotification(username) {
-  return ({
+  return Notifications.error({
     title: <FormattedMessage {...messages.deleteUserError} values={{ user: username }} />,
-    position: 'tr',
-    autoDismiss: 2,
   });
 }
 
 export function deleteUserSuccessNotification(username) {
-  return ({
+  return Notifications.success({
     title: <FormattedMessage {...messages.deleteUserSuccess} values={{ user: username }} />,
-    position: 'tr',
-    autoDismiss: 2,
   });
 }

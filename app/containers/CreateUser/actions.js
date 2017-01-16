@@ -15,14 +15,16 @@ export function createUser() {
   };
 }
 
-export function createUserSuccess() {
+export function createUserSuccess(user) {
   return {
     type: CREATE_USER_SUCCESS,
+    value: user,
   };
 }
 
-export function createUserError() {
+export function createUserError(user) {
   return {
     type: CREATE_USER_ERROR,
+    value: user,
   };
 }
