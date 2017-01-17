@@ -12,6 +12,7 @@ export const SET_PASSWORD = 'app/LoginForm/SET_PASSWORD';
 export const LOGIN = 'app/LoginForm/LOGIN';
 export const LOGIN_SUCCESS = 'app/LoginForm/LOGIN_SUCCESS';
 export const LOGIN_ERROR = 'app/LoginForm/LOGIN_ERROR';
+export const LOGIN_URL = '/login';
 
 export const RESET_PASSWORD = 'app/LoginForm/RESET_PASSWORD';
 export const RESET_PASSWORD_SUCCESS = 'app/LoginForm/RESET_PASSWORD_SUCCESS';

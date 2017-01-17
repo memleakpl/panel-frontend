@@ -204,6 +204,7 @@ export default function createRoutes(store) {
           getComponent(nextState, cb) {
             const importModules = Promise.all([
               System.import('containers/GroupForm/reducer'),
+              System.import('containers/GroupForm/sagas'),
               System.import('containers/CreateGroup/reducer'),
               System.import('containers/CreateGroup/sagas'),
               System.import('containers/CreateGroup'),
@@ -211,9 +212,36 @@ export default function createRoutes(store) {
 
             const renderRoute = loadModule(cb);
 
-            importModules.then(([groupFormReducer, reducer, sagas, component]) => {
+            importModules.then(([groupFormReducer, groupFormSagas, reducer, sagas, component]) => {
               injectReducer('groupForm', groupFormReducer.default);
               injectReducer('createGroup', reducer.default);
+              injectSagas(groupFormSagas.default);
+              injectSagas(sagas.default);
+              renderRoute(component);
+            });
+
+            importModules.catch(errorLoading);
+          },
+          onEnter: requireAuth,
+        },
+        {
+          path: '/group/:groupname',
+          name: 'editGroup',
+          getComponent(nextState, cb) {
+            const importModules = Promise.all([
+              System.import('containers/GroupForm/reducer'),
+              System.import('containers/GroupForm/sagas'),
+              System.import('containers/EditGroup/reducer'),
+              System.import('containers/EditGroup/sagas'),
+              System.import('containers/EditGroup'),
+            ]);
+
+            const renderRoute = loadModule(cb);
+
+            importModules.then(([groupFormReducer, groupFormSagas, reducer, sagas, component]) => {
+              injectReducer('editGroup', reducer.default);
+              injectReducer('groupForm', groupFormReducer.default);
+              injectSagas(groupFormSagas.default);
               injectSagas(sagas.default);
               renderRoute(component);
             });

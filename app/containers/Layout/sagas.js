@@ -6,6 +6,7 @@ import { bootstrap, checkedFetch } from '../../utils/sagas';
 import { LOGOUT, LOGOUT_API_URL, ISADMIN_API_URL, CHECK_ADMIN } from './constants';
 import selectLayout from './selectors';
 import { setAdmin } from './actions';
+import { LOGIN_URL } from '../LoginForm/constants';
 
 function callLogout() {
   return checkedFetch(LOGOUT_API_URL, {
@@ -16,7 +17,7 @@ function callLogout() {
 
 function* logout() {
   yield call(callLogout);
-  yield put(push('/login'));
+  yield put(push(LOGIN_URL));
 }
 
 function* logoutSaga() {
