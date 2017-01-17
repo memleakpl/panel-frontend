@@ -10,12 +10,12 @@ import messages from './messages';
 
 export function editGroupSuccessNotification(group) {
   return Notifications.success({
-    title: <FormattedMessage {...messages.editGroupSuccessNotificationTitle} values={{ groupname: group.groupname }} />,
+    title: <FormattedMessage {...messages.editGroupSuccessNotificationTitle} values={{ groupname: group.name }} />,
   });
 }
 
 export function editGroupErrorNotification(group) {
   return Notifications.error({
-    title: <FormattedMessage {...messages.editGroupErrorNotificationTitle} values={{ groupname: group.groupname }} />,
+    title: <FormattedMessage {...messages.editGroupErrorNotificationTitle} values={{ groupname: group.name }} />,
   });
 }
