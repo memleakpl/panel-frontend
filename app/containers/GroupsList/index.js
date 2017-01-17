@@ -10,7 +10,7 @@ import { push } from 'react-router-redux';
 import selectGroupsList from './selectors';
 import GroupsTable from '../../components/GroupsTable';
 import { GROUP_TYPE } from '../../components/GroupsTable/constants';
-import { EDIT_GROUP_BASE_URL } from '../EditGroup/constants';
+import { editGroupUrl } from '../../urls';
 import { getGroups, setDeletionGroup, deleteGroup } from './actions';
 
 export class GroupsList extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
@@ -41,7 +41,7 @@ export class GroupsList extends React.PureComponent { // eslint-disable-line rea
     this.props.dispatch(setDeletionGroup(null));
   }
   editGroup(groupname) {
-    this.props.dispatch(push(`${EDIT_GROUP_BASE_URL}${groupname}`));
+    this.props.dispatch(push(editGroupUrl(groupname)));
   }
   render() {
     return (
