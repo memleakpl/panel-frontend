@@ -17,7 +17,7 @@ import { CARD_STYLE } from '../../styles';
 
 export class EditGroup extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   static propTypes= {
-    loading: React.PropTypes.bool,
+    editLoading: React.PropTypes.bool,
     getError: React.PropTypes.bool,
     getLoading: React.PropTypes.bool,
     dispatch: React.PropTypes.func,
@@ -48,7 +48,7 @@ export class EditGroup extends React.PureComponent { // eslint-disable-line reac
         disabledName
         button={<FormattedMessage {...messages.save} />}
         header={<CardTitle style={{ textAlign: 'left' }} title={<FormattedMessage {...messages.header} />} />}
-        loading={this.props.loading}
+        loading={this.props.editLoading}
         onSubmit={this.onSubmit}
       />) :
       undefined;
