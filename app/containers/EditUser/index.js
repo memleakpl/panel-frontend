@@ -24,7 +24,7 @@ export class EditUser extends React.PureComponent { // eslint-disable-line react
     dispatch: React.PropTypes.func.isRequired,
     getError: React.PropTypes.bool,
     getLoading: React.PropTypes.bool,
-    loading: React.PropTypes.bool,
+    editLoading: React.PropTypes.bool,
     params: React.PropTypes.shape({
       username: React.PropTypes.string.isRequired,
     }).isRequired,
@@ -55,7 +55,7 @@ export class EditUser extends React.PureComponent { // eslint-disable-line react
         <UserForm
           header={<CardTitle style={{ textAlign: 'left' }} title={<FormattedMessage {...messages.header} />} />}
           button={<FormattedMessage {...messages.save} />}
-          loading={this.props.loading}
+          loading={this.props.editLoading}
           disableUsername
           onSubmit={this.onSubmit}
         />

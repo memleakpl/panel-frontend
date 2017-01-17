@@ -15,7 +15,7 @@ import {
 } from './constants';
 
 const initialState = fromJS({
-  loading: false,
+  editLoading: false,
   getError: false,
   getLoading: false,
 });
@@ -29,10 +29,10 @@ function editUserReducer(state = initialState, action) {
     case GET_USER_SUCCESS:
       return state.merge({ getError: false, getLoading: false });
     case EDIT_USER:
-      return state.set('loading', true);
+      return state.set('editLoading', true);
     case EDIT_USER_ERROR:
     case EDIT_USER_SUCCESS:
-      return state.set('loading', false);
+      return state.set('editLoading', false);
     default:
       return state;
   }
