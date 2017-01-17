@@ -15,7 +15,7 @@ import {
 } from './constants';
 
 const initialState = fromJS({
-  loading: false,
+  editLoading: false,
   getLoading: false,
   getError: false,
 });
@@ -29,10 +29,10 @@ function editGroupReducer(state = initialState, action) {
     case GET_GROUP_SUCCESS:
       return state.merge({ getLoading: false, getError: false });
     case EDIT_GROUP:
-      return state.set('loading', true);
+      return state.set('editLoading', true);
     case EDIT_GROUP_SUCCESS:
     case EDIT_GROUP_ERROR:
-      return state.set('loading', false);
+      return state.set('editLoading', false);
     default:
       return state;
   }
