@@ -12,7 +12,6 @@ export const EDIT_USER = 'app/EditUser/EDIT_USER';
 export const EDIT_USER_SUCCESS = 'app/EditUser/EDIT_USER_SUCCESS';
 export const EDIT_USER_ERROR = 'app/EditUser/EDIT_USER_ERROR';
 
-export const EDIT_USER_BASE_URL = '/user/';
 export const API_GET_USER = `${API_ROOT}/user/`;
 export const API_EDIT_USER = `${API_ROOT}/user/`;
 
