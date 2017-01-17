@@ -4,7 +4,6 @@ import { push } from 'react-router-redux';
 import { bootstrap, checkedFetch } from '../../utils/sagas';
 import {
   GET_USER,
-  GET_USER_ERROR,
   EDIT_USER,
   EDIT_USER_ERROR,
   EDIT_USER_SUCCESS,
@@ -15,7 +14,7 @@ import {
 import selectUserForm from '../UserForm/selectors';
 import { setUser } from '../UserForm/actions';
 import { getUserSuccess, getUserError, editUserSuccess, editUserError } from './actions';
-import { editUserErrorNotification, editUserSuccessNotification, getUserErrorNotification } from './notifications';
+import { editUserErrorNotification, editUserSuccessNotification } from './notifications';
 
 function callFetchUser(username) {
   return checkedFetch(`${API_GET_USER}${username}`, {
@@ -60,9 +59,6 @@ function* editUser() {
 }
 
 function* notificationSaga() {
-  yield takeEvery(GET_USER_ERROR, function* notifyGetUserError(action) {
-    yield put(getUserErrorNotification(action.value));
-  });
   yield takeEvery(EDIT_USER_SUCCESS, function* notifyEditUserSuccess(action) {
     yield put(editUserSuccessNotification(action.value));
   });

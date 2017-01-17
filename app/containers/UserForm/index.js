@@ -14,6 +14,7 @@ export class UserForm extends React.PureComponent {
   static propTypes = {
     button: React.PropTypes.element.isRequired,
     header: React.PropTypes.element,
+    loading: React.PropTypes.bool,
     email: React.PropTypes.string,
     firstName: React.PropTypes.string,
     lastName: React.PropTypes.string,
@@ -47,6 +48,7 @@ export class UserForm extends React.PureComponent {
       <UserFormComponent
         button={this.props.button}
         header={this.props.header}
+        loading={this.props.loading}
         email={this.props.email}
         firstName={this.props.firstName}
         lastName={this.props.lastName}
