@@ -18,6 +18,7 @@ class UserFormComponent extends React.PureComponent { // eslint-disable-line rea
   static propTypes = {
     button: React.PropTypes.element.isRequired,
     header: React.PropTypes.element,
+    loading: React.PropTypes.bool,
     disableUsername: React.PropTypes.bool,
     username: React.PropTypes.string.isRequired,
     onUsernameChange: React.PropTypes.func.isRequired,
@@ -98,7 +99,7 @@ class UserFormComponent extends React.PureComponent { // eslint-disable-line rea
           />
           <RaisedButton
             type="submit"
-            disabled={!allValid}
+            disabled={!allValid || this.props.loading}
             primary
             fullWidth
             label={this.props.button}

@@ -20,9 +20,3 @@ export function editUserSuccessNotification(user) {
     title: <FormattedMessage {...messages.editUserSuccessNotificationTitle} values={{ username: user.username }} />,
   });
 }
-
-export function getUserErrorNotification(username) {
-  return Notifications.error({
-    title: <FormattedMessage {...messages.getUserErrorNotificationTitle} values={{ userName: username }} />,
-  });
-}
