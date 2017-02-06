@@ -5,21 +5,21 @@
 */
 
 import React from 'react';
-import { Card, CardTitle } from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
-import { CARD_STYLE } from '../../styles';
 
-const USERNAME_PATTERN = /[a-z0-9]+/;
+const USERNAME_PATTERN = /^[a-z0-9]+$/;
 const EMAIL_PATTERN = /^([\w.+-]+)@([\w-]+\.)*([\w-]+)$/i;
-const NAME_PATTERN = /[a-z0-9ęóąśłżźćń-]+/i;
+const NAME_PATTERN = /^[a-z0-9ęóąśłżźćń-]+$/i;
 
 class UserFormComponent extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
     button: React.PropTypes.element.isRequired,
     header: React.PropTypes.element,
+    loading: React.PropTypes.bool,
+    disableUsername: React.PropTypes.bool,
     username: React.PropTypes.string.isRequired,
     onUsernameChange: React.PropTypes.func.isRequired,
     firstName: React.PropTypes.string.isRequired,
@@ -54,12 +54,13 @@ class UserFormComponent extends React.PureComponent { // eslint-disable-line rea
     const valid = this.validateForm();
     const allValid = valid.username && valid.firstName && valid.lastName && valid.email;
     return (
-      <Card style={CARD_STYLE} >
-        <CardTitle title={this.props.header} />
+      <div>
+        {this.props.header}
         <form onSubmit={this.onSubmit}>
           <TextField
             hintText={<FormattedMessage {...messages.usernameHint} />}
             onChange={this.props.onUsernameChange}
+            disabled={this.props.disableUsername}
             value={this.props.username}
             errorText={!valid.username ? <span /> : null}
             fullWidth
@@ -98,13 +99,13 @@ class UserFormComponent extends React.PureComponent { // eslint-disable-line rea
           />
           <RaisedButton
             type="submit"
-            disabled={!allValid}
+            disabled={!allValid || this.props.loading}
             primary
             fullWidth
             label={this.props.button}
           />
         </form>
-      </Card>
+      </div>
     );
   }
 }

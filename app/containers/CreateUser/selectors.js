@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 
 /**
- * Direct selector to the createUser state domain
+ * Direct selector to the createGroup state domain
  */
 const selectCreateUserDomain = () => (state) => state.get('createUser');
 
@@ -11,7 +11,7 @@ const selectCreateUserDomain = () => (state) => state.get('createUser');
 
 
 /**
- * Default selector used by CreateUser
+ * Default selector used by CreateGroup
  */
 
 const selectCreateUser = () => createSelector(

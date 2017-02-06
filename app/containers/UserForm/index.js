@@ -10,14 +10,16 @@ import selectUserForm from './selectors';
 import { setUsername, setFirstName, setLastName, setEmail } from './actions';
 import UserFormComponent from '../../components/UserFormComponent';
 
-export class UserForm extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+export class UserForm extends React.PureComponent {
   static propTypes = {
     button: React.PropTypes.element.isRequired,
     header: React.PropTypes.element,
+    loading: React.PropTypes.bool,
     email: React.PropTypes.string,
     firstName: React.PropTypes.string,
     lastName: React.PropTypes.string,
     username: React.PropTypes.string,
+    disableUsername: React.PropTypes.bool,
     dispatch: React.PropTypes.func,
     onSubmit: React.PropTypes.func.isRequired,
   };
@@ -46,10 +48,12 @@ export class UserForm extends React.PureComponent { // eslint-disable-line react
       <UserFormComponent
         button={this.props.button}
         header={this.props.header}
+        loading={this.props.loading}
         email={this.props.email}
         firstName={this.props.firstName}
         lastName={this.props.lastName}
         username={this.props.username}
+        disableUsername={this.props.disableUsername}
         onUsernameChange={this.onUsernameChange}
         onFirstNameChange={this.onFirstNameChange}
         onLastNameChange={this.onLastNameChange}

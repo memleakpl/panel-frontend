@@ -6,21 +6,17 @@
 
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-
-import { Card, CardTitle } from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
-
 import messages from './messages';
 
-import { CARD_STYLE } from '../../styles';
-
-const DESCRIPTION_PATTERN = /[a-z0-9ęóąśłżźćń-]+/i;
-const NAME_PATTERN = /[a-z0-9]+/;
+const DESCRIPTION_PATTERN = /^[a-z0-9ęóąśłżźćń (),.-]+$/i;
+const NAME_PATTERN = /^[a-z0-9]+$/;
 const OWNER_PATTERN = NAME_PATTERN;
 
 class GroupFormComponent extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
+    disabledName: React.PropTypes.bool,
     button: React.PropTypes.element.isRequired,
     header: React.PropTypes.element,
     loading: React.PropTypes.bool.isRequired,
@@ -55,10 +51,11 @@ class GroupFormComponent extends React.PureComponent { // eslint-disable-line re
     const valid = this.validateForm();
     const allValid = valid.description && valid.name && valid.owner;
     return (
-      <Card style={CARD_STYLE}>
-        <CardTitle title={this.props.header} />
+      <div>
+        {this.props.header}
         <form onSubmit={this.onSubmit}>
           <TextField
+            disabled={this.props.disabledName}
             hintText={<FormattedMessage {...messages.nameHint} />}
             onChange={this.props.onNameChange}
             value={this.props.name}
@@ -93,7 +90,7 @@ class GroupFormComponent extends React.PureComponent { // eslint-disable-line re
             label={this.props.button}
           />
         </form>
-      </Card>
+      </div>
     );
   }
 }

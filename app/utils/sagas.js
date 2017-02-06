@@ -5,10 +5,13 @@
 import { fork, take, cancel } from 'redux-saga/effects';
 import { LOCATION_CHANGE } from 'react-router-redux';
 
-export function bootstrap(sagas) {
+export function bootstrap(sagas, exitSaga) {
   function* bootstrapSaga() {
     const tasks = yield sagas.map((saga) => fork(saga));
     yield take(LOCATION_CHANGE);
+    if (exitSaga !== undefined) {
+      yield exitSaga();
+    }
     yield tasks.map((task) => cancel(task));
   }
 
