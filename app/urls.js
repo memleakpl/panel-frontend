@@ -5,8 +5,8 @@ import { API_ROOT } from './constants';
 
 export const PASSWORD_RESET_URL = '/password/reset';
 
-export const RESET_PASSWORD_API_URL = `${API_ROOT}/password/reset`;
-export const RESET_PASSWORD_CONFIRM_API_URL = `${API_ROOT}/password/reset/confirm`;
+export const RESET_PASSWORD_API_URL = `${API_ROOT}/user/password/reset`;
+export const RESET_PASSWORD_CONFIRM_API_URL = `${API_ROOT}/user/password/reset/confirm`;
 
 export function editUserUrl(username) {
   return `/user/${username}`;
