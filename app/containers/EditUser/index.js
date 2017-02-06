@@ -71,8 +71,8 @@ export class EditUser extends React.PureComponent { // eslint-disable-line react
         <div style={{ textAlign: 'center' }}>
           {error}
           {loading}
-          {form}
         </div>
+        {form}
       </Card>
     );
   }
